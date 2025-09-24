@@ -1,0 +1,7 @@
+Description	Resource	Path	Location	Type
+CTDX1103E : XSD: Type reference 'tns#ISIS_PDF_PRNT_Dtl_Type' is unresolved	IPRINT_REQ_MSG.xsd	/IprintLib/schema	line 100	XSD Schema Validation Problem
+CTDX1103E : XSD: Type reference 'tns#ISIS_Header_Type' is unresolved	IPRINT_REQ_MSG.xsd	/IprintLib/schema	line 98	XSD Schema Validation Problem
+CTDX1103E : XSD: Type reference 'tns#IPRINT_REQ_Type' is unresolved	IPRINT_REQ_MSG.xsd	/IprintLib/schema	line 105	XSD Schema Validation Problem
+CTDX1103E : XSD: Type reference 'tns#EDX_HDR_Type' is unresolved	IPRINT_REQ_MSG.xsd	/IprintLib/schema	line 97	XSD Schema Validation Problem
+CTDX1103E : XSD: Type reference 'tns#BRK_RQST_Type' is unresolved	IPRINT_REQ_MSG.xsd	/IprintLib/schema	line 99	XSD Schema Validation Problem
+CTDX1103E : XSD: The element 'http://www.ogf.org/dfdl/dfdl-1.0/#format' is not permitted as constrained by 'http://www.w3.org/2001/XMLSchema#schema_._type'; expecting annotation | redefine | import | include | attributeGroup | group | complexType | simpleType | notation | attribute | element | nothing	IPRINT_REQ_MSG.xsd	/IprintLib/schema	line 6	XSD Schema Validation Problem
