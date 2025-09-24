@@ -5,19 +5,16 @@
             targetNamespace="http://your.namespace.com/IPRINT_REQUEST"
             elementFormDefault="qualified">
 
-    <xsd:annotation>
-        <xsd:appinfo source="http://www.ogf.org/dfdl/">
-            <dfdl:defineFormat name="CWF_Format">
-                <dfdl:format encoding="IBM500" lengthUnits="bytes"
-                             alignment="1" alignmentUnits="bytes" floating="no"
-                             textPadChar=" " textStringJustification="left"
-                             nilKind="literalCharacter" nilValue=""
-                             textNumberRep="standard" textNumberPadChar="0" textNumberJustification="right"
-                             textBooleanTrueRep="T" textBooleanFalseRep="F"
-                             textCalendarPattern="yyyyMMdd" textCalendarPatternKind="implicit"/>
-            </dfdl:defineFormat>
-        </xsd:appinfo>
-    </xsd:annotation>
+    <!-- dfdl:defineFormat should be a direct child of xsd:schema -->
+    <dfdl:defineFormat name="CWF_Format">
+        <dfdl:format encoding="IBM500" lengthUnits="bytes"
+                     alignment="1" alignmentUnits="bytes" floating="no"
+                     textPadChar=" " textStringJustification="left"
+                     nilKind="literalCharacter" nilValue=""
+                     textNumberRep="standard" textNumberPadChar="0" textNumberJustification="right"
+                     textBooleanTrueRep="T" textBooleanFalseRep="F"
+                     textCalendarPattern="yyyyMMdd" textCalendarPatternKind="implicit"/>
+    </dfdl:defineFormat>
 
     <!-- EDX_HDR_Type -->
     <xsd:complexType name="EDX_HDR_Type" dfdl:ref="CWF_Format">
