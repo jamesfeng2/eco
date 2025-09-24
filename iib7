@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/"
-            xmlns:tns="http://your.namespace.com/IPRINT_REQUEST"
+            xmlns="http://your.namespace.com/IPRINT_REQUEST"
             targetNamespace="http://your.namespace.com/IPRINT_REQUEST"
             elementFormDefault="qualified">
 
-    <dfdl:format name="CWF_Format" encoding="IBM500" lengthUnits="bytes"
-                 alignment="1" alignmentUnits="bytes" floating="no"
-                 textPadChar=" " textStringJustification="left"
-                 nilKind="literalCharacter" nilValue=""
-                 textNumberRep="standard" textNumberPadChar="0" textNumberJustification="right"
-                 textBooleanTrueRep="T" textBooleanFalseRep="F"
-                 textCalendarPattern="yyyyMMdd" textCalendarPatternKind="implicit"/>
+    <xsd:annotation>
+        <xsd:appinfo source="http://www.ogf.org/dfdl/">
+            <dfdl:defineFormat name="CWF_Format">
+                <dfdl:format encoding="IBM500" lengthUnits="bytes"
+                             alignment="1" alignmentUnits="bytes" floating="no"
+                             textPadChar=" " textStringJustification="left"
+                             nilKind="literalCharacter" nilValue=""
+                             textNumberRep="standard" textNumberPadChar="0" textNumberJustification="right"
+                             textBooleanTrueRep="T" textBooleanFalseRep="F"
+                             textCalendarPattern="yyyyMMdd" textCalendarPatternKind="implicit"/>
+            </dfdl:defineFormat>
+        </xsd:appinfo>
+    </xsd:annotation>
 
     <!-- EDX_HDR_Type -->
-    <xsd:complexType name="EDX_HDR_Type">
-        <xsd:sequence dfdl:initiator="" dfdl:terminator="" dfdl:separatorSuppressionPolicy="never">
+    <xsd:complexType name="EDX_HDR_Type" dfdl:ref="CWF_Format">
+        <xsd:sequence>
             <xsd:element name="EDX_Header_Type" type="xsd:string" dfdl:lengthKind="fixed" dfdl:length="1"/>
             <xsd:element name="EDX_Header_Ver" type="xsd:short" dfdl:lengthKind="fixed" dfdl:length="1"
-                         dfdl:textNumberRep="standard" dfdl:textNumberPattern="##" dfdl:textNumberPadChar="0" dfdl:textNumberJustification="right"/>
+                         dfdl:textNumberRep="standard" dfdl:textNumberPattern="#0" dfdl:textNumberPadChar="0" dfdl:textNumberJustification="right"/>
             <xsd:element name="EDX_TRN_Type_Cde" type="xsd:string" dfdl:lengthKind="fixed" dfdl:length="10"/>
             <xsd:element name="EDX_TRN_Action_Cde" type="xsd:string" dfdl:lengthKind="fixed" dfdl:length="1"/>
             <xsd:element name="EDX_TRN_Ver_Num" type="xsd:short" dfdl:lengthKind="fixed" dfdl:length="2"
@@ -45,8 +51,8 @@
     </xsd:complexType>
 
     <!-- ISIS_Header_Type -->
-    <xsd:complexType name="ISIS_Header_Type">
-        <xsd:sequence dfdl:initiator="" dfdl:terminator="" dfdl:separatorSuppressionPolicy="never">
+    <xsd:complexType name="ISIS_Header_Type" dfdl:ref="CWF_Format">
+        <xsd:sequence>
             <xsd:element name="ISIS_TRN_Type_Cde" type="xsd:string" dfdl:lengthKind="fixed" dfdl:length="6"/>
             <xsd:element name="ISIS_CRN" type="xsd:string" dfdl:lengthKind="fixed" dfdl:length="10"/>
             <xsd:element name="ISIS_Host_Id" type="xsd:string" dfdl:lengthKind="fixed" dfdl:length="3"/>
@@ -80,30 +86,30 @@
     </xsd:complexType>
 
     <!-- BRK_RQST_Type -->
-    <xsd:complexType name="BRK_RQST_Type">
-        <xsd:sequence dfdl:initiator="" dfdl:terminator="" dfdl:separatorSuppressionPolicy="never">
+    <xsd:complexType name="BRK_RQST_Type" dfdl:ref="CWF_Format">
+        <xsd:sequence>
             <xsd:element name="BRK_RQST_Metadata" type="xsd:string" dfdl:lengthKind="fixed" dfdl:length="128"/>
         </xsd:sequence>
     </xsd:complexType>
 
     <!-- ISIS_PDF_PRNT_Dtl_Type -->
-    <xsd:complexType name="ISIS_PDF_PRNT_Dtl_Type">
-        <xsd:sequence dfdl:initiator="" dfdl:terminator="" dfdl:separatorSuppressionPolicy="never">
+    <xsd:complexType name="ISIS_PDF_PRNT_Dtl_Type" dfdl:ref="CWF_Format">
+        <xsd:sequence>
             <xsd:element name="ISIS_Printer_PRNT_Dtl" type="xsd:string" dfdl:lengthKind="implicit"/>
         </xsd:sequence>
     </xsd:complexType>
 
     <!-- IPRINT_REQ_Type (main complex type) -->
-    <xsd:complexType name="IPRINT_REQ_Type">
-        <xsd:sequence dfdl:ref="CWF_Format"> <!-- Apply global format defaults -->
-            <xsd:element name="EDX_HDR" type="tns:EDX_HDR_Type"/>
-            <xsd:element name="ISIS_Header" type="tns:ISIS_Header_Type"/>
-            <xsd:element name="BRK_RQST" type="tns:BRK_RQST_Type"/>
-            <xsd:element name="ISIS_PDF_PRNT_Dtl" type="tns:ISIS_PDF_PRNT_Dtl_Type"/>
+    <xsd:complexType name="IPRINT_REQ_Type" dfdl:ref="CWF_Format">
+        <xsd:sequence>
+            <xsd:element name="EDX_HDR" type="EDX_HDR_Type"/>
+            <xsd:element name="ISIS_Header" type="ISIS_Header_Type"/>
+            <xsd:element name="BRK_RQST" type="BRK_RQST_Type"/>
+            <xsd:element name="ISIS_PDF_PRNT_Dtl" type="ISIS_PDF_PRNT_Dtl_Type"/>
         </xsd:sequence>
     </xsd:complexType>
 
     <!-- Top-level element -->
-    <xsd:element name="IPRINT_REQ_MSG" type="tns:IPRINT_REQ_Type" dfdl:ref="CWF_Format"/>
+    <xsd:element name="IPRINT_REQ_MSG" type="IPRINT_REQ_Type" dfdl:ref="CWF_Format"/>
 
 </xsd:schema>
