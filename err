@@ -1,2 +1,3 @@
 Description	Resource	Path	Location	Type
-CTDX1103E : XSD: Type reference 'xsd#string' is unresolved	IPRINT_Request.xsd	/DFDL_Schema	line 18	XSD Schema Validation Problem
+CTDX1103E : XSD: The type may not have duplicate name and target namespace '#IPRINT_REQ_Type'	IPRINT_Request.xsd	/DFDL_Schema	line 431	XSD Schema Validation Problem
+
