@@ -1,430 +1,699 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/"
-           targetNamespace="http://example.com/ini.7"
-           xmlns="http://example.com/ini.7"
-           elementFormDefault="qualified"
-           attributeFormDefault="unqualified">
-
-  <!-- DFDL default properties can be set with a format block on top-level elements if needed.
-       Here we specify per-element explicit lengths matching the original MXSD 'width' attributes. -->
-
-  <!-- ---------- EDX_HDR_Type ---------- -->
-  <xs:complexType name="EDX_HDR_Type">
-    <xs:sequence dfdl:separator="none">
-      <xs:element name="EDX_Header_Type" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo>
-            <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="1"
-                         dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_Header_Ver" type="xs:short">
-        <xs:annotation>
-          <xs:appinfo>
-            <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="1"
-                         dfdl:textPadCharacter=" " dfdl:textJustification="right"/>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_TRN_Type_Cde" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="10"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_TRN_Action_Cde" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="1"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_TRN_Ver_Num" type="xs:short">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="2"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="right"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_Recv_Agency_Cde" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="3"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_Recv_Agency_App_Id" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="6"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_Recv_Agency_Obj_Ref_Id" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="20"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_Sendng_Agency_Cde" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="3"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_Sendng_Agency_App_Id" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="6"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_Sendng_Agency_Obj_Ref_Id" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="20"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_Sendng_User_Id" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="8"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_Sendng_User_Office_Cde" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="4"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_Sent_Date" type="xs:date">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="8"
-                       dfdl:textPadCharacter=" " dfdl:calendarPattern="yyyyMMdd"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_Sent_Time_Seq_Num" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="12"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_Sendng_Cut_Offset_Mins" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="4"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_Sendng_Machine_Id" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="3"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_TRN_Ref_Id" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="24"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_Err_Rsn_Cde" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="6"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_Reserved" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="10"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="EDX_Data_Len" type="xs:short">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="6"
-                       dfdl:textPadCharacter="0" dfdl:textJustification="right"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-    </xs:sequence>
-  </xs:complexType>
-
-  <!-- ---------- ISIS_Header_Type ---------- -->
-  <xs:complexType name="ISIS_Header_Type">
-    <xs:sequence dfdl:separator="none">
-      <xs:element name="ISIS_TRN_Type_Cde" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="6"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_CRN" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="10"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Host_Id" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="3"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Status_Cde" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="2"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Recip_Name" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="50"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Hist_Id" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="10"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Format_Cde" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="3"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_User_Id" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="12"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Style_File" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="3"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Debug_Flg" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="1"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Printer_Id" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="8"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Printer_IP_Addr" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="15"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Queue" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="32"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_LTT_Mde" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="5"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Sel_Code" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="3"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Text_Code" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="8"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Ro_Code" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="3"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Recipient_Name" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="120"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Recipient_Fax_No" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="10"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Sender_Name" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="120"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Sender_Fax_No" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="10"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Sender_Office" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="50"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Sender_Phone_No" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="10"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Fax_Body_Text" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="255"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Fax_Subject" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="150"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Conf_Email" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="150"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Conf_Email_Type" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="2"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Conf_Ind" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="1"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Fax_Template" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="50"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-    </xs:sequence>
-  </xs:complexType>
-
-  <!-- ---------- BRK_RQST_Type ---------- -->
-  <xs:complexType name="BRK_RQST_Type">
-    <xs:sequence dfdl:separator="none">
-      <xs:element name="BRK_RQST_Metadata" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="128"
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
-
-  <!-- ---------- ISIS_PDF_PRNT_Dtl_Type ---------- -->
-  <xs:complexType name="ISIS_PDF_PRNT_Dtl_Type">
-    <xs:sequence dfdl:separator="none">
-      <xs:element name="ISIS_Printer_PRNT_Dtl" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <!-- original had lengthUnits="EndOfBitStream" - here we treat as variable length until record end
-               Use dfdl:lengthKind="delimited" with terminator or outer record handling as needed. -->
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="delimited" dfdl:initiator="" dfdl:terminator=""
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
-
-  <!-- ---------- Root Element ---------- -->
-  <xs:complexType name="IPRINT_REQ_Type">
-    <xs:sequence dfdl:separator="none">
-      <xs:element name="EDX_HDR" type="EDX_HDR_Type">
-        <xs:annotation><xs:appinfo>
-          <!-- treat the EDX header as fixed-length composite (sum of field lengths) -->
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="explicit" dfdl:length="(you may compute total header length if you want validation)"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
-
-      <xs:element name="ISIS_Header" type="ISIS_Header_Type"/>
-
-      <xs:element name="BRK_RQST" type="BRK_RQST_Type"/>
-
-      <xs:element name="ISIS_PDF_PRNT_Dtl" type="ISIS_PDF_PRNT_Dtl_Type"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:element name="IPRINT_REQ_MSG" type="IPRINT_REQ_Type">
-    <xs:annotation><xs:appinfo>
-      <!-- Top-level format: adjust lengthKind accordingly if message has an overall fixed length or delimited body -->
-      <dfdl:format dfdl:representation="text"/>
-    </xs:appinfo></xs:annotation>
-  </xs:element>
-
-  <!-- You may add additional annotations or hidden helper types for numeric parsing if needed. -->
-</xs:schema>
+Description	Resource	Path	Location	Type
+CTDV1442E : For a sequence or choice, DFDL property 'initiatedContent' must be set. Sequence: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 390	DFDL Validation Problem
+CTDV1442E : For a sequence or choice, DFDL property 'initiatedContent' must be set. Sequence: #xscd(/type::ISIS_Header_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 169	DFDL Validation Problem
+CTDV1442E : For a sequence or choice, DFDL property 'initiatedContent' must be set. Sequence: #xscd(/type::IPRINT_REQ_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 404	DFDL Validation Problem
+CTDV1442E : For a sequence or choice, DFDL property 'initiatedContent' must be set. Sequence: #xscd(/type::EDX_HDR_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 12	DFDL Validation Problem
+CTDV1442E : For a sequence or choice, DFDL property 'initiatedContent' must be set. Sequence: #xscd(/type::BRK_RQST_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 378	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence/schemaElement::ISIS_Printer_PRNT_Dtl).	IPRINT_Request.xsd	/DFDL_Schema	line 391	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 219	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 170	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Text_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 275	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Style_File).	IPRINT_Request.xsd	/DFDL_Schema	line 226	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Status_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 191	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Phone_No).	IPRINT_Request.xsd	/DFDL_Schema	line 324	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Office).	IPRINT_Request.xsd	/DFDL_Schema	line 317	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 303	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 310	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sel_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 268	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Ro_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 282	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 289	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 296	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recip_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 198	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Queue).	IPRINT_Request.xsd	/DFDL_Schema	line 254	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_IP_Addr).	IPRINT_Request.xsd	/DFDL_Schema	line 247	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 240	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_LTT_Mde).	IPRINT_Request.xsd	/DFDL_Schema	line 261	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Host_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 184	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Hist_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 205	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Format_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 212	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Template).	IPRINT_Request.xsd	/DFDL_Schema	line 366	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Subject).	IPRINT_Request.xsd	/DFDL_Schema	line 338	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Body_Text).	IPRINT_Request.xsd	/DFDL_Schema	line 331	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Debug_Flg).	IPRINT_Request.xsd	/DFDL_Schema	line 233	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_CRN).	IPRINT_Request.xsd	/DFDL_Schema	line 177	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Ind).	IPRINT_Request.xsd	/DFDL_Schema	line 359	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email).	IPRINT_Request.xsd	/DFDL_Schema	line 345	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 352	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 31	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 136	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Action_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 38	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Time_Seq_Num).	IPRINT_Request.xsd	/DFDL_Schema	line 115	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Office_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 101	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 94	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Machine_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 129	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Cut_Offset_Mins).	IPRINT_Request.xsd	/DFDL_Schema	line 122	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 87	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 73	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 80	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Reserved).	IPRINT_Request.xsd	/DFDL_Schema	line 150	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 66	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 52	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 59	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 13	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Err_Rsn_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 143	DFDL Validation Problem
+CTDV1424E : When representation is text, DFDL property 'escapeSchemeRef' must be set. Element: #xscd(/type::BRK_RQST_Type/model::sequence/schemaElement::BRK_RQST_Metadata).	IPRINT_Request.xsd	/DFDL_Schema	line 379	DFDL Validation Problem
+CTDV1336E : When a sequence has a separator, DFDL property 'separatorSuppressionPolicy' must be set. Sequence: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 390	DFDL Validation Problem
+CTDV1336E : When a sequence has a separator, DFDL property 'separatorSuppressionPolicy' must be set. Sequence: #xscd(/type::ISIS_Header_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 169	DFDL Validation Problem
+CTDV1336E : When a sequence has a separator, DFDL property 'separatorSuppressionPolicy' must be set. Sequence: #xscd(/type::IPRINT_REQ_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 404	DFDL Validation Problem
+CTDV1336E : When a sequence has a separator, DFDL property 'separatorSuppressionPolicy' must be set. Sequence: #xscd(/type::EDX_HDR_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 12	DFDL Validation Problem
+CTDV1336E : When a sequence has a separator, DFDL property 'separatorSuppressionPolicy' must be set. Sequence: #xscd(/type::BRK_RQST_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 378	DFDL Validation Problem
+CTDV1335E : When a sequence has a separator, DFDL property 'separatorPosition' must be set. Sequence: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 390	DFDL Validation Problem
+CTDV1335E : When a sequence has a separator, DFDL property 'separatorPosition' must be set. Sequence: #xscd(/type::ISIS_Header_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 169	DFDL Validation Problem
+CTDV1335E : When a sequence has a separator, DFDL property 'separatorPosition' must be set. Sequence: #xscd(/type::IPRINT_REQ_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 404	DFDL Validation Problem
+CTDV1335E : When a sequence has a separator, DFDL property 'separatorPosition' must be set. Sequence: #xscd(/type::EDX_HDR_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 12	DFDL Validation Problem
+CTDV1335E : When a sequence has a separator, DFDL property 'separatorPosition' must be set. Sequence: #xscd(/type::BRK_RQST_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 378	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Sequence: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 390	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Sequence: #xscd(/type::ISIS_Header_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 169	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Sequence: #xscd(/type::IPRINT_REQ_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 404	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Sequence: #xscd(/type::EDX_HDR_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 12	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Sequence: #xscd(/type::BRK_RQST_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 378	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence/schemaElement::ISIS_Printer_PRNT_Dtl).	IPRINT_Request.xsd	/DFDL_Schema	line 391	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 219	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 170	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Text_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 275	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Style_File).	IPRINT_Request.xsd	/DFDL_Schema	line 226	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Status_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 191	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Phone_No).	IPRINT_Request.xsd	/DFDL_Schema	line 324	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Office).	IPRINT_Request.xsd	/DFDL_Schema	line 317	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 303	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 310	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sel_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 268	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Ro_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 282	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 289	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 296	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recip_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 198	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Queue).	IPRINT_Request.xsd	/DFDL_Schema	line 254	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_IP_Addr).	IPRINT_Request.xsd	/DFDL_Schema	line 247	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 240	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_LTT_Mde).	IPRINT_Request.xsd	/DFDL_Schema	line 261	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Host_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 184	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Hist_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 205	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Format_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 212	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Template).	IPRINT_Request.xsd	/DFDL_Schema	line 366	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Subject).	IPRINT_Request.xsd	/DFDL_Schema	line 338	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Body_Text).	IPRINT_Request.xsd	/DFDL_Schema	line 331	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Debug_Flg).	IPRINT_Request.xsd	/DFDL_Schema	line 233	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_CRN).	IPRINT_Request.xsd	/DFDL_Schema	line 177	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Ind).	IPRINT_Request.xsd	/DFDL_Schema	line 359	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email).	IPRINT_Request.xsd	/DFDL_Schema	line 345	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 352	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::ISIS_PDF_PRNT_Dtl).	IPRINT_Request.xsd	/DFDL_Schema	line 416	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::ISIS_Header).	IPRINT_Request.xsd	/DFDL_Schema	line 412	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Debug_Flg).	IPRINT_Request.xsd	/DFDL_Schema	line 233	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_LTT_Mde).	IPRINT_Request.xsd	/DFDL_Schema	line 261	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 240	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_IP_Addr).	IPRINT_Request.xsd	/DFDL_Schema	line 247	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Queue).	IPRINT_Request.xsd	/DFDL_Schema	line 254	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sel_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 268	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Style_File).	IPRINT_Request.xsd	/DFDL_Schema	line 226	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Text_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 275	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 219	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Debug_Flg). 	IPRINT_Request.xsd	/DFDL_Schema	line 233	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_LTT_Mde). 	IPRINT_Request.xsd	/DFDL_Schema	line 261	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 240	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_IP_Addr). 	IPRINT_Request.xsd	/DFDL_Schema	line 247	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Queue). 	IPRINT_Request.xsd	/DFDL_Schema	line 254	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Ro_Code). 	IPRINT_Request.xsd	/DFDL_Schema	line 282	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Ro_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 282	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Name). 	IPRINT_Request.xsd	/DFDL_Schema	line 289	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sel_Code). 	IPRINT_Request.xsd	/DFDL_Schema	line 268	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Style_File). 	IPRINT_Request.xsd	/DFDL_Schema	line 226	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Text_Code). 	IPRINT_Request.xsd	/DFDL_Schema	line 275	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Debug_Flg).	IPRINT_Request.xsd	/DFDL_Schema	line 233	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_LTT_Mde).	IPRINT_Request.xsd	/DFDL_Schema	line 261	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 240	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_IP_Addr).	IPRINT_Request.xsd	/DFDL_Schema	line 247	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Queue).	IPRINT_Request.xsd	/DFDL_Schema	line 254	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 289	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Ro_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 282	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 289	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Fax_No). 	IPRINT_Request.xsd	/DFDL_Schema	line 296	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sel_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 268	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 296	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Style_File).	IPRINT_Request.xsd	/DFDL_Schema	line 226	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Text_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 275	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Debug_Flg).	IPRINT_Request.xsd	/DFDL_Schema	line 233	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_LTT_Mde).	IPRINT_Request.xsd	/DFDL_Schema	line 261	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 240	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_IP_Addr).	IPRINT_Request.xsd	/DFDL_Schema	line 247	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Queue).	IPRINT_Request.xsd	/DFDL_Schema	line 254	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 296	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 296	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Name). 	IPRINT_Request.xsd	/DFDL_Schema	line 303	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 289	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 303	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Ro_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 282	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sel_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 268	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 303	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Style_File).	IPRINT_Request.xsd	/DFDL_Schema	line 226	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Text_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 275	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Debug_Flg).	IPRINT_Request.xsd	/DFDL_Schema	line 233	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_LTT_Mde).	IPRINT_Request.xsd	/DFDL_Schema	line 261	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 240	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 303	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Fax_No). 	IPRINT_Request.xsd	/DFDL_Schema	line 310	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 310	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 310	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_IP_Addr).	IPRINT_Request.xsd	/DFDL_Schema	line 247	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Queue).	IPRINT_Request.xsd	/DFDL_Schema	line 254	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 296	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 289	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Ro_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 282	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sel_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 268	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 310	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 303	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 310	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Office). 	IPRINT_Request.xsd	/DFDL_Schema	line 317	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Office).	IPRINT_Request.xsd	/DFDL_Schema	line 317	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Office).	IPRINT_Request.xsd	/DFDL_Schema	line 317	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Style_File).	IPRINT_Request.xsd	/DFDL_Schema	line 226	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Text_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 275	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 219	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Debug_Flg).	IPRINT_Request.xsd	/DFDL_Schema	line 233	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_LTT_Mde).	IPRINT_Request.xsd	/DFDL_Schema	line 261	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 240	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Office).	IPRINT_Request.xsd	/DFDL_Schema	line 317	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_IP_Addr).	IPRINT_Request.xsd	/DFDL_Schema	line 247	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Office).	IPRINT_Request.xsd	/DFDL_Schema	line 317	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Phone_No). 	IPRINT_Request.xsd	/DFDL_Schema	line 324	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Phone_No).	IPRINT_Request.xsd	/DFDL_Schema	line 324	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Phone_No).	IPRINT_Request.xsd	/DFDL_Schema	line 324	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Queue).	IPRINT_Request.xsd	/DFDL_Schema	line 254	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 296	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 289	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Ro_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 282	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sel_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 268	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 310	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Phone_No).	IPRINT_Request.xsd	/DFDL_Schema	line 324	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 303	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Phone_No).	IPRINT_Request.xsd	/DFDL_Schema	line 324	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Body_Text). 	IPRINT_Request.xsd	/DFDL_Schema	line 331	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Body_Text).	IPRINT_Request.xsd	/DFDL_Schema	line 331	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Body_Text).	IPRINT_Request.xsd	/DFDL_Schema	line 331	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Office).	IPRINT_Request.xsd	/DFDL_Schema	line 317	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Phone_No).	IPRINT_Request.xsd	/DFDL_Schema	line 324	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Style_File).	IPRINT_Request.xsd	/DFDL_Schema	line 226	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Text_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 275	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 219	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Body_Text).	IPRINT_Request.xsd	/DFDL_Schema	line 331	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Body_Text).	IPRINT_Request.xsd	/DFDL_Schema	line 331	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Debug_Flg).	IPRINT_Request.xsd	/DFDL_Schema	line 233	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Body_Text).	IPRINT_Request.xsd	/DFDL_Schema	line 331	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Subject). 	IPRINT_Request.xsd	/DFDL_Schema	line 338	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Subject).	IPRINT_Request.xsd	/DFDL_Schema	line 338	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Subject).	IPRINT_Request.xsd	/DFDL_Schema	line 338	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Body_Text).	IPRINT_Request.xsd	/DFDL_Schema	line 331	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_LTT_Mde).	IPRINT_Request.xsd	/DFDL_Schema	line 261	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 240	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_IP_Addr).	IPRINT_Request.xsd	/DFDL_Schema	line 247	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Subject).	IPRINT_Request.xsd	/DFDL_Schema	line 338	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Subject).	IPRINT_Request.xsd	/DFDL_Schema	line 338	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Subject).	IPRINT_Request.xsd	/DFDL_Schema	line 338	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Queue).	IPRINT_Request.xsd	/DFDL_Schema	line 254	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Subject).	IPRINT_Request.xsd	/DFDL_Schema	line 338	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email). 	IPRINT_Request.xsd	/DFDL_Schema	line 345	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email).	IPRINT_Request.xsd	/DFDL_Schema	line 345	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email).	IPRINT_Request.xsd	/DFDL_Schema	line 345	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 296	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 289	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Ro_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 282	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sel_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 268	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email).	IPRINT_Request.xsd	/DFDL_Schema	line 345	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email).	IPRINT_Request.xsd	/DFDL_Schema	line 345	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email).	IPRINT_Request.xsd	/DFDL_Schema	line 345	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 310	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email).	IPRINT_Request.xsd	/DFDL_Schema	line 345	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email_Type). 	IPRINT_Request.xsd	/DFDL_Schema	line 352	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 352	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 352	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 303	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Office).	IPRINT_Request.xsd	/DFDL_Schema	line 317	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Phone_No).	IPRINT_Request.xsd	/DFDL_Schema	line 324	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Style_File).	IPRINT_Request.xsd	/DFDL_Schema	line 226	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 352	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 352	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 352	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Text_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 275	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 352	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Ind). 	IPRINT_Request.xsd	/DFDL_Schema	line 359	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Ind).	IPRINT_Request.xsd	/DFDL_Schema	line 359	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Ind).	IPRINT_Request.xsd	/DFDL_Schema	line 359	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 219	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email_Type).  	IPRINT_Request.xsd	/DFDL_Schema	line 352	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email).  	IPRINT_Request.xsd	/DFDL_Schema	line 345	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Ind).  	IPRINT_Request.xsd	/DFDL_Schema	line 359	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Ind).	IPRINT_Request.xsd	/DFDL_Schema	line 359	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Ind).	IPRINT_Request.xsd	/DFDL_Schema	line 359	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Ind).	IPRINT_Request.xsd	/DFDL_Schema	line 359	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Debug_Flg).  	IPRINT_Request.xsd	/DFDL_Schema	line 233	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Ind).	IPRINT_Request.xsd	/DFDL_Schema	line 359	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Template). 	IPRINT_Request.xsd	/DFDL_Schema	line 366	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Template).	IPRINT_Request.xsd	/DFDL_Schema	line 366	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Template).	IPRINT_Request.xsd	/DFDL_Schema	line 366	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Body_Text).  	IPRINT_Request.xsd	/DFDL_Schema	line 331	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Subject).  	IPRINT_Request.xsd	/DFDL_Schema	line 338	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Template).  	IPRINT_Request.xsd	/DFDL_Schema	line 366	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_LTT_Mde).  	IPRINT_Request.xsd	/DFDL_Schema	line 261	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Template).	IPRINT_Request.xsd	/DFDL_Schema	line 366	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Template).	IPRINT_Request.xsd	/DFDL_Schema	line 366	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Template).	IPRINT_Request.xsd	/DFDL_Schema	line 366	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_Id).  	IPRINT_Request.xsd	/DFDL_Schema	line 240	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Template).	IPRINT_Request.xsd	/DFDL_Schema	line 366	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::BRK_RQST). 	IPRINT_Request.xsd	/DFDL_Schema	line 414	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::BRK_RQST).	IPRINT_Request.xsd	/DFDL_Schema	line 414	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::BRK_RQST).	IPRINT_Request.xsd	/DFDL_Schema	line 414	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_IP_Addr).  	IPRINT_Request.xsd	/DFDL_Schema	line 247	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::BRK_RQST).  	IPRINT_Request.xsd	/DFDL_Schema	line 414	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Queue).  	IPRINT_Request.xsd	/DFDL_Schema	line 254	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Fax_No).  	IPRINT_Request.xsd	/DFDL_Schema	line 296	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Name).  	IPRINT_Request.xsd	/DFDL_Schema	line 289	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Ro_Code).  	IPRINT_Request.xsd	/DFDL_Schema	line 282	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sel_Code).  	IPRINT_Request.xsd	/DFDL_Schema	line 268	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Fax_No).  	IPRINT_Request.xsd	/DFDL_Schema	line 310	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Name).  	IPRINT_Request.xsd	/DFDL_Schema	line 303	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Sequence: #xscd(/type::BRK_RQST_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 378	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Sequence: #xscd(/type::BRK_RQST_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 378	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Office).  	IPRINT_Request.xsd	/DFDL_Schema	line 317	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Phone_No).  	IPRINT_Request.xsd	/DFDL_Schema	line 324	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Sequence: #xscd(/type::BRK_RQST_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 378	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Sequence: #xscd(/type::BRK_RQST_Type/model::sequence). 	IPRINT_Request.xsd	/DFDL_Schema	line 378	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::BRK_RQST_Type/model::sequence/schemaElement::BRK_RQST_Metadata). 	IPRINT_Request.xsd	/DFDL_Schema	line 379	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::BRK_RQST_Type/model::sequence/schemaElement::BRK_RQST_Metadata).	IPRINT_Request.xsd	/DFDL_Schema	line 379	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::BRK_RQST_Type/model::sequence/schemaElement::BRK_RQST_Metadata).	IPRINT_Request.xsd	/DFDL_Schema	line 379	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Style_File).  	IPRINT_Request.xsd	/DFDL_Schema	line 226	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::BRK_RQST_Type/model::sequence/schemaElement::BRK_RQST_Metadata).  	IPRINT_Request.xsd	/DFDL_Schema	line 379	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Text_Code).  	IPRINT_Request.xsd	/DFDL_Schema	line 275	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_User_Id).  	IPRINT_Request.xsd	/DFDL_Schema	line 219	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::BRK_RQST_Type/model::sequence/schemaElement::BRK_RQST_Metadata).	IPRINT_Request.xsd	/DFDL_Schema	line 379	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::BRK_RQST_Type/model::sequence/schemaElement::BRK_RQST_Metadata).	IPRINT_Request.xsd	/DFDL_Schema	line 379	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::BRK_RQST_Type/model::sequence/schemaElement::BRK_RQST_Metadata).	IPRINT_Request.xsd	/DFDL_Schema	line 379	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Sequence: #xscd(/type::BRK_RQST_Type/model::sequence).  	IPRINT_Request.xsd	/DFDL_Schema	line 378	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::BRK_RQST_Type/model::sequence/schemaElement::BRK_RQST_Metadata).	IPRINT_Request.xsd	/DFDL_Schema	line 379	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::ISIS_PDF_PRNT_Dtl). 	IPRINT_Request.xsd	/DFDL_Schema	line 416	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::ISIS_PDF_PRNT_Dtl).	IPRINT_Request.xsd	/DFDL_Schema	line 416	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::ISIS_PDF_PRNT_Dtl).	IPRINT_Request.xsd	/DFDL_Schema	line 416	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::BRK_RQST_Type/model::sequence/schemaElement::BRK_RQST_Metadata). 	IPRINT_Request.xsd	/DFDL_Schema	line 379	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::ISIS_PDF_PRNT_Dtl).  	IPRINT_Request.xsd	/DFDL_Schema	line 416	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::BRK_RQST). 	IPRINT_Request.xsd	/DFDL_Schema	line 414	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::ISIS_PDF_PRNT_Dtl). 	IPRINT_Request.xsd	/DFDL_Schema	line 416	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Sequence: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence).  	IPRINT_Request.xsd	/DFDL_Schema	line 390	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email_Type). 	IPRINT_Request.xsd	/DFDL_Schema	line 352	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email). 	IPRINT_Request.xsd	/DFDL_Schema	line 345	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Ind). 	IPRINT_Request.xsd	/DFDL_Schema	line 359	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Debug_Flg). 	IPRINT_Request.xsd	/DFDL_Schema	line 233	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Sequence: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 390	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Sequence: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 390	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Body_Text). 	IPRINT_Request.xsd	/DFDL_Schema	line 331	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Subject). 	IPRINT_Request.xsd	/DFDL_Schema	line 338	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Sequence: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 390	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Sequence: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence). 	IPRINT_Request.xsd	/DFDL_Schema	line 390	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence/schemaElement::ISIS_Printer_PRNT_Dtl). 	IPRINT_Request.xsd	/DFDL_Schema	line 391	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence/schemaElement::ISIS_Printer_PRNT_Dtl).	IPRINT_Request.xsd	/DFDL_Schema	line 391	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence/schemaElement::ISIS_Printer_PRNT_Dtl).	IPRINT_Request.xsd	/DFDL_Schema	line 391	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Template). 	IPRINT_Request.xsd	/DFDL_Schema	line 366	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence/schemaElement::ISIS_Printer_PRNT_Dtl).  	IPRINT_Request.xsd	/DFDL_Schema	line 391	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_LTT_Mde). 	IPRINT_Request.xsd	/DFDL_Schema	line 261	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 240	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence/schemaElement::ISIS_Printer_PRNT_Dtl).	IPRINT_Request.xsd	/DFDL_Schema	line 391	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence/schemaElement::ISIS_Printer_PRNT_Dtl).	IPRINT_Request.xsd	/DFDL_Schema	line 391	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence/schemaElement::ISIS_Printer_PRNT_Dtl).	IPRINT_Request.xsd	/DFDL_Schema	line 391	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_IP_Addr). 	IPRINT_Request.xsd	/DFDL_Schema	line 247	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence/schemaElement::ISIS_Printer_PRNT_Dtl).	IPRINT_Request.xsd	/DFDL_Schema	line 391	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/schemaElement::IPRINT_REQ_MSG). 	IPRINT_Request.xsd	/DFDL_Schema	line 420	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/schemaElement::IPRINT_REQ_MSG).	IPRINT_Request.xsd	/DFDL_Schema	line 420	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/schemaElement::IPRINT_REQ_MSG).	IPRINT_Request.xsd	/DFDL_Schema	line 420	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Queue). 	IPRINT_Request.xsd	/DFDL_Schema	line 254	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/schemaElement::IPRINT_REQ_MSG).  	IPRINT_Request.xsd	/DFDL_Schema	line 420	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Fax_No). 	IPRINT_Request.xsd	/DFDL_Schema	line 296	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/schemaElement::IPRINT_REQ_MSG). 	IPRINT_Request.xsd	/DFDL_Schema	line 420	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Sequence: #xscd(/type::IPRINT_REQ_Type/model::sequence).  	IPRINT_Request.xsd	/DFDL_Schema	line 404	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Name). 	IPRINT_Request.xsd	/DFDL_Schema	line 289	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Ro_Code). 	IPRINT_Request.xsd	/DFDL_Schema	line 282	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sel_Code). 	IPRINT_Request.xsd	/DFDL_Schema	line 268	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Fax_No). 	IPRINT_Request.xsd	/DFDL_Schema	line 310	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Sequence: #xscd(/type::IPRINT_REQ_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 404	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Sequence: #xscd(/type::IPRINT_REQ_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 404	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Name). 	IPRINT_Request.xsd	/DFDL_Schema	line 303	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Office). 	IPRINT_Request.xsd	/DFDL_Schema	line 317	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Sequence: #xscd(/type::IPRINT_REQ_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 404	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Sequence: #xscd(/type::IPRINT_REQ_Type/model::sequence). 	IPRINT_Request.xsd	/DFDL_Schema	line 404	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::EDX_HDR). 	IPRINT_Request.xsd	/DFDL_Schema	line 405	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::EDX_HDR).	IPRINT_Request.xsd	/DFDL_Schema	line 405	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::EDX_HDR).	IPRINT_Request.xsd	/DFDL_Schema	line 405	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Phone_No). 	IPRINT_Request.xsd	/DFDL_Schema	line 324	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::EDX_HDR).  	IPRINT_Request.xsd	/DFDL_Schema	line 405	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Style_File). 	IPRINT_Request.xsd	/DFDL_Schema	line 226	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::EDX_HDR). 	IPRINT_Request.xsd	/DFDL_Schema	line 405	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Sequence: #xscd(/type::EDX_HDR_Type/model::sequence).  	IPRINT_Request.xsd	/DFDL_Schema	line 12	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Text_Code). 	IPRINT_Request.xsd	/DFDL_Schema	line 275	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_User_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 219	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence/schemaElement::ISIS_Printer_PRNT_Dtl). 	IPRINT_Request.xsd	/DFDL_Schema	line 391	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Sequence: #xscd(/type::BRK_RQST_Type/model::sequence). 	IPRINT_Request.xsd	/DFDL_Schema	line 378	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Sequence: #xscd(/type::EDX_HDR_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 12	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Sequence: #xscd(/type::EDX_HDR_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 12	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Sequence: #xscd(/type::IPRINT_REQ_Type/model::sequence). 	IPRINT_Request.xsd	/DFDL_Schema	line 404	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Sequence: #xscd(/type::EDX_HDR_Type/model::sequence). 	IPRINT_Request.xsd	/DFDL_Schema	line 12	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Sequence: #xscd(/type::EDX_HDR_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 12	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Sequence: #xscd(/type::EDX_HDR_Type/model::sequence). 	IPRINT_Request.xsd	/DFDL_Schema	line 12	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Type). 	IPRINT_Request.xsd	/DFDL_Schema	line 13	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 13	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 13	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Sequence: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence). 	IPRINT_Request.xsd	/DFDL_Schema	line 390	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Type).  	IPRINT_Request.xsd	/DFDL_Schema	line 13	DFDL Validation Problem
+CTDV1263E : For a sequence, DFDL property 'sequenceKind' must be set. Sequence: #xscd(/type::BRK_RQST_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 378	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Type). 	IPRINT_Request.xsd	/DFDL_Schema	line 13	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 13	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 13	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 13	DFDL Validation Problem
+CTDV1263E : For a sequence, DFDL property 'sequenceKind' must be set. Sequence: #xscd(/type::EDX_HDR_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 12	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 13	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Ver). 	IPRINT_Request.xsd	/DFDL_Schema	line 22	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Ver).	IPRINT_Request.xsd	/DFDL_Schema	line 22	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Ver).	IPRINT_Request.xsd	/DFDL_Schema	line 22	DFDL Validation Problem
+CTDV1263E : For a sequence, DFDL property 'sequenceKind' must be set. Sequence: #xscd(/type::IPRINT_REQ_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 404	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Ver).  	IPRINT_Request.xsd	/DFDL_Schema	line 22	DFDL Validation Problem
+CTDV1263E : For a sequence, DFDL property 'sequenceKind' must be set. Sequence: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 390	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Ver). 	IPRINT_Request.xsd	/DFDL_Schema	line 22	DFDL Validation Problem
+CTDV1239E : For a number, DFDL property 'representation' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Ver).	IPRINT_Request.xsd	/DFDL_Schema	line 22	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Type_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 31	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 31	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 31	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/schemaElement::IPRINT_REQ_MSG).	IPRINT_Request.xsd	/DFDL_Schema	line 420	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Type_Cde).  	IPRINT_Request.xsd	/DFDL_Schema	line 31	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::BRK_RQST_Type/model::sequence/schemaElement::BRK_RQST_Metadata).	IPRINT_Request.xsd	/DFDL_Schema	line 379	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Type_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 31	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 31	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 31	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 31	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 13	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 31	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Action_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 38	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Action_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 38	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Action_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 38	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Ver).	IPRINT_Request.xsd	/DFDL_Schema	line 22	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Action_Cde).  	IPRINT_Request.xsd	/DFDL_Schema	line 38	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Action_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 38	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Action_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 38	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Action_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 38	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Action_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 38	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Action_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 38	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 31	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Action_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 38	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ver_Num). 	IPRINT_Request.xsd	/DFDL_Schema	line 45	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ver_Num).	IPRINT_Request.xsd	/DFDL_Schema	line 45	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ver_Num).	IPRINT_Request.xsd	/DFDL_Schema	line 45	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::BRK_RQST).	IPRINT_Request.xsd	/DFDL_Schema	line 414	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ver_Num).  	IPRINT_Request.xsd	/DFDL_Schema	line 45	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ver_Num).	IPRINT_Request.xsd	/DFDL_Schema	line 45	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ver_Num). 	IPRINT_Request.xsd	/DFDL_Schema	line 45	DFDL Validation Problem
+CTDV1239E : For a number, DFDL property 'representation' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ver_Num).	IPRINT_Request.xsd	/DFDL_Schema	line 45	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 52	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 52	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 52	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::EDX_HDR).	IPRINT_Request.xsd	/DFDL_Schema	line 405	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Cde).  	IPRINT_Request.xsd	/DFDL_Schema	line 52	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 52	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 52	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 52	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 52	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 52	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::ISIS_PDF_PRNT_Dtl).	IPRINT_Request.xsd	/DFDL_Schema	line 416	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 52	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_App_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 59	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 59	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 59	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 352	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_App_Id).  	IPRINT_Request.xsd	/DFDL_Schema	line 59	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 59	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_App_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 59	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 59	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 59	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 59	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Email).	IPRINT_Request.xsd	/DFDL_Schema	line 345	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 59	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Obj_Ref_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 66	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 66	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 66	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Conf_Ind).	IPRINT_Request.xsd	/DFDL_Schema	line 359	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Obj_Ref_Id).  	IPRINT_Request.xsd	/DFDL_Schema	line 66	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 66	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Obj_Ref_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 66	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 66	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 66	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 66	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Debug_Flg).	IPRINT_Request.xsd	/DFDL_Schema	line 233	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 66	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 73	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 73	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 73	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Body_Text).	IPRINT_Request.xsd	/DFDL_Schema	line 331	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Cde).  	IPRINT_Request.xsd	/DFDL_Schema	line 73	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 73	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 73	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 73	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 73	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 73	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Subject).	IPRINT_Request.xsd	/DFDL_Schema	line 338	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 73	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_App_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 80	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 80	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 80	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Fax_Template).	IPRINT_Request.xsd	/DFDL_Schema	line 366	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_App_Id).  	IPRINT_Request.xsd	/DFDL_Schema	line 80	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 80	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_App_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 80	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 80	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 80	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 80	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_LTT_Mde).	IPRINT_Request.xsd	/DFDL_Schema	line 261	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 80	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Obj_Ref_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 87	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 87	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 87	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 240	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Obj_Ref_Id).  	IPRINT_Request.xsd	/DFDL_Schema	line 87	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 87	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Obj_Ref_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 87	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 87	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 87	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 87	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_IP_Addr).	IPRINT_Request.xsd	/DFDL_Schema	line 247	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 87	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 94	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 94	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 94	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Queue).	IPRINT_Request.xsd	/DFDL_Schema	line 254	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Id).  	IPRINT_Request.xsd	/DFDL_Schema	line 94	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 94	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 94	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 94	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 94	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 94	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 296	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 94	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Office_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 101	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Office_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 101	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Office_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 101	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recipient_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 289	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Office_Cde).  	IPRINT_Request.xsd	/DFDL_Schema	line 101	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Office_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 101	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Office_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 101	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Office_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 101	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Office_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 101	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Office_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 101	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Ro_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 282	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Office_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 101	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Date). 	IPRINT_Request.xsd	/DFDL_Schema	line 108	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Date).	IPRINT_Request.xsd	/DFDL_Schema	line 108	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Date).	IPRINT_Request.xsd	/DFDL_Schema	line 108	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sel_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 268	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Date).  	IPRINT_Request.xsd	/DFDL_Schema	line 108	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Date).	IPRINT_Request.xsd	/DFDL_Schema	line 108	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Date). 	IPRINT_Request.xsd	/DFDL_Schema	line 108	DFDL Validation Problem
+CTDV1241E : For a calendar, DFDL property 'representation' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Date).	IPRINT_Request.xsd	/DFDL_Schema	line 108	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Time_Seq_Num). 	IPRINT_Request.xsd	/DFDL_Schema	line 115	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Time_Seq_Num).	IPRINT_Request.xsd	/DFDL_Schema	line 115	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Time_Seq_Num).	IPRINT_Request.xsd	/DFDL_Schema	line 115	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Fax_No).	IPRINT_Request.xsd	/DFDL_Schema	line 310	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Time_Seq_Num).  	IPRINT_Request.xsd	/DFDL_Schema	line 115	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Time_Seq_Num).	IPRINT_Request.xsd	/DFDL_Schema	line 115	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Time_Seq_Num). 	IPRINT_Request.xsd	/DFDL_Schema	line 115	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Time_Seq_Num).	IPRINT_Request.xsd	/DFDL_Schema	line 115	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Time_Seq_Num).	IPRINT_Request.xsd	/DFDL_Schema	line 115	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Time_Seq_Num).	IPRINT_Request.xsd	/DFDL_Schema	line 115	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 303	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Time_Seq_Num).	IPRINT_Request.xsd	/DFDL_Schema	line 115	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Cut_Offset_Mins). 	IPRINT_Request.xsd	/DFDL_Schema	line 122	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Cut_Offset_Mins).	IPRINT_Request.xsd	/DFDL_Schema	line 122	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Cut_Offset_Mins).	IPRINT_Request.xsd	/DFDL_Schema	line 122	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Office).	IPRINT_Request.xsd	/DFDL_Schema	line 317	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Cut_Offset_Mins).  	IPRINT_Request.xsd	/DFDL_Schema	line 122	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Cut_Offset_Mins).	IPRINT_Request.xsd	/DFDL_Schema	line 122	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Cut_Offset_Mins). 	IPRINT_Request.xsd	/DFDL_Schema	line 122	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Cut_Offset_Mins).	IPRINT_Request.xsd	/DFDL_Schema	line 122	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Cut_Offset_Mins).	IPRINT_Request.xsd	/DFDL_Schema	line 122	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Cut_Offset_Mins).	IPRINT_Request.xsd	/DFDL_Schema	line 122	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Sender_Phone_No).	IPRINT_Request.xsd	/DFDL_Schema	line 324	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Cut_Offset_Mins).	IPRINT_Request.xsd	/DFDL_Schema	line 122	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Machine_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 129	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Machine_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 129	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Machine_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 129	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Style_File).	IPRINT_Request.xsd	/DFDL_Schema	line 226	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Machine_Id).  	IPRINT_Request.xsd	/DFDL_Schema	line 129	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Machine_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 129	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Machine_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 129	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Machine_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 129	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Machine_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 129	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Machine_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 129	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Text_Code).	IPRINT_Request.xsd	/DFDL_Schema	line 275	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Machine_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 129	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ref_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 136	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 136	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 136	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 219	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ref_Id).  	IPRINT_Request.xsd	/DFDL_Schema	line 136	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 136	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ref_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 136	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 136	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 136	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 136	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_PDF_PRNT_Dtl_Type/model::sequence/schemaElement::ISIS_Printer_PRNT_Dtl).	IPRINT_Request.xsd	/DFDL_Schema	line 391	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 136	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Err_Rsn_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 143	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Err_Rsn_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 143	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Err_Rsn_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 143	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/schemaElement::IPRINT_REQ_MSG).	IPRINT_Request.xsd	/DFDL_Schema	line 420	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Err_Rsn_Cde).  	IPRINT_Request.xsd	/DFDL_Schema	line 143	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Err_Rsn_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 143	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Err_Rsn_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 143	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Err_Rsn_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 143	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Err_Rsn_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 143	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Err_Rsn_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 143	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::BRK_RQST_Type/model::sequence/schemaElement::BRK_RQST_Metadata).	IPRINT_Request.xsd	/DFDL_Schema	line 379	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Err_Rsn_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 143	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Reserved). 	IPRINT_Request.xsd	/DFDL_Schema	line 150	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Reserved).	IPRINT_Request.xsd	/DFDL_Schema	line 150	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Reserved).	IPRINT_Request.xsd	/DFDL_Schema	line 150	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Err_Rsn_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 143	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Reserved).  	IPRINT_Request.xsd	/DFDL_Schema	line 150	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Reserved).	IPRINT_Request.xsd	/DFDL_Schema	line 150	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Reserved). 	IPRINT_Request.xsd	/DFDL_Schema	line 150	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Reserved).	IPRINT_Request.xsd	/DFDL_Schema	line 150	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Reserved).	IPRINT_Request.xsd	/DFDL_Schema	line 150	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Reserved).	IPRINT_Request.xsd	/DFDL_Schema	line 150	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Type).	IPRINT_Request.xsd	/DFDL_Schema	line 13	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Reserved).	IPRINT_Request.xsd	/DFDL_Schema	line 150	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Data_Len). 	IPRINT_Request.xsd	/DFDL_Schema	line 157	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Data_Len).	IPRINT_Request.xsd	/DFDL_Schema	line 157	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Data_Len).	IPRINT_Request.xsd	/DFDL_Schema	line 157	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Data_Len).	IPRINT_Request.xsd	/DFDL_Schema	line 157	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Data_Len).  	IPRINT_Request.xsd	/DFDL_Schema	line 157	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Data_Len).	IPRINT_Request.xsd	/DFDL_Schema	line 157	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Data_Len). 	IPRINT_Request.xsd	/DFDL_Schema	line 157	DFDL Validation Problem
+CTDV1239E : For a number, DFDL property 'representation' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Data_Len).	IPRINT_Request.xsd	/DFDL_Schema	line 157	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::ISIS_Header). 	IPRINT_Request.xsd	/DFDL_Schema	line 412	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::ISIS_Header).	IPRINT_Request.xsd	/DFDL_Schema	line 412	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::ISIS_Header).	IPRINT_Request.xsd	/DFDL_Schema	line 412	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Ver).	IPRINT_Request.xsd	/DFDL_Schema	line 22	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::ISIS_Header).  	IPRINT_Request.xsd	/DFDL_Schema	line 412	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::ISIS_Header).	IPRINT_Request.xsd	/DFDL_Schema	line 412	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::ISIS_Header). 	IPRINT_Request.xsd	/DFDL_Schema	line 412	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Sequence: #xscd(/type::ISIS_Header_Type/model::sequence).  	IPRINT_Request.xsd	/DFDL_Schema	line 169	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 59	DFDL Validation Problem
+CTDV1263E : For a sequence, DFDL property 'sequenceKind' must be set. Sequence: #xscd(/type::ISIS_Header_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 169	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 52	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Recv_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 66	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Sequence: #xscd(/type::ISIS_Header_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 169	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Sequence: #xscd(/type::ISIS_Header_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 169	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Reserved).	IPRINT_Request.xsd	/DFDL_Schema	line 150	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Sequence: #xscd(/type::ISIS_Header_Type/model::sequence). 	IPRINT_Request.xsd	/DFDL_Schema	line 169	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Sequence: #xscd(/type::ISIS_Header_Type/model::sequence).	IPRINT_Request.xsd	/DFDL_Schema	line 169	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Sequence: #xscd(/type::ISIS_Header_Type/model::sequence). 	IPRINT_Request.xsd	/DFDL_Schema	line 169	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_TRN_Type_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 170	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 170	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 170	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_App_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 80	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_TRN_Type_Cde).  	IPRINT_Request.xsd	/DFDL_Schema	line 170	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 170	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_TRN_Type_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 170	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 170	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 170	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 170	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 73	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 170	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_CRN). 	IPRINT_Request.xsd	/DFDL_Schema	line 177	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_CRN).	IPRINT_Request.xsd	/DFDL_Schema	line 177	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_CRN).	IPRINT_Request.xsd	/DFDL_Schema	line 177	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Agency_Obj_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 87	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_CRN).  	IPRINT_Request.xsd	/DFDL_Schema	line 177	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_CRN).	IPRINT_Request.xsd	/DFDL_Schema	line 177	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_CRN). 	IPRINT_Request.xsd	/DFDL_Schema	line 177	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_CRN).	IPRINT_Request.xsd	/DFDL_Schema	line 177	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_CRN).	IPRINT_Request.xsd	/DFDL_Schema	line 177	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_CRN).	IPRINT_Request.xsd	/DFDL_Schema	line 177	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Cut_Offset_Mins).	IPRINT_Request.xsd	/DFDL_Schema	line 122	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_CRN).	IPRINT_Request.xsd	/DFDL_Schema	line 177	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Host_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 184	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Host_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 184	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Host_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 184	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Machine_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 129	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Host_Id).  	IPRINT_Request.xsd	/DFDL_Schema	line 184	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Host_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 184	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Host_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 184	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Host_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 184	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Host_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 184	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Host_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 184	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 94	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Host_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 184	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Status_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 191	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Status_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 191	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Status_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 191	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_User_Office_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 101	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Status_Cde).  	IPRINT_Request.xsd	/DFDL_Schema	line 191	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Status_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 191	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Status_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 191	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Status_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 191	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Status_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 191	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Status_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 191	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Date).	IPRINT_Request.xsd	/DFDL_Schema	line 108	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Status_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 191	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recip_Name). 	IPRINT_Request.xsd	/DFDL_Schema	line 198	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recip_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 198	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recip_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 198	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sent_Time_Seq_Num).	IPRINT_Request.xsd	/DFDL_Schema	line 115	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recip_Name).  	IPRINT_Request.xsd	/DFDL_Schema	line 198	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recip_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 198	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recip_Name). 	IPRINT_Request.xsd	/DFDL_Schema	line 198	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recip_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 198	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recip_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 198	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recip_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 198	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Action_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 38	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Recip_Name).	IPRINT_Request.xsd	/DFDL_Schema	line 198	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Hist_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 205	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Hist_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 205	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Hist_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 205	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ref_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 136	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Hist_Id).  	IPRINT_Request.xsd	/DFDL_Schema	line 205	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Hist_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 205	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Hist_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 205	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Hist_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 205	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Hist_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 205	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Hist_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 205	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Type_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 31	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Hist_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 205	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Format_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 212	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Format_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 212	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Format_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 212	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_TRN_Ver_Num).	IPRINT_Request.xsd	/DFDL_Schema	line 45	DFDL Validation Problem
+CTDV1259E : DFDL property 'initiator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Format_Cde).  	IPRINT_Request.xsd	/DFDL_Schema	line 212	DFDL Validation Problem
+CTDV1286E : DFDL property 'lengthKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Format_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 212	DFDL Validation Problem
+CTDV1260E : DFDL property 'terminator' must either be set or be empty. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Format_Cde). 	IPRINT_Request.xsd	/DFDL_Schema	line 212	DFDL Validation Problem
+CTDV1240E : When representation is text, DFDL property 'textPadKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Format_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 212	DFDL Validation Problem
+CTDV1228E : When representation is text, DFDL property 'textTrimKind' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Format_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 212	DFDL Validation Problem
+CTDV1206E : When representation is text or delimiters are defined, DFDL property 'ignoreCase' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Format_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 212	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::BRK_RQST).	IPRINT_Request.xsd	/DFDL_Schema	line 414	DFDL Validation Problem
+CTDV1111E : When representation is text, DFDL property 'textBidi' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_Format_Cde).	IPRINT_Request.xsd	/DFDL_Schema	line 212	DFDL Validation Problem
+CTDV1116E : DFDL property 'encoding' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_User_Id). 	IPRINT_Request.xsd	/DFDL_Schema	line 219	DFDL Validation Problem
+CTDV1204E : DFDL property 'alignment' must be set. Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 219	DFDL Validation Problem
+CTDV1202E : DFDL property 'leadingSkip' must be set. Object Element: #xscd(/type::ISIS_Header_Type/model::sequence/schemaElement::ISIS_User_Id).	IPRINT_Request.xsd	/DFDL_Schema	line 219	DFDL Validation Problem
+CTDV1333E : DFDL property 'trailingSkip' must be set. Element: #xscd(/type::IPRINT_REQ_Type/model::sequence/schemaElement::EDX_HDR).	IPRINT_Request.xsd	/DFDL_Schema	line 405	DFDL Validation Problem
