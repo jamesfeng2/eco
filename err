@@ -1,3 +1,2 @@
 Description	Resource	Path	Location	Type
-CTDX1103E : XSD: The type may not have duplicate name and target namespace '#IPRINT_REQ_Type'	IPRINT_Request.xsd	/DFDL_Schema	line 431	XSD Schema Validation Problem
-
+CTDX1100E : DOM: The element type "xs:schema" must be terminated by the matching end-tag "</xs:schema>".	IPRINT_Request.xsd	/DFDL_Schema	line 1	XSD Schema Validation Problem
