@@ -1,2 +1,9 @@
 Description	Resource	Path	Location	Type
-CTDX1100E : DOM: The element type "xs:schema" must be terminated by the matching end-tag "</xs:schema>".	IPRINT_Request.xsd	/DFDL_Schema	line 1	XSD Schema Validation Problem
+CTDV1265E : When number representation is text, DFDL property 'textNumberPattern' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Ver).	IPRINT_Request.xsd	/DFDL_Schema	line 32	DFDL Validation Problem
+      <xs:element name="EDX_Header_Ver" type="xs:short">
+        <xs:annotation><xs:appinfo>
+          <dfdl:format representation="text" escapeSchemeRef="NoneEscape"
+                       lengthKind="explicit" length="1"
+                       textPadCharacter="0" textJustification="right"/>
+        </xs:appinfo></xs:annotation>
+      </xs:element>
