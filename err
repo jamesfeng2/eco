@@ -1,9 +1,22 @@
+<xs:schema xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:recSepFieldsFmt="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+             
+      
+  
+  <xs:import namespace="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat" schemaLocation="IBMdefined/RecordSeparatedFieldFormat.xsd"/>
+               
+
+  
+  <xs:annotation>
+        
+    <xs:appinfo source="http://www.ogf.org/dfdl/">
+            
+      <!-- <dfdl:defineEscapeScheme name="NoneEscape"/> -->
+            
+      <dfdl:format encoding="{$dfdl:encoding}" escapeSchemeRef="" occursCountKind="implicit" ref="recSepFieldsFmt:RecordSeparatedFieldsFormat"/>
+           
+    
+    </xs:appinfo>
+      
+  </xs:annotation>
 Description	Resource	Path	Location	Type
-CTDV1265E : When number representation is text, DFDL property 'textNumberPattern' must be set. Element: #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Ver).	IPRINT_Request.xsd	/DFDL_Schema	line 32	DFDL Validation Problem
-      <xs:element name="EDX_Header_Ver" type="xs:short">
-        <xs:annotation><xs:appinfo>
-          <dfdl:format representation="text" escapeSchemeRef="NoneEscape"
-                       lengthKind="explicit" length="1"
-                       textPadCharacter="0" textJustification="right"/>
-        </xs:appinfo></xs:annotation>
-      </xs:element>
+XSD: The location 'IBMdefined/RecordSeparatedFieldFormat.xsd' has not been resolved because the import is unused	IPRINT_Request.xsd	/DFDL_Schema	line 12	XML Schema Problem
