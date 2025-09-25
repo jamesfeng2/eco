@@ -1,7 +1,21 @@
-   <xs:element name="ISIS_Printer_PRNT_Dtl" type="xs:string">
-        <xs:annotation><xs:appinfo>
-          <!-- original had lengthUnits="EndOfBitStream" - here we treat as variable length until record end
-               Use dfdl:lengthKind="delimited" with terminator or outer record handling as needed. -->
-          <dfdl:format dfdl:representation="text" dfdl:lengthKind="delimited" dfdl:initiator="" dfdl:terminator=""
-                       dfdl:textPadCharacter=" " dfdl:textJustification="left"/>
-        </xs:appinfo></xs:annotation>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/"
+	xmlns:fn="http://www.w3.org/2005/xpath-functions"
+	xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions"
+	xmlns:recSepFieldsFmt="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	attributeFormDefault="unqualified" elementFormDefault="qualified">
+
+	<xs:import
+		namespace="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat"
+		schemaLocation="IBMdefined/RecordSeparatedFieldFormat.xsd" />
+
+	<xs:annotation>
+
+		<xs:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format encoding="UTF-8"
+				escapeSchemeRef="" occursCountKind="implicit"
+				ref="recSepFieldsFmt:RecordSeparatedFieldsFormat" />
+		</xs:appinfo>
+Description	Resource	Path	Location	Type
+CTDV1439E : DFDL property 'ref' does not refer to a known defineFormat annotation. Value 'RecordSeparatedFieldsFormat'. DFDL schema default format.	IPRINT_Request.xsd	/DFDL_Schema	line 1	Message Broker XSD DFDL Problem 
