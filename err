@@ -1,5 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<xs:schema xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/"
-	xmlns:fn="http://www.w3.org/2005/xpath-functions"
-	xm
-CTDV1439E : DFDL property 'ref' does not refer to a known defineFormat annotation. Value 'RecordSeparatedFieldsFormat'. DFDL schema default format.	IPRINT_Request.xsd	/DFDL_Schema	line 1	Message Broker XSD DFDL Problem 
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:include schemaLocation="IPRINT_Request.mxsd"/>
+    <xsd:complexType name="IPRNT_Init_Req_Type">
+        <xsd:sequence>
+            <xsd:element name="IPRNT_InitEDX_HDR" type="EDX_HDR_Type"/>
+            <xsd:element name="IPRNT_Init_ISIS_HDR" type="ISIS_Header_Type"/>
+            <xsd:element name="ISIS_PDF_PRNT_DTL" type="ISIS_PDF_PRNT_Dtl_Type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="IPRNT_initREQ_MSG" type="IPRNT_Init_Req_Type">
+        <xsd:annotation>
+            <xsd:appinfo source="WMQI_APPINFO">
+                <MRMessage messageDefinition="/0/IPRNT_initREQ_MSG;XSDElementDeclaration$MRObject"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>
