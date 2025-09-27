@@ -1,3 +1,2 @@
-CTDP3000E: Unexpected end of data at byte offset '0' while parsing element '#xmlns(p="http://iprint_mq.com")xscd(/type::p:EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Type)'. The parser encountered the end of the data stream or the end of a parent element.
+CTDP3058E: Separator 'none' not found at offset '1'  for sequence within element  '/IPRINT_REQ_MSG[1]/EDX_HDR[1]'.
 			ParsedDataRegion[SimpleContent, startOffset = 0, length = 1, scd = #xmlns(p="http://iprint_mq.com")xscd(/type::p:EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Type)]
-			
