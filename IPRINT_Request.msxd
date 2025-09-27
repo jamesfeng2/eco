@@ -5,8 +5,8 @@
 	xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
 	xmlns:recSepFieldsFmt="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	targetNamespace="http://example.com/iprint.req"
-    xmlns="http://example.com/iprint.req">
+	targetNamespace="http://iprint_mq.com"
+	xmlns="http://iprint_mq.com">
 
 	<xs:import
 		namespace="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat"
@@ -24,5 +24,987 @@
 
 	</xs:annotation>
 
- 
-IPRINT_initRequest.xsd	/DFDL_Schema	line 43	CTDM2211E : Invalid DFDL annotations specified. 'Component 'xs:element http://example.com/iprint.initreq#IPRNT_initREQ_MSG'.'	DFDL Validation Problem
+	<xs:complexType name="EDX_HDR_Type">
+
+		<xs:sequence dfdl:initiatedContent="no"
+			dfdl:separator="none" dfdl:trailingSkip="0">
+
+			<xs:element ibmDfdlExtn:sampleValue="H"
+				name="EDX_Header_Type" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="1"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element dfdl:length="1" dfdl:lengthKind="explicit"
+				dfdl:textNumberPattern="0" name="EDX_Header_Ver" type="xs:short">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="1"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textNumberRep="standard"
+							textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element ibmDfdlExtn:sampleValue="BLI100"
+				name="EDX_TRN_Type_Cde" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="10"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element ibmDfdlExtn:sampleValue="A"
+				name="EDX_TRN_Action_Cde" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="1"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element dfdl:length="2" dfdl:lengthKind="explicit"
+				dfdl:textNumberPattern="00" ibmDfdlExtn:sampleValue="01"
+				name="EDX_TRN_Ver_Num" type="xs:short">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="2"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element ibmDfdlExtn:sampleValue="RCV"
+				name="EDX_Recv_Agency_Cde" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="3"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element ibmDfdlExtn:sampleValue="APP001"
+				name="EDX_Recv_Agency_App_Id" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="6"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element ibmDfdlExtn:sampleValue="REF123456789012345"
+				name="EDX_Recv_Agency_Obj_Ref_Id" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="20"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element ibmDfdlExtn:sampleValue="BLA"
+				name="EDX_Sendng_Agency_Cde" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="3"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element ibmDfdlExtn:sampleValue="BLA"
+				name="EDX_Sendng_Agency_App_Id" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="6"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element ibmDfdlExtn:sampleValue="BLA1234567890123456"
+				name="EDX_Sendng_Agency_Obj_Ref_Id" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="20"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element ibmDfdlExtn:sampleValue="RJF287"
+				name="EDX_Sendng_User_Id" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="8"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element ibmDfdlExtn:sampleValue="TUG1"
+				name="EDX_Sendng_User_Office_Cde" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="4"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element ibmDfdlExtn:sampleValue="2025"
+				name="EDX_Sent_Date" type="xs:date">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="8"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element ibmDfdlExtn:sampleValue="160041123"
+				name="EDX_Sent_Time_Seq_Num" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="12"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element ibmDfdlExtn:sampleValue="+600"
+				name="EDX_Sendng_Cut_Offset_Mins" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="4"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element ibmDfdlExtn:sampleValue="M01"
+				name="EDX_Sendng_Machine_Id" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="3"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element
+				ibmDfdlExtn:sampleValue="C00487G20250923160041123"
+				name="EDX_TRN_Ref_Id" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="24"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element ibmDfdlExtn:sampleValue="6"
+				name="EDX_Err_Rsn_Cde" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="6"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element ibmDfdlExtn:sampleValue="10"
+				name="EDX_Reserved" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="10"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element dfdl:length="6" dfdl:lengthKind="explicit"
+				dfdl:textNumberPattern="000000" ibmDfdlExtn:sampleValue="6"
+				name="EDX_Data_Len" type="xs:short">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="6"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+		</xs:sequence>
+
+	</xs:complexType>
+
+	<xs:complexType name="ISIS_Header_Type">
+
+		<xs:sequence dfdl:initiatedContent="no"
+			dfdl:separator="none" dfdl:trailingSkip="0">
+
+			<xs:element name="ISIS_TRN_Type_Cde" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="6"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_CRN" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="10"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Host_Id" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="3"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Status_Cde" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="2"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Recip_Name" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="50"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Hist_Id" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="10"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Format_Cde" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="3"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_User_Id" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="12"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Style_File" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="3"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Debug_Flg" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="1"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Printer_Id" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="8"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Printer_IP_Addr" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="15"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Queue" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="32"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_LTT_Mde" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="5"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Sel_Code" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="3"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Text_Code" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="8"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Ro_Code" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="3"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Recipient_Name" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="120"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Recipient_Fax_No" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="10"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Sender_Name" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="120"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Sender_Fax_No" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="10"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Sender_Office" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="50"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Sender_Phone_No" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="10"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Fax_Body_Text" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="255"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Fax_Subject" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="150"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Conf_Email" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="150"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Conf_Email_Type" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="2"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Conf_Ind" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="1"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Fax_Template" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="50"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+		</xs:sequence>
+
+	</xs:complexType>
+
+	<xs:complexType name="BRK_RQST_Type">
+
+		<xs:sequence dfdl:initiatedContent="no"
+			dfdl:separator="none" dfdl:trailingSkip="0">
+
+			<xs:element name="BRK_RQST_Metadata" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="128"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+		</xs:sequence>
+
+	</xs:complexType>
+
+	<xs:complexType name="ISIS_PDF_PRNT_Dtl_Type">
+
+		<xs:sequence dfdl:initiatedContent="no"
+			dfdl:separator="none" dfdl:trailingSkip="0">
+
+			<xs:element name="ISIS_Printer_PRNT_Dtl" type="xs:string">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="10"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+		</xs:sequence>
+
+	</xs:complexType>
+
+	<xs:complexType name="IPRINT_REQ_Type">
+
+		<xs:sequence dfdl:initiatedContent="no"
+			dfdl:separator="none" dfdl:trailingSkip="0">
+
+			<xs:element name="EDX_HDR" type="EDX_HDR_Type">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="10"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_Header" type="ISIS_Header_Type">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="10"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="BRK_RQST" type="BRK_RQST_Type">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format escapeSchemeRef="NoneEscape" length="10"
+							lengthKind="explicit" representation="text"
+							textJustification="right" textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+			<xs:element name="ISIS_PDF_PRNT_Dtl"
+				type="ISIS_PDF_PRNT_Dtl_Type">
+
+				<xs:annotation>
+
+					<xs:appinfo>
+
+						<dfdl:format dfdl:initiator="" dfdl:terminator=""
+							escapeSchemeRef="NoneEscape" lengthKind="delimited"
+							representation="text" textJustification="right"
+							textPadCharacter="0" />
+
+					</xs:appinfo>
+
+				</xs:annotation>
+
+			</xs:element>
+
+		</xs:sequence>
+
+	</xs:complexType>
+
+	<xs:element name="IPRINT_REQ_MSG" type="IPRINT_REQ_Type">
+
+		<xs:annotation>
+
+			<xs:appinfo>
+
+				<dfdl:format escapeSchemeRef="NoneEscape"
+					representation="text" />
+
+			</xs:appinfo>
+
+		</xs:annotation>
+
+	</xs:element>
+
+</xs:schema>
