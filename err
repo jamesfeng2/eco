@@ -1,3 +1,15 @@
 Resource	Path	Location	Description	Type
 IPRINT_Request.xsd	/IPRINT/Schema	line 89	CTDM2211E : Invalid DFDL annotations specified. 'Component 'xsd:element #EDX_Sent_Date'.'	DFDL Validation Problem
 
+			<xsd:element dfdl:length="8"
+				ibmDfdlExtn:sampleValue="20250505" name="EDX_Sent_Date"
+				type="xsd:date">
+				<xsd:annotation>
+				<xsd:appinfo source="http://www.ogf.org/dfdl/">
+					<dfdl:format length="8"
+						lengthKind="explicit" representation="text"
+						calendarPattern="yyyyMMdd" calendarLanguage="en"
+						calendarTimeZone="UTC" />
+				</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
