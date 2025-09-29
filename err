@@ -1,1 +1,12 @@
-H1IPRINT    A01AG1APP001OBJ-REF-0001        AG2APP002SRC-REF-9999        USER001 HQ1 20250704123045000001+600M01TRN-REF-2025-000001   
+  <xs:appinfo source="http://www.ogf.org/dfdl/">
+      <dfdl:format
+          escapeSchemeRef="NoneEscape"
+          length="8"
+          lengthKind="explicit"
+          representation="text"
+          textJustification="right"
+          textPadCharacter="0"
+          calendarPattern="yyyyMMdd"
+          calendarLanguage="en"
+          calendarTimeZone="UTC"/>
+    </xs:appinfo>
