@@ -1,1 +1,26 @@
-error: CTDP3058E: Separator 'none' not found at offset '158'  for sequence within element  '/IPRINT_REQ_MSG[1]'.
+fatal: CTDP3058E: Separator 'none' not found at offset '2'  for sequence within element  '/IPRINT_REQ_MSG[1]'.
+	  <!--   BRK_RQST_Type   -->
+  <xsd:complexType name="BRK_RQST_Type1">
+    <xsd:sequence dfdl:separator="none">
+      <xsd:element name="BRK_RQST_Metadata" type="xsd:string" dfdl:length="2">
+     <xsd:annotation>
+          					
+          <xsd:appinfo>
+            						
+            <dfdl:format escapeSchemeRef="NoneEscape" length="2" lengthKind="explicit" representation="text" textJustification="right" textPadCharacter="0"/>
+            					
+          </xsd:appinfo>
+          				
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BRK_RQST_Type2">
+    <xsd:sequence dfdl:separator="none">
+      <xsd:element name="BRK_RQST_Metadata" type="xsd:string" dfdl:length="2">
+ 
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+	
