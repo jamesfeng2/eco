@@ -1,12 +1,3 @@
-  <xs:appinfo source="http://www.ogf.org/dfdl/">
-      <dfdl:format
-          escapeSchemeRef="NoneEscape"
-          length="8"
-          lengthKind="explicit"
-          representation="text"
-          textJustification="right"
-          textPadCharacter="0"
-          calendarPattern="yyyyMMdd"
-          calendarLanguage="en"
-          calendarTimeZone="UTC"/>
-    </xs:appinfo>
+Resource	Path	Location	Description	Type
+IPRINT_Request.xsd	/IPRINT/Schema	line 89	CTDM2211E : Invalid DFDL annotations specified. 'Component 'xsd:element #EDX_Sent_Date'.'	DFDL Validation Problem
+
