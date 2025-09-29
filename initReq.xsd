@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/"
+    xmlns:fn="http://www.w3.org/2005/xpath-functions"
+    targetNamespace="http://iprint_mq.com/IPRINT_Init_Req"
+    xmlns="http://iprint_mq.com/IPRINT_Init_Req"
+    elementFormDefault="qualified">
+
+    <!-- ========================================== -->
+    <!-- Include the base request schema             -->
+    <!-- Replace .mxsd with .dfdl.xsd                -->
+    <!-- ========================================== -->
+    <xsd:include schemaLocation="IPRINT_Request.dfdl.xsd"/>
+
+    <!-- ========================================== -->
+    <!-- Global DFDL format                          -->
+    <!-- ========================================== -->
+    <xsd:annotation>
+        <xsd:appinfo source="http://www.ogf.org/dfdl/">
+            <dfdl:format
+                encoding="US-ASCII"
+                representation="text"
+                textNumberRep="standard"
+                alignment="1"
+                alignmentUnits="bytes"
+                lengthKind="explicit"
+                occursCountKind="implicit"/>
+        </xsd:appinfo>
+    </xsd:annotation>
+
+    <!-- ========================================== -->
+    <!-- Complex type for Init Request               -->
+    <!-- ========================================== -->
+    <xsd:complexType name="IPRNT_Init_Req_Type">
+        <xsd:sequence>
+            <!-- Header comes from IPRINT_Request.dfdl.xsd -->
+            <xsd:element name="IPRNT_InitEDX_HDR" type="EDX_HDR_Type"/>
+            <!-- Placeholder ISIS header, define fields later -->
+            <xsd:element name="IPRNT_Init_ISIS_HDR" type="ISIS_Header_Type"/>
+            <!-- Placeholder PDF detail, define fields later -->
+            <xsd:element name="ISIS_PDF_PRNT_DTL" type="ISIS_PDF_PRNT_Dtl_Type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- ========================================== -->
+    <!-- Root element for Init Request               -->
+    <!-- ========================================== -->
+    <xsd:element name="IPRNT_initREQ_MSG" type="IPRNT_Init_Req_Type"/>
+
+</xsd:schema>
