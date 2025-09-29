@@ -1,0 +1,218 @@
+
+IPRINT_200_MsgRes.mxsd
+
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:include schemaLocation="ISIS_iPRNT_200_MsgRes.mxsd"/>
+    <xsd:include schemaLocation="IPRINT_Request.mxsd"/>
+    <xsd:complexType name="IPRINT_200Res_Type">
+        <xsd:sequence>
+            <xsd:element name="EDX_HDR_200Res" type="EDX_HDR_Type"/>
+            <xsd:element name="ISIS_Header_200Res" type="ISIS_Header_Type"/>
+            <xsd:element name="BRK_RQSTData_200Res" type="BRK_RQST_Type">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="nullTerminated" paddingCharacter="NUL" stringJustification="leftJustify" typeName="MRCWFStringRep"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="IPRINT_Return_200Res" type="IPRNT_Ret_Dtl_Type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="IPRINT_Return_Type">
+        <xsd:sequence>
+            <xsd:element name="Return_Cde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" stringJustification="leftJustify" typeName="MRCWFStringRep" width="6"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="Return_Msg" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="nullTerminated" paddingCharacter="SPACE" stringJustification="leftJustify" typeName="MRCWFStringRep"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="IPRINT_200RES_MSG" type="IPRINT_200Res_Type">
+        <xsd:annotation>
+            <xsd:appinfo source="WMQI_APPINFO">
+        <MRMessage messageDefinition="/0/IPRINT_200RES_MSG;XSDElementDeclaration$MRObject"/>
+      </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>
+
+
+IPRINT_300_MsgRes.mxsd
+
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:include schemaLocation="IPRINT_Request.mxsd"/>
+    <xsd:include schemaLocation="IPRINT_200_MsgRes.mxsd"/>
+    <xsd:include schemaLocation="ISIS_iPRNT_200_MsgRes.mxsd"/>
+    <xsd:complexType name="IPRINT_300Res_Type">
+        <xsd:sequence>
+            <xsd:element name="EDX_HDR_300Res" type="EDX_HDR_Type"/>
+            <xsd:element name="ISIS_Header_300Res" type="ISIS_Header_Type"/>
+            <xsd:element name="BRK_RQSTData_300" type="BRK_RQST_Type">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="nullTerminated" paddingCharacter="NUL" stringJustification="leftJustify" typeName="MRCWFStringRep"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="IPRNT_Ret_Det_300Res" type="IPRNT_Ret_Dtl_Type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="IPRINT_300RES_MSG" type="IPRINT_300Res_Type">
+        <xsd:annotation>
+            <xsd:appinfo source="WMQI_APPINFO">
+        <MRMessage messageDefinition="/0/IPRINT_300RES_MSG;XSDElementDeclaration$MRObject"/>
+      </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>
+
+
+
+
+ISIS_iPRNT_200_MsgRes.mxsd
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:include schemaLocation="ISIS_iPRNT_300_MsgRes.mxsd"/>
+    <xsd:include schemaLocation="IPRINT_Request.mxsd"/>
+    <xsd:complexType name="IPRNT_Ret_Dtl_Type">
+        <xsd:sequence>
+            <xsd:element name="Error_Cde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+                        <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+                            <cwfSimpleRep
+                                encodingNull="NullLogicalValue"
+                                encodingNullValue="" lengthUnits="Bytes"
+                                mrLengthEncoding="fixedLength"
+                                paddingCharacter="SPACE"
+                                stringJustification="leftJustify"
+                                typeName="MRCWFStringRep" width="6"/>
+                        </cwfInclRep>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="Error_Msg" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+                        <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+                            <cwfSimpleRep
+                                encodingNull="NullLogicalValue"
+                                encodingNullValue="" lengthUnits="Bytes"
+                                mrLengthEncoding="fixedLength"
+                                paddingCharacter="SPACE"
+                                stringJustification="leftJustify"
+                                typeName="MRCWFStringRep" width="255"/>
+                        </cwfInclRep>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ISIS_iPRNT_200Res_Type">
+        <xsd:sequence>
+            <xsd:element name="ISIS_iPRNT_EDX_Header" type="EDX_HDR_Type"/>
+            <xsd:element name="ISIS_iPRNT_Comm" type="ISIS_iPRNT_CommRes_Type"/>
+            <xsd:element name="ISIS_iPRINT_Ret_Dtl" type="IPRNT_Ret_Dtl_Type"/>
+            <xsd:element name="Letter_Mode200" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+                        <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+                            <cwfSimpleRep
+                                encodingNull="NullLogicalValue"
+                                encodingNullValue="" lengthUnits="Bytes"
+                                mrLengthEncoding="fixedLength"
+                                paddingCharacter="SPACE"
+                                stringJustification="leftJustify"
+                                typeName="MRCWFStringRep" width="5"/>
+                        </cwfInclRep>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ISIS_iPRINT_200_MSG" type="ISIS_iPRNT_200Res_Type">
+        <xsd:annotation>
+            <xsd:appinfo source="WMQI_APPINFO">
+                <MRMessage messageDefinition="/0/ISIS_iPRINT_200_MSG;XSDElementDeclaration$MRObject"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>
+
+
+ISIS_iPRNT_300_MsgRes.mxsd
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:include schemaLocation="IPRINT_Request.mxsd"/>
+    <xsd:complexType name="ISIS_iPRNT_CommRes_Type">
+        <xsd:sequence>
+            <xsd:element name="TRN_Type_Cde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" stringJustification="leftJustify" typeName="MRCWFStringRep" width="6"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="CRN" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" stringJustification="leftJustify" typeName="MRCWFStringRep" width="10"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="Hist_Id" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" stringJustification="leftJustify" typeName="MRCWFStringRep" width="10"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ISIS_iPRNT_300Res">
+        <xsd:sequence>
+            <xsd:element name="ISIS_iPRNT_EDX_Header" type="EDX_HDR_Type"/>
+            <xsd:element name="ISIS_iPRNT_CommRes" type="ISIS_iPRNT_CommRes_Type"/>
+            <xsd:element name="Letter_Mde300" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" stringJustification="leftJustify" typeName="MRCWFStringRep" width="5"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ISIS_iPRINT_300_MSG" type="ISIS_iPRNT_300Res">
+        <xsd:annotation>
+            <xsd:appinfo source="WMQI_APPINFO">
+        <MRMessage messageDefinition="/0/ISIS_iPRINT_300_MSG;XSDElementDeclaration$MRObject"/>
+      </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>
+
