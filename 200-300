@@ -51,7 +51,111 @@ IPRINT_200_MsgRes.mxsd
     </xsd:element>
 </xsd:schema>
 
+------------
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/"
+    xmlns:fn="http://www.w3.org/2005/xpath-functions"
+    targetNamespace="http://iprint_mq.com/IPRINT_200Res"
+    xmlns="http://iprint_mq.com/IPRINT_200Res"
+    elementFormDefault="qualified">
 
+    <!-- ========================================== -->
+    <!-- Includes for referenced types               -->
+    <!-- ========================================== -->
+    <xsd:include schemaLocation="ISIS_iPRNT_200_MsgRes.dfdl.xsd"/>
+    <xsd:include schemaLocation="IPRINT_Request.dfdl.xsd"/>
+
+    <!-- ========================================== -->
+    <!-- Global format                               -->
+    <!-- ========================================== -->
+    <xsd:annotation>
+        <xsd:appinfo source="http://www.ogf.org/dfdl/">
+            <dfdl:format
+                encoding="US-ASCII"
+                representation="text"
+                alignment="1"
+                alignmentUnits="bytes"
+                lengthKind="explicit"
+                occursCountKind="implicit"
+                textNumberRep="standard"
+                textStandardDecimalSeparator="."
+                textStandardGroupingSeparator=","/>
+        </xsd:appinfo>
+    </xsd:annotation>
+
+    <!-- ========================================== -->
+    <!-- Return detail type (was IPRINT_Return_Type) -->
+    <!-- ========================================== -->
+    <xsd:complexType name="IPRINT_Return_Type">
+        <xsd:sequence>
+            <!-- Fixed length 6 chars -->
+            <xsd:element name="Return_Cde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="http://www.ogf.org/dfdl/">
+                        <dfdl:format
+                            lengthKind="explicit"
+                            length="6"
+                            representation="text"
+                            textJustification="left"
+                            textPadCharacter=" "/>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+
+            <!-- Null-terminated string (simulated as explicit length OR terminator) -->
+            <xsd:element name="Return_Msg" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="http://www.ogf.org/dfdl/">
+                        <dfdl:format
+                            lengthKind="delimited"
+                            terminator="%NUL;"
+                            representation="text"
+                            textJustification="left"
+                            textPadCharacter=" "/>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- ========================================== -->
+    <!-- Main 200Res type                            -->
+    <!-- ========================================== -->
+    <xsd:complexType name="IPRINT_200Res_Type">
+        <xsd:sequence>
+            <xsd:element name="EDX_HDR_200Res" type="EDX_HDR_Type"/>
+            <xsd:element name="ISIS_Header_200Res" type="ISIS_Header_Type"/>
+
+            <!-- BRK_RQSTData_200Res -->
+            <xsd:element name="BRK_RQSTData_200Res" type="BRK_RQST_Type">
+                <xsd:annotation>
+                    <xsd:appinfo source="http://www.ogf.org/dfdl/">
+                        <!-- simulate null-terminated string -->
+                        <dfdl:format
+                            lengthKind="delimited"
+                            terminator="%NUL;"
+                            representation="text"
+                            textJustification="left"
+                            textPadCharacter=" "/>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+
+            <!-- Return detail -->
+            <xsd:element name="IPRINT_Return_200Res" type="IPRINT_Return_Type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- ========================================== -->
+    <!-- Root element                                -->
+    <!-- ========================================== -->
+    <xsd:element name="IPRINT_200RES_MSG" type="IPRINT_200Res_Type"/>
+
+</xsd:schema>
+
+------------------------
 IPRINT_300_MsgRes.mxsd
 
 <?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
@@ -83,7 +187,80 @@ IPRINT_300_MsgRes.mxsd
     </xsd:element>
 </xsd:schema>
 
+----------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/"
+    xmlns:fn="http://www.w3.org/2005/xpath-functions"
+    targetNamespace="http://iprint_mq.com/IPRINT_300Res"
+    xmlns="http://iprint_mq.com/IPRINT_300Res"
+    elementFormDefault="qualified">
 
+    <!-- ========================================== -->
+    <!-- Includes (replace .mxsd with .dfdl.xsd)     -->
+    <!-- ========================================== -->
+    <xsd:include schemaLocation="IPRINT_Request.dfdl.xsd"/>
+    <xsd:include schemaLocation="IPRINT_200_MsgRes.dfdl.xsd"/>
+    <xsd:include schemaLocation="ISIS_iPRNT_200_MsgRes.dfdl.xsd"/>
+
+    <!-- ========================================== -->
+    <!-- Global DFDL format                          -->
+    <!-- ========================================== -->
+    <xsd:annotation>
+        <xsd:appinfo source="http://www.ogf.org/dfdl/">
+            <dfdl:format
+                encoding="US-ASCII"
+                representation="text"
+                alignment="1"
+                alignmentUnits="bytes"
+                lengthKind="explicit"
+                occursCountKind="implicit"
+                textNumberRep="standard"
+                textStandardDecimalSeparator="."
+                textStandardGroupingSeparator=","/>
+        </xsd:appinfo>
+    </xsd:annotation>
+
+    <!-- ========================================== -->
+    <!-- Main 300Res type                            -->
+    <!-- ========================================== -->
+    <xsd:complexType name="IPRINT_300Res_Type">
+        <xsd:sequence>
+            <!-- Header from IPRINT_Request.dfdl.xsd -->
+            <xsd:element name="EDX_HDR_300Res" type="EDX_HDR_Type"/>
+
+            <!-- ISIS header from ISIS_iPRNT_200_MsgRes.dfdl.xsd -->
+            <xsd:element name="ISIS_Header_300Res" type="ISIS_Header_Type"/>
+
+            <!-- BRK_RQSTData_300 (null-terminated string) -->
+            <xsd:element name="BRK_RQSTData_300" type="BRK_RQST_Type">
+                <xsd:annotation>
+                    <xsd:appinfo source="http://www.ogf.org/dfdl/">
+                        <dfdl:format
+                            lengthKind="delimited"
+                            terminator="%NUL;"
+                            representation="text"
+                            textJustification="left"
+                            textPadCharacter=" "/>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+
+            <!-- Return detail -->
+            <xsd:element name="IPRNT_Ret_Det_300Res" type="IPRNT_Ret_Dtl_Type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- ========================================== -->
+    <!-- Root element                                -->
+    <!-- ========================================== -->
+    <xsd:element name="IPRINT_300RES_MSG" type="IPRINT_300Res_Type"/>
+
+</xsd:schema>
+
+
+--------------------------------------
 
 
 ISIS_iPRNT_200_MsgRes.mxsd
@@ -157,6 +334,113 @@ ISIS_iPRNT_200_MsgRes.mxsd
     </xsd:element>
 </xsd:schema>
 
+----------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/"
+    xmlns:fn="http://www.w3.org/2005/xpath-functions"
+    targetNamespace="http://iprint_mq.com/ISIS_iPRNT_200Res"
+    xmlns="http://iprint_mq.com/ISIS_iPRNT_200Res"
+    elementFormDefault="qualified">
+
+    <!-- ========================================== -->
+    <!-- Includes (converted to .dfdl.xsd)           -->
+    <!-- ========================================== -->
+    <xsd:include schemaLocation="ISIS_iPRNT_300_MsgRes.dfdl.xsd"/>
+    <xsd:include schemaLocation="IPRINT_Request.dfdl.xsd"/>
+
+    <!-- ========================================== -->
+    <!-- Global DFDL format                          -->
+    <!-- ========================================== -->
+    <xsd:annotation>
+        <xsd:appinfo source="http://www.ogf.org/dfdl/">
+            <dfdl:format
+                encoding="US-ASCII"
+                representation="text"
+                alignment="1"
+                alignmentUnits="bytes"
+                lengthKind="explicit"
+                occursCountKind="implicit"
+                textNumberRep="standard"
+                textStandardDecimalSeparator="."
+                textStandardGroupingSeparator=","/>
+        </xsd:appinfo>
+    </xsd:annotation>
+
+    <!-- ========================================== -->
+    <!-- Return detail type (was IPRNT_Ret_Dtl_Type) -->
+    <!-- ========================================== -->
+    <xsd:complexType name="IPRNT_Ret_Dtl_Type">
+        <xsd:sequence>
+            <!-- Error code: fixed 6 chars -->
+            <xsd:element name="Error_Cde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="http://www.ogf.org/dfdl/">
+                        <dfdl:format
+                            lengthKind="explicit"
+                            length="6"
+                            representation="text"
+                            textJustification="left"
+                            textPadCharacter=" "/>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+
+            <!-- Error message: fixed 255 chars -->
+            <xsd:element name="Error_Msg" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="http://www.ogf.org/dfdl/">
+                        <dfdl:format
+                            lengthKind="explicit"
+                            length="255"
+                            representation="text"
+                            textJustification="left"
+                            textPadCharacter=" "/>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- ========================================== -->
+    <!-- ISIS iPRNT 200 Response type                -->
+    <!-- ========================================== -->
+    <xsd:complexType name="ISIS_iPRNT_200Res_Type">
+        <xsd:sequence>
+            <!-- Header imported from IPRINT_Request.dfdl.xsd -->
+            <xsd:element name="ISIS_iPRNT_EDX_Header" type="EDX_HDR_Type"/>
+
+            <!-- Communication response from ISIS_iPRNT_300_MsgRes.dfdl.xsd -->
+            <xsd:element name="ISIS_iPRNT_Comm" type="ISIS_iPRNT_CommRes_Type"/>
+
+            <!-- Return detail -->
+            <xsd:element name="ISIS_iPRINT_Ret_Dtl" type="IPRNT_Ret_Dtl_Type"/>
+
+            <!-- Letter_Mode200: fixed 5 chars -->
+            <xsd:element name="Letter_Mode200" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="http://www.ogf.org/dfdl/">
+                        <dfdl:format
+                            lengthKind="explicit"
+                            length="5"
+                            representation="text"
+                            textJustification="left"
+                            textPadCharacter=" "/>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- ========================================== -->
+    <!-- Root element                                -->
+    <!-- ========================================== -->
+    <xsd:element name="ISIS_iPRINT_200_MSG" type="ISIS_iPRNT_200Res_Type"/>
+
+</xsd:schema>
+-----------------------------------
+
 
 ISIS_iPRNT_300_MsgRes.mxsd
 <?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
@@ -214,5 +498,120 @@ ISIS_iPRNT_300_MsgRes.mxsd
       </xsd:appinfo>
         </xsd:annotation>
     </xsd:element>
+</xsd:schema>
+--------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/"
+    xmlns:fn="http://www.w3.org/2005/xpath-functions"
+    targetNamespace="http://iprint_mq.com/ISIS_iPRNT_300Res"
+    xmlns="http://iprint_mq.com/ISIS_iPRNT_300Res"
+    elementFormDefault="qualified">
+
+    <!-- ========================================== -->
+    <!-- Includes (converted to .dfdl.xsd)           -->
+    <!-- ========================================== -->
+    <xsd:include schemaLocation="IPRINT_Request.dfdl.xsd"/>
+
+    <!-- ========================================== -->
+    <!-- Global DFDL format                          -->
+    <!-- ========================================== -->
+    <xsd:annotation>
+        <xsd:appinfo source="http://www.ogf.org/dfdl/">
+            <dfdl:format
+                encoding="US-ASCII"
+                representation="text"
+                alignment="1"
+                alignmentUnits="bytes"
+                lengthKind="explicit"
+                occursCountKind="implicit"
+                textNumberRep="standard"
+                textStandardDecimalSeparator="."
+                textStandardGroupingSeparator=","/>
+        </xsd:appinfo>
+    </xsd:annotation>
+
+    <!-- ========================================== -->
+    <!-- ISIS iPRNT Communication Response type      -->
+    <!-- ========================================== -->
+    <xsd:complexType name="ISIS_iPRNT_CommRes_Type">
+        <xsd:sequence>
+            <!-- TRN_Type_Cde: fixed 6 chars -->
+            <xsd:element name="TRN_Type_Cde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="http://www.ogf.org/dfdl/">
+                        <dfdl:format
+                            lengthKind="explicit"
+                            length="6"
+                            representation="text"
+                            textJustification="left"
+                            textPadCharacter=" "/>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+
+            <!-- CRN: fixed 10 chars -->
+            <xsd:element name="CRN" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="http://www.ogf.org/dfdl/">
+                        <dfdl:format
+                            lengthKind="explicit"
+                            length="10"
+                            representation="text"
+                            textJustification="left"
+                            textPadCharacter=" "/>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+
+            <!-- Hist_Id: fixed 10 chars -->
+            <xsd:element name="Hist_Id" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="http://www.ogf.org/dfdl/">
+                        <dfdl:format
+                            lengthKind="explicit"
+                            length="10"
+                            representation="text"
+                            textJustification="left"
+                            textPadCharacter=" "/>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- ========================================== -->
+    <!-- ISIS iPRNT 300 Response type                -->
+    <!-- ========================================== -->
+    <xsd:complexType name="ISIS_iPRNT_300Res">
+        <xsd:sequence>
+            <!-- Header from IPRINT_Request.dfdl.xsd -->
+            <xsd:element name="ISIS_iPRNT_EDX_Header" type="EDX_HDR_Type"/>
+
+            <!-- Communication response -->
+            <xsd:element name="ISIS_iPRNT_CommRes" type="ISIS_iPRNT_CommRes_Type"/>
+
+            <!-- Letter_Mde300: fixed 5 chars -->
+            <xsd:element name="Letter_Mde300" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="http://www.ogf.org/dfdl/">
+                        <dfdl:format
+                            lengthKind="explicit"
+                            length="5"
+                            representation="text"
+                            textJustification="left"
+                            textPadCharacter=" "/>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- ========================================== -->
+    <!-- Root element                                -->
+    <!-- ========================================== -->
+    <xsd:element name="ISIS_iPRINT_300_MSG" type="ISIS_iPRNT_300Res"/>
+
 </xsd:schema>
 
