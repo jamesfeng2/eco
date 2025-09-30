@@ -1,26 +1,23 @@
-fatal: CTDP3058E: Separator 'none' not found at offset '2'  for sequence within element  '/IPRINT_REQ_MSG[1]'.
-	  <!--   BRK_RQST_Type   -->
-  <xsd:complexType name="BRK_RQST_Type1">
-    <xsd:sequence dfdl:separator="none">
-      <xsd:element name="BRK_RQST_Metadata" type="xsd:string" dfdl:length="2">
-     <xsd:annotation>
-          					
-          <xsd:appinfo>
-            						
-            <dfdl:format escapeSchemeRef="NoneEscape" length="2" lengthKind="explicit" representation="text" textJustification="right" textPadCharacter="0"/>
-            					
-          </xsd:appinfo>
-          				
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:complexType name="BRK_RQST_Type2">
-    <xsd:sequence dfdl:separator="none">
-      <xsd:element name="BRK_RQST_Metadata" type="xsd:string" dfdl:length="2">
+	<xsd:complexType name="IPRINT_Return_Type">
+		<xsd:sequence>
+			<!-- Fixed length 6 chars -->
+			<xsd:element name="Return_Cde" type="xsd:string"
+				dfdl:length="6">
+			</xsd:element>
+			<!-- Null-terminated string (simulated as explicit length OR terminator) -->
+			<xsd:element name="Return_Msg" type="xsd:string" >
+				<xsd:annotation>
+					<xsd:appinfo source="http://www.ogf.org/dfdl/">
+						<dfdl:format lengthKind="delimited" terminator="%NUL;" />
  
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType> 
 
-	
+above has two error:  
+ 
+IPRINT_200_MsgRes.xsd CTDM2211E : Invalid DFDL annotations specified. 'Component 'xsd:element http://iprint_mq.com#Return_Msg'.'	DFDL Validation Problem
+
+IPRINT_200_MsgRes.xsd	 	CTDV1210E : When 'lengthKind' is 'explicit', DFDL property 'length' must be set. Element: #xmlns(p="http://iprint_mq.com")xscd(/type::p:IPRINT_Return_Type/model::sequence/schemaElement::p:Return_Msg).	DFDL Validation Problem
