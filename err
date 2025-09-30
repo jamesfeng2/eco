@@ -1,23 +1,12 @@
-	<xsd:complexType name="IPRINT_Return_Type">
-		<xsd:sequence>
-			<!-- Fixed length 6 chars -->
-			<xsd:element name="Return_Cde" type="xsd:string"
-				dfdl:length="6">
-			</xsd:element>
-			<!-- Null-terminated string (simulated as explicit length OR terminator) -->
-			<xsd:element name="Return_Msg" type="xsd:string" >
-				<xsd:annotation>
-					<xsd:appinfo source="http://www.ogf.org/dfdl/">
-						<dfdl:format lengthKind="delimited" terminator="%NUL;" />
- 
-					</xsd:appinfo>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:sequence>
-	</xsd:complexType> 
-
-above has two error:  
- 
-IPRINT_200_MsgRes.xsd CTDM2211E : Invalid DFDL annotations specified. 'Component 'xsd:element http://iprint_mq.com#Return_Msg'.'	DFDL Validation Problem
-
-IPRINT_200_MsgRes.xsd	 	CTDV1210E : When 'lengthKind' is 'explicit', DFDL property 'length' must be set. Element: #xmlns(p="http://iprint_mq.com")xscd(/type::p:IPRINT_Return_Type/model::sequence/schemaElement::p:Return_Msg).	DFDL Validation Problem
+2025-10-01 08:27:37.385436: BIP9332I: Application 'IPRINT' has been changed successfully. 
+2025-10-01 08:27:37.385504: BIP9326I: The source 'IPRINTproject.TestMode.bar' has been successfully deployed. 
+2025-10-01 08:27:37.385928: BIP2154I: Integration server finished with Configuration message. 
+2025-10-01 08:29:08.406872: BIP2232E: Error detected whilst handling a previous error in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.ResetContentDescriptor'. 
+2025-10-01 08:29:08.406948: BIP2230E: Error detected whilst processing a message in node 'IPRNT_Request.CLK.BLA.APP.IPRINT.REQUEST'. 
+2025-10-01 08:29:08.406997: BIP5304E: A runtime dictionary resource for message set 'G100CIC002001' cannot be found.  The list of known message sets is:  
+2025-10-01 08:29:08.407799: BIP2232E: Error detected whilst handling a previous error in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.CLK.MBF.APP.XXXX.IPRINT.GENERIC.ERROR'. 
+2025-10-01 08:29:08.407873: BIP2230E: Error detected whilst processing a message in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.ResetContentDescriptor'. 
+2025-10-01 08:29:08.407945: BIP5304E: A runtime dictionary resource for message set 'G100CIC002001' cannot be found.  The list of known message sets is:  
+2025-10-01 08:29:08.420144: BIP2232E: Error detected whilst handling a previous error in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.ISIS_Print_Service'. 
+2025-10-01 08:29:08.420202: BIP2230E: Error detected whilst processing a message in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.CLK.MBF.APP.XXXX.IPRINT.GENERIC.ERROR'. 
+2025-10-01 08:29:08.420288: BIP5304E: A runtime dictionary resource for message set 'G100CIC002001' cannot be found.  The list of known message sets is:  
