@@ -1,15 +1,4 @@
-2025-10-01 10:50:45.561772: BIP5807E: The DFDL parser signalled that a processing error occurred.  The message from the DFDL parser is:  CTDP3116E: Number cannot be created from an empty string for element '#xmlns(p="http://iprint_mq.com")xscd(/type::p:EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Ver)'. 
-			<xsd:element dfdl:length="1"
-				dfdl:nilKind="literalValue" dfdl:nilValue="%SP;"
-				dfdl:textNumberPattern="0" dfdl:useNilForDefault="yes"
-				name="EDX_Header_Ver" nillable="true" type="xsd:short">
-				<xsd:annotation>
-					<xsd:appinfo source="http://www.ogf.org/dfdl/dfdl-1.0/">
-						<dfdl:format lengthKind="explicit"
-							nilKind="literalValue" />
-						<!-- Empty string counts as nil -->
-						<dfdl:nilValue />
-					</xsd:appinfo>
-				</xsd:annotation>
-			</xsd:element>
-''
+2025-10-01 11:30:47.357344: BIP2498E: (.SetMQRFH2_IPrint_Platform.Main, 30.42) : An error occurred when navigating to path element '3' of the field reference at the given location. 
+2025-10-01 11:30:47.357376: BIP5803E: DFDL parsing was stopped due to errors occurring. 
+2025-10-01 11:30:47.357412: BIP5807E: The DFDL parser signalled that a processing error occurred.  The message from the DFDL parser is:  CTDP3011E: Character decoding error. The sequence of bytes starting at byte offset '2' is not a valid character in the encoding 'UTF-8' . 
+
