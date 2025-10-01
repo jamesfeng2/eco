@@ -1,2 +1,10 @@
-2025-10-01 12:20:24.199382: BIP5803E: DFDL parsing was stopped due to errors occurring. 
-2025-10-01 12:20:24.199416: BIP5807E: The DFDL parser signalled that a processing error occurred.  The message from the DFDL parser is:  CTDP3000E: Unexpected end of data at byte offset '266' while parsing element '#xmlns(p="http://iprint_mq.com")xscd(/type::p:ISIS_Header_Type/model::sequence/schemaElement::ISIS_Printer_Id)'. The parser encountered the end of the data stream or the end of a parent element. 
+
+2025-10-01 14:15:53.762884: BIP2232E: Error detected whilst handling a previous error in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.ISIS_Print_Service'. 
+2025-10-01 14:15:53.762980: BIP2230E: Error detected whilst processing a message in node 'IPRNT_Request.CLK.BLA.APP.IPRINT.REQUEST'. 
+2025-10-01 14:15:53.763020: BIP5831E: The DFDL serializer signalled that a processing error occurred.  The message from the DFDL serializer is:  CTDU4001E: Root element 'EDX_HDR' in namespace '' does not exist.  The element being serialized was:  /Root/DFDL/EDX_HDR 
+2025-10-01 14:15:53.764052: BIP2232E: Error detected whilst handling a previous error in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.CLK.MBF.APP.XXXX.IPRINT.GENERIC.ERROR'. 
+2025-10-01 14:15:53.764120: BIP2230E: Error detected whilst processing a message in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.ISIS_Print_Service'. 
+2025-10-01 14:15:53.764164: BIP5304E: A runtime dictionary resource for message set 'G100CIC002001' cannot be found.  The list of known message sets is:  
+2025-10-01 14:15:53.765776: BIP2232E: Error detected whilst handling a previous error in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.ISIS_Print_Service'. 
+2025-10-01 14:15:53.765840: BIP2230E: Error detected whilst processing a message in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.CLK.MBF.APP.XXXX.IPRINT.GENERIC.ERROR'. 
+2025-10-01 14:15:53.765880: BIP5831E: The DFDL serializer signalled that a processing error occurred.  The message from the DFDL serializer is:  CTDU4001E: Root element 'EDX_HDR' in namespace '' does not exist.  The element being serialized was:  /Root/DFDL/EDX_HDR 
