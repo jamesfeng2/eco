@@ -1,5 +1,4 @@
-2025-10-02 08:23:51.621400: BIP5831E: The DFDL serializer signalled that a processing error occurred.  The message from the DFDL serializer is:  CTDU4001E: Root element 'EDX_HDR' in namespace '' does not exist.  The element being serialized was:  /Root/DFDL/EDX_HDR 
-AND why line work fine SET OutputRoot.DFDL.EDX_HDR.EDX_Header_Type = 'K'; but fail in line SET OutputRoot.DFDL.EDX_HDR.EDX_TRN_Ver_Num  = iRefInitEDXReqHdr.EDX_TRN_Ver_Num;
+2025-10-02 09:02:50.204168: BIP5831E: The DFDL serializer signalled that a processing error occurred.  The message from the DFDL serializer is:  CTDU4001E: Root element 'IPRNT_resp_MSG' in namespace '' does not exist.  The element being serialized was:  /Root/DFDL/IPRNT_resp_MSG 
 
 CREATE COMPUTE MODULE SetMQRFH2_IPrint_Platform
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -29,22 +28,46 @@ CREATE COMPUTE MODULE SetMQRFH2_IPrint_Platform
 		SET OutputRoot.MQMD.Priority = InputRoot.MQMD.Priority;	
 		
 		-- SET Output EDX Header
-		DECLARE iRefInitEDXReqHdr REFERENCE TO InputRoot.DFDL.IPRNT_initREQ_MSG.IPRNT_InitEDX_HDR;
-		DECLARE iRef REFERENCE TO OutputRoot.DFDL.IPRNT_resp_MSG;
+		DECLARE ref1 REFERENCE TO InputRoot.DFDL.IPRNT_initREQ_MSG.IPRNT_InitEDX_HDR;		
 		
-		SET OutputRoot.DFDL.EDX_HDR.EDX_Header_Type                  = 'K';
-		SET OutputRoot.DFDL.EDX_HDR.EDX_Header_Ver                   = 1;
-		
-		--SET OutputRoot.DFDL.IPRNT_resp_MSG.EDX_Header_Type                  = iRefInitEDXReqHdr.EDX_Header_Type;
-		--SET OutputRoot.DFDL.IPRNT_resp_MSG.EDX_Header_Ver                   = iRefInitEDXReqHdr.EDX_Header_Ver;
-		SET OutputRoot.DFDL.EDX_HDR.EDX_TRN_Type_Cde                 = 'UO'; --iRefInitEDXReqHdr.EDX_TRN_Type_Cde;
-		SET OutputRoot.DFDL.EDX_HDR.EDX_TRN_Action_Cde               = 'PL1';  --iRefInitEDXReqHdr.EDX_TRN_Action_Cde;
-		SET OutputRoot.DFDL.EDX_HDR.EDX_TRN_Ver_Num                  = iRefInitEDXReqHdr.EDX_TRN_Ver_Num;
-		SET OutputRoot.DFDL.EDX_HDR.EDX_Recv_Agency_Cde              = iRefInitEDXReqHdr.EDX_Recv_Agency_Cde;
-		SET OutputRoot.DFDL.IPRNT_InitEDX_HDR.EDX_HDR.EDX_Recv_Agency_App_Id           = iRefInitEDXReqHdr.EDX_Recv_Agency_App_Id;
-		SET OutputRoot.DFDL.IPRNT_InitEDX_HDR.EDX_HDR.EDX_Recv_Agency_Obj_Ref_Id       = iRefInitEDXReqHdr.EDX_Recv_Agency_Obj_Ref_Id;
-		SET OutputRoot.DFDL.IPRNT_InitEDX_HDR.EDX_HDR.EDX_Sendng_Agency_Cde            = iRefInitEDXReqHdr.EDX_Sendng_Agency_Cde;
-		SET OutputRoot.DFDL.IPRNT_InitEDX_HDR.EDX_HDR.EDX_Sendng_Agency_App_Id         = iRefInitEDXReqHdr.EDX_Sendng_Agency_App_Id;
-		SET OutputRoot.DFDL.IPRNT_InitEDX_HDR.EDX_HDR.EDX_Sendng_Agency_Obj_Ref_Id     = iRefInitEDXReqHdr.EDX_Sendng_Agency_Obj_Ref_Id;
-		SET OutputRoot.DFDL.IPRNT_InitEDX_HDR.EDX_HDR.EDX_Sendng_User_Id               = iRefInitEDXReqHdr.EDX_Sendng_User_Id;
-		SET OutputRoot.DFDL.IPRNT_InitEDX_HDR.EDX_HDR.EDX_Sendng_User_Office_Cde       = iRefInitEDXReqHdr.EDX_Sendng_User_Offic
+		SET OutputRoot.DFDL.IPRNT_resp_MSG.EDX_HDR.EDX_Header_Type  				= ref1.EDX_Header_Type;
+		SET OutputRoot.DFDL.IPRNT_resp_MSG.EDX_HDR.EDX_Header_Ver                   = ref1.EDX_Header_Ver;
+		SET OutputRoot.DFDL.IPRNT_resp_MSG.EDX_HDR.EDX_TRN_Type_Cde                 = ref1.EDX_TRN_Type_Cde;
+		SET OutputRoot.DFDL.IPRNT_resp_MSG.EDX_HDR.EDX_TRN_Action_Cde               = ref1.EDX_TRN_Action_Cde;
+		SET OutputRoot.DFDL.IPRNT_resp_MSG.EDX_HDR.EDX_TRN_Ver_Num                  = ref1.EDX_TRN_Ver_Num;
+		SET OutputRoot.DFDL.IPRNT_resp_MSG.EDX_HDR.EDX_Recv_Agency_Cde              = ref1.EDX_Recv_Agency_Cde;
+		SET OutputRoot.DFDL.IPRNT_resp_MSG.EDX_HDR.EDX_Recv_Agency_App_Id           = ref1.EDX_Recv_Agency_App_Id;
+		SET OutputRoot.DFDL.IPRNT_resp_MSG.EDX_HDR.EDX_Recv_Agency_Obj_Ref_Id       = ref1.EDX_Recv_Agency_Obj_Ref_Id;
+		SET OutputRoot.DFDL.IPRNT_resp_MSG.EDX_HDR.EDX_Sendng_Agency_Cde            = ref1.EDX_Sendng_Agency_Cde;
+--		SET OutputRoot.DFDL.IPRNT_InitEDX_HDR.EDX_HDR.EDX_Sendng_Agency_App_Id         = ref1.EDX_Sendng_Agency_App_Id;
+
+
+	<xsd:element dfdl:lengthKind="delimited"
+		ibmSchExtn:docRoot="true" name="IPRNT_resp_MSG">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element dfdl:length="158"  name="EDX_HDR1"
+					type="EDX_HDR_Type" />
+				<xsd:element dfdl:length="1102"  name="ISIS_HDR1"
+					type="ISIS_Header_Type" />
+				<xsd:element dfdl:lengthKind="delimited"
+					ibmDfdlExtn:sampleValue="body_valu3" name="ISIS_PDF_PRNT_DTL"
+					type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element dfdl:lengthKind="delimited"
+		ibmSchExtn:docRoot="true" name="IPRNT_initREQ_MSG">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element dfdl:length="158"  name="IPRNT_InitEDX_HDR"
+					type="EDX_HDR_Type" />
+				<xsd:element dfdl:length="1102"  name="IPRNT_Init_ISIS_HDR"
+					type="ISIS_Header_Type" />
+				<xsd:element dfdl:lengthKind="delimited"
+					ibmDfdlExtn:sampleValue="body_valu3" name="ISIS_PDF_PRNT_DTL"
+					type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
