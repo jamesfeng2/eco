@@ -1,10 +1,13 @@
  
-IPRNT_Request.esql	 	Unresolvable header reference "OutputRoot.Properties.MessageDomain".	ESQL Loading Failure of Referenced File
+			<xsd:element dfdl:length="1" dfdl:lengthKind="explicit"
+				dfdl:nilKind="literalValue" dfdl:nilValue="NULL"
+				dfdl:textNumberPattern="0" dfdl:useNilForDefault="yes"
+				name="EDX_Header_Ver" nillable="true" type="xsd:short">
+			</xsd:element>
 
-2025-10-01 09:17:09.484903: BIP2232E: Error detected whilst handling a previous error in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.ISIS_Print_Service'. 
-2025-10-01 09:17:09.484997: BIP2230E: Error detected whilst processing a message in node 'IPRNT_Request.SetMQRFH2_IPrint_Platform'. 
-2025-10-01 09:17:09.485036: BIP2488E:  (.SetMQRFH2_IPrint_Platform.Main, 26.3) Error detected whilst executing the SQL statement 'DECLARE iRefInitEDXReqHdr REFERENCE TO InputRoot.DFDL.IPRNT_InitEDX_HDR;'. 
-2025-10-01 09:17:09.485074: BIP2498E: (.SetMQRFH2_IPrint_Platform.Main, 26.42) : An error occurred when navigating to path element '3' of the field reference at the given location. 
-2025-10-01 09:17:09.485107: BIP5803E: DFDL parsing was stopped due to errors occurring. 
-2025-10-01 09:17:09.485145: BIP5807E: The DFDL parser signalled that a processing error occurred.  The message from the DFDL parser is:  CTDP3116E: Number cannot be created from an empty string for element '#xmlns(p="http://iprint_mq.com")xscd(/type::p:EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Ver)'. 
-
+2025-10-01 10:18:01.818454: BIP2232E: Error detected whilst handling a previous error in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.ISIS_Print_Service'. 
+2025-10-01 10:18:01.818533: BIP2230E: Error detected whilst processing a message in node 'IPRNT_Request.SetMQRFH2_IPrint_Platform'. 
+2025-10-01 10:18:01.818571: BIP2488E:  (.SetMQRFH2_IPrint_Platform.Main, 30.3) Error detected whilst executing the SQL statement 'DECLARE iRefInitEDXReqHdr REFERENCE TO InputRoot.DFDL.IPRNT_InitEDX_HDR;'. 
+2025-10-01 10:18:01.818608: BIP2498E: (.SetMQRFH2_IPrint_Platform.Main, 30.42) : An error occurred when navigating to path element '3' of the field reference at the given location. 
+2025-10-01 10:18:01.818651: BIP5803E: DFDL parsing was stopped due to errors occurring. 
+2025-10-01 10:18:01.818684: BIP5807E: The DFDL parser signalled that a processing error occurred.  The message from the DFDL parser is:  CTDP3116E: Number cannot be created from an empty string for element '#xmlns(p="http://iprint_mq.com")xscd(/type::p:EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Ver)'. 
