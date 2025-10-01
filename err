@@ -1,7 +1,5 @@
 2025-10-02 09:12:11.508363: BIP5831E: The DFDL serializer signalled that a processing error occurred.  The message from the DFDL serializer is:  CTDU4001E: Root element 'IPRNT_resp_MSG' in namespace '' does not exist.  The element being serialized was:  /Root/DFDL/IPRNT_resp_MSG 
 2025-10-02 09:12:11.509707: BIP2232E: Error detected whilst handling a previous error in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.CLK.MBF.APP.XXXX.IPRINT.GENERIC.ERROR'. 
-2025-10-02 09:12:11.509792: BIP2230E: Error detected whilst processing a message in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.ISIS_Print_Service'. 
-2025-10-02 09:12:11.509834: BIP5831E: The DFDL serializer signalled that a processing error occurred.  The message from the DFDL serializer is:  CTDU4001E: Root element 'ISIS_iPRNT_EDX_Header' in namespace '' does not exist.  The element being serialized was:  /Root/DFDL/ISIS_iPRNT_EDX_Header 
 2025-10-02 09:12:11.511601: BIP2232E: Error detected whilst handling a previous error in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.ISIS_Print_Service'. 
 2025-10-02 09:12:11.511669: BIP2230E: Error detected whilst processing a message in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.CLK.MBF.APP.XXXX.IPRINT.GENERIC.ERROR'. 
 2025-10-02 09:12:11.511735: BIP5831E: The DFDL serializer signalled that a processing error occurred.  The message from the DFDL serializer is:  CTDU4001E: Root element 'IPRNT_resp_MSG' in namespace '' does not exist.  The element being serialized was:  /Root/DFDL/IPRNT_resp_MSG 
@@ -52,9 +50,9 @@ CREATE COMPUTE MODULE SetMQRFH2_IPrint_Platform
 		ibmSchExtn:docRoot="true" name="IPRNT_resp_MSG">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element dfdl:length="158"  name="EDX_HDR1"
+				<xsd:element dfdl:length="158"  name="EDX_HDR"
 					type="EDX_HDR_Type" />
-				<xsd:element dfdl:length="1102"  name="ISIS_HDR1"
+				<xsd:element dfdl:length="1102"  name="ISIS_HDR"
 					type="ISIS_Header_Type" />
 				<xsd:element dfdl:lengthKind="delimited"
 					ibmDfdlExtn:sampleValue="body_valu3" name="ISIS_PDF_PRNT_DTL"
