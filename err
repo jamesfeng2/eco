@@ -1,5 +1,9 @@
-2025-10-02 11:25:05.432579: BIP2230E: Error detected whilst processing a message in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.CLK.MBF.APP.XXXX.IPRINT.GENERIC.ERROR'. 
-2025-10-02 11:25:05.432619: BIP5831E: The DFDL serializer signalled that a processing error occurred.  The message from the DFDL serializer is:  CTDU4001E: Root element 'IPRNT_initREQ_MSG' in namespace '' does not exist.  The element being serialized was:  /Root/DFDL/IPRNT_initREQ_MSG 
+2025-10-02 11:32:40.293276: BIP2230E: Error detected whilst processing a message in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.CLK.MBF.APP.XXXX.IPRINT.GENERIC.ERROR'. 
+2025-10-02 11:32:40.293316: BIP5831E: The DFDL serializer signalled that a processing error occurred.  The message from the DFDL serializer is:  CTDU4001E: Root element 'IPRNT_initREQ_MSG' in namespace '' does not exist.  The element being serialized was:  /Root/DFDL/IPRNT_initREQ_MSG 
+
+ 
+IPRNT_Request.esql	/IPRINT	line 24	Unresolvable header reference "OutputRoot.Properties.MessageDomain".	ESQL Loading Failure of Referenced File
+IPRNT_Request.esql	/IPRINT	line 26	Unresolvable header reference "OutputRoot.Properties.MessageNamespace".	ESQL Loading Failure of Referenced File
 
 CREATE COMPUTE MODULE SetMQRFH2_IPrint_Platform
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -12,29 +16,24 @@ CREATE COMPUTE MODULE SetMQRFH2_IPrint_Platform
 		SET OutputRoot.Properties.Encoding = 273;
 		SET OutputRoot.Properties.CodedCharSetId = 819;
 		
-	
+
+		
 		SET OutputRoot.Properties.MessageDomain = 'DFDL';
-		
---		SET OutputRoot.Properties.MessageSet = 'G100CIC002001';
---		SET OutputRoot.Properties.MessageDomain = 'MRM';
---		SET OutputRoot.Properties.MessageType = 'IPRINT_REQ_MSG';
--- 		SET OutputRoot.Properties.MessageFormat = 'Text1';
-		
+		SET OutputRoot.Properties.MessageType = 'IPRNT_initREQ_MSG';
+		SET OutputRoot.Properties.MessageNamespace = 'http://iprint_mq.com';
+ 
 		-- Create MQMD header
 		SET OutputRoot.MQMD.Format ='MQSTR';
- 		SET OutputRoot.MQMD.CodedCharSetId=819;
-		SET OutputRoot.MQMD.Encoding=273;	
-		
+		SET OutputRoot.MQMD.CodedCharSetId=819;
+		SET OutputRoot.MQMD.Encoding=273;
 		-- Copy Message Priority
-		SET OutputRoot.MQMD.Priority = InputRoot.MQMD.Priority;	
+		SET OutputRoot.MQMD.Priority = InputRoot.MQMD.Priority;
 		
 		-- SET Output EDX Header
 		DECLARE ref1 REFERENCE TO InputRoot.DFDL.IPRNT_InitEDX_HDR;
 
 		SET OutputRoot.DFDL.IPRNT_initREQ_MSG.IPRNT_InitEDX_HDR.EDX_Header_Type 				= ref1.EDX_Header_Type;
 		SET OutputRoot.DFDL.IPRNT_initREQ_MSG.IPRNT_InitEDX_HDR.EDX_Header_Ver 					= ref1.EDX_Header_Ver;
-
- 
 
 	<xsd:element dfdl:lengthKind="delimited"
 		ibmSchExtn:docRoot="true" name="IPRNT_initREQ_MSG">
