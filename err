@@ -1,6 +1,4 @@
-2025-10-02 11:01:19.742672: BIP2488E:  (.SetMQRFH2_IPrint_Platform.Main, 27.3) Error detected whilst executing the SQL statement 'SET OutputRoot.IPRNT_InitEDX_HDR.DFDL.EDX_HDR.EDX_Header_Type = ref1.EDX_Header_Type;'. 
-2025-10-02 11:01:19.742714: BIP2498E: (.SetMQRFH2_IPrint_Platform.Main, 27.7) : An error occurred when navigating to path element '2' of the field reference at the given location. 
-2025-10-02 11:01:19.742776: BIP2291E: No constant for parser class name for root element name 'IPRNT_InitEDX_HDR'. 
+ The DFDL serializer signalled that a processing error occurred.  The message from the DFDL serializer is:  CTDU4001E: Root element 'IPRNT_InitEDX_HDR' in namespace '' does not exist.  The element being serialized was:  /Root/DFDL/IPRNT_InitEDX_HDR 
 
 
 CREATE COMPUTE MODULE SetMQRFH2_IPrint_Platform
