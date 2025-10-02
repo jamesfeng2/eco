@@ -1,2 +1,19 @@
+CREATE FUNCTION PadOrTrim(val CHARACTER; targetLen INTEGER) RETURNS CHARACTER
+BEGIN
+    DECLARE outVal CHARACTER val;
+    DECLARE padLen INTEGER targetLen - LENGTH(val);
 
-IPRNT_Request.esql	/IPRINT	line 45	Syntax error. Valid options include: || / = >= > <= < - <> + ; * AND BETWEEN DAY HOUR IN IS LIKE MINUTE MONTH NOT OR SECOND YEAR	ESQL Parser
+    IF padLen > 0 THEN
+        -- Add padLen spaces
+        DECLARE i INTEGER 1;
+        WHILE i <= padLen DO
+            SET outVal = outVal || ' ';
+            SET i = i + 1;
+        END WHILE;
+    ELSEIF padLen < 0 THEN
+        -- Truncate if too long
+        SET outVal = SUBSTRING(val FROM 1 FOR targetLen);
+    END IF;
+
+    RETURN outVal;
+END;
