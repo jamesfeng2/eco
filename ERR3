@@ -1,0 +1,2 @@
+
+IPRNT_Request.esql	/IPRINT	line 45	Syntax error. Valid options include: || / = >= > <= < - <> + ; * AND BETWEEN DAY HOUR IN IS LIKE MINUTE MONTH NOT OR SECOND YEAR	ESQL Parser
