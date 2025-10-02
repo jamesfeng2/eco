@@ -1,9 +1,6 @@
+2025-10-02 14:26:57.871820: BIP2230E: Error detected whilst processing a message in node 'IPRNT_Request.IPRNT_Generic_Error_Handler.CLK.MBF.APP.XXXX.IPRINT.GENERIC.ERROR'. 
+2025-10-02 14:26:57.871896: BIP5831E: The DFDL serializer signalled that a processing error occurred.  The message from the DFDL serializer is:  CTDU4076E: The DFDL serializer cannot output the text representation of element 'EDX_TRN_Type_Cde'. The serialized string value 'BLI100' with length '6' is less than the declared length '10'.  The element being serialized was:  /Root/DFDL/{http://iprint_mq.com}:IPRNT_initREQ_MSG/{http://iprint_mq.com}:IPRNT_InitEDX_HDR/{http://iprint_mq.com}:EDX_TRN_Type_Cde 
 
-IPRNT_Request.esql	/IPRINT	line 39	Syntax error. Valid options include: identifier ) } ] , || / = >= > <= < - <> ( . + ; * AFTER AND AS BEFORE BEGIN CALL CASE CATALOG CREATE DAY DECLARE DEFAULT DELETE DO ELSE ELSEIF END ESCAPE EXCEPTION FOR FROM HOUR IDENTIFIER IDENTITY IF IN INSERT INTO IS ITERATE LEAVE LIKE LOOP MINUTE MODE MONTH NOT OR REPEAT RETURN SECOND THEN TO UNTIL VALUES WHEN WHERE WHILE YEAR	ESQL Parser
-
- 
-IPRNT_Request.esql	/IPRINT	line 24	Unresolvable header reference "OutputRoot.Properties.MessageDomain".	ESQL Loading Failure of Referenced File
-IPRNT_Request.esql	/IPRINT	line 26	Unresolvable header reference "OutputRoot.Properties.MessageNamespace".	ESQL Loading Failure of Referenced File
 
 CREATE COMPUTE MODULE SetMQRFH2_IPrint_Platform
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -32,8 +29,11 @@ CREATE COMPUTE MODULE SetMQRFH2_IPrint_Platform
 		-- SET Output EDX Header
 		DECLARE ref1 REFERENCE TO InputRoot.DFDL.IPRNT_InitEDX_HDR;
 
-		SET OutputRoot.DFDL.IPRNT_initREQ_MSG.IPRNT_InitEDX_HDR.EDX_Header_Type 				= ref1.EDX_Header_Type;
-		SET OutputRoot.DFDL.IPRNT_initREQ_MSG.IPRNT_InitEDX_HDR.EDX_Header_Ver 					= ref1.EDX_Header_Ver;
+		SET OutputRoot.DFDL.ns:IPRNT_initREQ_MSG.ns:IPRNT_InitEDX_HDR.ns:EDX_Header_Type 				= ref1.ns:EDX_Header_Type;
+		SET OutputRoot.DFDL.ns:IPRNT_initREQ_MSG.ns:IPRNT_InitEDX_HDR.ns:EDX_Header_Ver 					= ref1.ns:EDX_Header_Ver;
+		SET OutputRoot.DFDL.ns:IPRNT_initREQ_MSG.ns:IPRNT_InitEDX_HDR.ns:EDX_TRN_Type_Cde 				= ref1.ns:EDX_TRN_Type_Cde;
+		SET OutputRoot.DFDL.ns:IPRNT_initREQ_MSG.ns:IPRNT_InitEDX_HDR.ns:EDX_TRN_Action_Cde 				= ref1.ns:EDX_TRN_Action_Cde;
+--
 
 	<xsd:element dfdl:lengthKind="delimited"
 		ibmSchExtn:docRoot="true" name="IPRNT_initREQ_MSG">
