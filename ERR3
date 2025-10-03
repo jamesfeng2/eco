@@ -1,39 +1,21 @@
+2025-10-03 10:13:59.165684: BIP5831E: The DFDL serializer signalled that a processing error occurred.  The message from the DFDL serializer is:  CTDU4004E: The DFDL serializer cannot output element 'ISIS_PDF_PRNT_Dtl' because it is not an expected occurrence of the element declaration at the current position in the DFDL schema model.  The element being serialized was:  /Root/DFDL/{http://iprint_mq.com}:IPRNT_initREQ_MSG/{http://iprint_mq.com}:ISIS_PDF_PRNT_Dtl 
  
-IPRNT_Request.esql	/IPRINT	line 15	Syntax error in function or procedure signature.	ESQL Parser
- 
+		SET OutputRoot.DFDL.ns:IPRNT_initREQ_MSG.ns:ISIS_PDF_PRNT_Dtl.ns:ISIS_Printer_PRNT_Dtl 
+		   = InputRoot.DFDL.ns:IPRNT_initREQ_MSG.ns:ISIS_PDF_PRNT_DTL.ns:ISIS_Printer_PRNT_Dtl;
+		RETURN TRUE;
 
- 
-IPRNT_Request.esql	/IPRINT	line 15	Syntax error. Valid options include: ) , NOT NULLABLE	ESQL Parser
- 
-IPRNT_Request.esql	/IPRINT	line 71	Routine "PadOrTrim" is not declared for these arguments.	ESQL Parser
 
-CREATE COMPUTE MODULE SetMQRFH2_IPrint_Platform
-	
-	CREATE FUNCTION PadOrTrim(IN val CHARACTER; IN targetLen INTEGER) RETURNS CHARACTER
-BEGIN
-    DECLARE outVal CHARACTER val;
-    DECLARE padLen INTEGER targetLen - LENGTH(val);
-
-    IF padLen > 0 THEN
-        -- Add padLen spaces
-        DECLARE i INTEGER 1;
-        WHILE i <= padLen DO
-            SET outVal = outVal || ' ';
-            SET i = i + 1;
-        END WHILE;
-    ELSEIF padLen < 0 THEN
-        -- Truncate if too long
-        SET outVal = SUBSTRING(val FROM 1 FOR targetLen);
-    END IF;
-
-    RETURN outVal;
-END;
-	
-	CREATE FUNCTION Main() RETURNS BOOLEAN
-	BEGIN
-		DECLARE ns NAMESPACE 'http://iprint_mq.com';
-		
-
-		
-		CALL CopyMessageHeaders();
-
+	<xsd:element dfdl:lengthKind="delimited"
+		ibmSchExtn:docRoot="true" name="IPRNT_initREQ_MSG">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element dfdl:length="158"  name="IPRNT_InitEDX_HDR"
+					type="EDX_HDR_Type" />
+				<xsd:element dfdl:length="1102"  name="IPRNT_Init_ISIS_HDR"
+					type="ISIS_Header_Type" />
+				<xsd:element dfdl:lengthKind="delimited"
+					ibmDfdlExtn:sampleValue="body_valu3" name="ISIS_PDF_PRNT_DTL"
+					type="ISIS_PDF_PRNT_Dtl_Type" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
