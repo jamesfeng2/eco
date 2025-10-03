@@ -1,0 +1,433 @@
+--===============================================================
+--
+-- $MQSI RCSFileName=$RCSfile: IPRNT_Response_Handler.esql,v $ MQSI$
+-- $MQSI RCSLastSavedDate=$Date: 2008/12/16 04:16:22 $ MQSI$
+-- $MQSI RCSLastModifiedBy=$Author: nhh137 $ MQSI$
+-- $MQSI RCSVersion=$Revision: 1.1 $ MQSI$
+--
+-- Description: This ESQL handles response from PDF Emitter indicating if a Postcript file successfully generated or not.
+-- If the PDF document is successfully created, a reponse message for comfirmation is sent back to ISIS Printing Service.
+-- If error, error response is sent back to ISIS Service
+--
+--===============================================================
+
+CREATE FILTER MODULE "Filter_IPrint_Successful?"
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE IsPSFileCreated BOOLEAN FALSE;
+		DECLARE TRNTypeRet CHAR '';
+		SET TRNTypeRet = SUBSTRING(Root.BLOB.BLOB FROM 3 FOR 6);
+		SET TRNTypeRet = UPPER(SUBSTRING(TRNTypeRet FROM 3 FOR 12));
+		
+		CASE 
+		WHEN (TRNTypeRet = '424C49333030') THEN    -- HEX representation for 'BLI300'
+			SET TRNTypeRet = 'BLI300';	
+		WHEN (TRNTypeRet = '424C49323030') THEN     -- HEX representation for 'BLI200'
+			SET TRNTypeRet = 'BLI200';	
+		END CASE;
+	
+		-- Determine if incoming message from Compuset Emitter has successfully created Postscript file
+		IF (TRNTypeRet = 'BLI300') THEN
+			SET Environment.PSFileCreated = '000';
+			SET IsPSFileCreated = TRUE;
+			
+		ELSEIF (TRNTypeRet = 'BLI200') THEN
+			SET Environment.UnRecoveryExc = '220'; -- Error within Compuset during generation of Postscript file
+			SET IsPSFileCreated = FALSE;
+		ELSE
+			-- Throw Exception
+			THROW USER EXCEPTION SEVERITY 3 CATALOG 'IPRINTSystem' MESSAGE 001 VALUES('TRN Type Code Returned ('|| TRNTypeRet ||'), Invalid TRN Type Code Returned (IPRNT_Response_Handler.esql)');
+		END IF;
+		RETURN IsPSFileCreated;
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE Transform_To_BLI300_Msg_Res
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+		
+		-- Create properties
+		SET OutputRoot.Properties.Encoding = 785;
+		SET OutputRoot.Properties.CodedCharSetId = 500;
+		
+		SET OutputRoot.Properties.Encoding = 273;
+		SET OutputRoot.Properties.CodedCharSetId = 819;	
+		SET OutputRoot.Properties.MessageType = 'ISIS_iPRINT_300_MSG';
+		
+--		SET OutputRoot.Properties.MessageSet = 'G100CIC002001';
+--		SET OutputRoot.Properties.MessageType = 'ISIS_iPRINT_300_MSG';
+----		SET OutputRoot.Properties.MessageDomain = 'MRM';
+----		SET OutputRoot.Properties.MessageFormat = 'CWF1';
+-- 		SET OutputRoot.Properties.MessageFormat = 'Text1';
+		
+		DECLARE Reply_To_Q CHAR '';
+		DECLARE Reply_To_QMgr CHAR '';
+		DECLARE ReplyString CHAR '';	
+		DECLARE posSep int 0;
+		DECLARE len int 0;
+		SET ReplyString = InputRoot.DFDL.BRK_RQSTData_300.BRK_RQST_Metadata;
+		SET len = LENGTH(ReplyString);
+		SET posSep = POSITION('/' IN ReplyString REPEAT 3); 
+		SET Reply_To_Q = SUBSTRING(ReplyString FROM 7 FOR (posSep-7));
+		SET Reply_To_QMgr = SUBSTRING(ReplyString FROM (posSep+1) FOR (len-posSep));
+		
+		-- Create MQMD header
+		SET OutputRoot.MQMD.Format ='MQSTR';
+ 		SET OutputRoot.MQMD.CodedCharSetId=500;
+		SET OutputRoot.MQMD.Encoding=785;
+		SET OutputRoot.MQMD.ReplyToQ = Reply_To_Q;
+		SET OutputRoot.MQMD.ReplyToQMgr = Reply_To_QMgr;
+		
+		-- Set ReplyToQ and ReplyToQMgr to Environment variables for unexpected error occurs
+		SET Environment.ReplyToQ300Res = Reply_To_Q;
+		SET Environment.ReplyToQMgr300Res = Reply_To_QMgr;
+		
+		-- Set EDX Header
+		
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Header_Type 				= InputRoot.MRM.EDX_HDR_300Res.EDX_Header_Type;		
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Header_Ver 				= InputRoot.MRM.EDX_HDR_300Res.EDX_Header_Ver;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_TRN_Type_Cde               = InputRoot.MRM.EDX_HDR_300Res.EDX_TRN_Type_Cde;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_TRN_Action_Cde 			= InputRoot.MRM.EDX_HDR_300Res.EDX_TRN_Action_Cde;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_TRN_Ver_Num 				= InputRoot.MRM.EDX_HDR_300Res.EDX_TRN_Ver_Num;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Recv_Agency_Cde 			= InputRoot.MRM.EDX_HDR_300Res.EDX_Recv_Agency_Cde;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Recv_Agency_App_Id 		= InputRoot.MRM.EDX_HDR_300Res.EDX_Recv_Agency_App_Id;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Recv_Agency_Obj_Ref_Id 	= InputRoot.MRM.EDX_HDR_300Res.EDX_Recv_Agency_Obj_Ref_Id;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sendng_Agency_Cde 			= InputRoot.MRM.EDX_HDR_300Res.EDX_Sendng_Agency_Cde;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sendng_Agency_App_Id 		= InputRoot.MRM.EDX_HDR_300Res.EDX_Sendng_Agency_App_Id;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sendng_Agency_Obj_Ref_Id 	= InputRoot.MRM.EDX_HDR_300Res.EDX_Sendng_Agency_Obj_Ref_Id;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sendng_User_Id 			= InputRoot.MRM.EDX_HDR_300Res.EDX_Sendng_User_Id;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sendng_User_Office_Cde 	= InputRoot.MRM.EDX_HDR_300Res.EDX_Sendng_User_Office_Cde;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sent_Date 					= InputRoot.MRM.EDX_HDR_300Res.EDX_Sent_Date;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sent_Time_Seq_Num 			= InputRoot.MRM.EDX_HDR_300Res.EDX_Sent_Time_Seq_Num;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sendng_Cut_Offset_Mins 	= InputRoot.MRM.EDX_HDR_300Res.EDX_Sendng_Cut_Offset_Mins;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sendng_Machine_Id 			= InputRoot.MRM.EDX_HDR_300Res.EDX_Sendng_Machine_Id;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_TRN_Ref_Id 				= InputRoot.MRM.EDX_HDR_300Res.EDX_TRN_Ref_Id;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Err_Rsn_Cde 				= InputRoot.MRM.EDX_HDR_300Res.EDX_Err_Rsn_Cde;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Reserved 					= InputRoot.MRM.EDX_HDR_300Res.EDX_Reserved;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Data_Len 					= InputRoot.MRM.EDX_HDR_300Res.EDX_Data_Len;
+		 
+		-- Create successful BLP300 message response
+		IF (Environment.PSFileCreated = '000') THEN				
+			SET OutputRoot.MRM.ISIS_iPRNT_CommRes.TRN_Type_Cde = InputRoot.MRM.EDX_HDR_300Res.EDX_TRN_Type_Cde;
+			SET OutputRoot.MRM.ISIS_iPRNT_CommRes.CRN = InputRoot.MRM.ISIS_Header_300Res.ISIS_CRN;
+			SET OutputRoot.MRM.ISIS_iPRNT_CommRes.Hist_Id = InputRoot.MRM.ISIS_Header_300Res.ISIS_Hist_Id;
+			SET OutputRoot.MRM.Letter_Mde300 = InputRoot.MRM.ISIS_Header_300Res.ISIS_LTT_Mde;
+		END IF;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot. *[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE Set_210_ErrorCode
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+		
+		SET Environment.UnRecoveryExc = '210';  -- Error connecting to Compuset
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE Set_235_ErrorCode
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		
+		SET Environment.UnRecoveryExc = '235';  -- Error connecting to ISIS Printer Service
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE Transform_To_BLI200_Msg_Res
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		
+		-- Create Output Properties
+		SET OutputRoot.Properties.Encoding = 785;
+		SET OutputRoot.Properties.CodedCharSetId = 500;
+		
+		SET OutputRoot.Properties.MessageSet = 'G100CIC002001';
+		SET OutputRoot.Properties.MessageType = 'ISIS_iPRINT_200_MSG';
+--		SET OutputRoot.Properties.MessageDomain = 'MRM';
+--		SET OutputRoot.Properties.MessageFormat = 'CWF1';
+ 		SET OutputRoot.Properties.MessageFormat = 'Text1';
+		
+		DECLARE Reply_To_Q CHAR '';
+		DECLARE Reply_To_QMgr CHAR '';
+		DECLARE ReplyString CHAR '';	
+		DECLARE posSep int 0;
+		DECLARE len int 0;
+		
+		SET ReplyString = InputRoot.MRM.BRK_RQSTData_200Res.BRK_RQST_Metadata;
+		SET len = LENGTH(ReplyString);
+		SET posSep = POSITION('/' IN ReplyString REPEAT 3); 
+		SET Reply_To_Q = SUBSTRING(ReplyString FROM 7 FOR (posSep-7));
+		SET Reply_To_QMgr = SUBSTRING(ReplyString FROM (posSep+1) FOR (len-posSep));
+		
+		-- Create MQMD header
+		SET OutputRoot.MQMD.Format ='MQSTR';
+ 		SET OutputRoot.MQMD.CodedCharSetId=500;
+		SET OutputRoot.MQMD.Encoding=785;
+		SET OutputRoot.MQMD.ReplyToQ = Reply_To_Q;
+		SET OutputRoot.MQMD.ReplyToQMgr = Reply_To_QMgr;
+		
+		-- Set ReplyToQ and ReplyToQMgr to Environment variables for unexpected error occurs
+		SET Environment.ReplyToQ200Res = Reply_To_Q;
+		SET Environment.ReplyToQMgr200Res = Reply_To_QMgr;
+		
+		-- Set EDX Header
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Header_Type 				= InputRoot.MRM.EDX_HDR_200Res.EDX_Header_Type;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Header_Ver 				= InputRoot.MRM.EDX_HDR_200Res.EDX_Header_Ver;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_TRN_Type_Cde               = InputRoot.MRM.EDX_HDR_200Res.EDX_TRN_Type_Cde;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_TRN_Action_Cde 			= InputRoot.MRM.EDX_HDR_200Res.EDX_TRN_Action_Cde;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_TRN_Ver_Num 				= InputRoot.MRM.EDX_HDR_200Res.EDX_TRN_Ver_Num;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Recv_Agency_Cde 			= InputRoot.MRM.EDX_HDR_200Res.EDX_Recv_Agency_Cde;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Recv_Agency_App_Id 		= InputRoot.MRM.EDX_HDR_200Res.EDX_Recv_Agency_App_Id;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Recv_Agency_Obj_Ref_Id 	= InputRoot.MRM.EDX_HDR_200Res.EDX_Recv_Agency_Obj_Ref_Id;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sendng_Agency_Cde 			= InputRoot.MRM.EDX_HDR_200Res.EDX_Sendng_Agency_Cde;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sendng_Agency_App_Id 		= InputRoot.MRM.EDX_HDR_200Res.EDX_Sendng_Agency_App_Id;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sendng_Agency_Obj_Ref_Id 	= InputRoot.MRM.EDX_HDR_200Res.EDX_Sendng_Agency_Obj_Ref_Id;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sendng_User_Id 			= InputRoot.MRM.EDX_HDR_200Res.EDX_Sendng_User_Id;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sendng_User_Office_Cde 	= InputRoot.MRM.EDX_HDR_200Res.EDX_Sendng_User_Office_Cde;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sent_Date 					= InputRoot.MRM.EDX_HDR_200Res.EDX_Sent_Date;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sent_Time_Seq_Num 			= InputRoot.MRM.EDX_HDR_200Res.EDX_Sent_Time_Seq_Num;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sendng_Cut_Offset_Mins 	= InputRoot.MRM.EDX_HDR_200Res.EDX_Sendng_Cut_Offset_Mins;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Sendng_Machine_Id 			= InputRoot.MRM.EDX_HDR_200Res.EDX_Sendng_Machine_Id;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_TRN_Ref_Id 				= InputRoot.MRM.EDX_HDR_200Res.EDX_TRN_Ref_Id;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Err_Rsn_Cde 				= InputRoot.MRM.EDX_HDR_200Res.EDX_Err_Rsn_Cde;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Reserved 					= InputRoot.MRM.EDX_HDR_200Res.EDX_Reserved;
+		SET OutputRoot.MRM.ISIS_iPRNT_EDX_Header.EDX_Data_Len 					= InputRoot.MRM.EDX_HDR_200Res.EDX_Data_Len;
+		
+		-- Create unsuccessful BLP200 message with '220' error code response 
+		IF (Environment.UnRecoveryExc = '220') THEN
+			SET OutputRoot.MRM.ISIS_iPRNT_Comm.TRN_Type_Cde = InputRoot.MRM.EDX_HDR_200Res.EDX_TRN_Type_Cde;
+			SET OutputRoot.MRM.ISIS_iPRNT_Comm.CRN = InputRoot.MRM.ISIS_Header_200Res.ISIS_CRN;
+			SET OutputRoot.MRM.ISIS_iPRNT_Comm.Hist_Id = InputRoot.MRM.ISIS_Header_200Res.ISIS_Hist_Id;
+			SET OutputRoot.MRM.ISIS_iPRINT_Ret_Dtl.Error_Cde = InputRoot.MRM.IPRINT_Return_200Res.Error_Cde;
+			SET OutputRoot.MRM.ISIS_iPRINT_Ret_Dtl.Error_Msg = InputRoot.MRM.IPRINT_Return_200Res.Error_Msg;
+			SET OutputRoot.MRM.Letter_Mode200 = InputRoot.MRM.ISIS_Header_200Res.ISIS_LTT_Mde;	
+		END IF;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+
+
+
+CREATE COMPUTE MODULE iPrint_set_900_ErrCde_300Res
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();	
+				
+		DECLARE TRNTypeCdeStr CHAR 'BLI200';
+		-- Save EDX header elements to environment variables
+		DECLARE EDX_Header_Type300              CHAR  InputRoot.MRM.EDX_HDR_300Res.EDX_Header_Type;
+		DECLARE EDX_Header_Ver300               INT   InputRoot.MRM.EDX_HDR_300Res.EDX_Header_Ver;
+		DECLARE EDX_TRN_Type_Cde300             CHAR  TRNTypeCdeStr;
+		DECLARE EDX_TRN_Action_Cde300           CHAR  InputRoot.MRM.EDX_HDR_300Res.EDX_TRN_Action_Cde;
+		DECLARE EDX_TRN_Ver_Num300              INT   InputRoot.MRM.EDX_HDR_300Res.EDX_TRN_Ver_Num;
+		DECLARE EDX_Recv_Agency_Cde300          CHAR  InputRoot.MRM.EDX_HDR_300Res.EDX_Recv_Agency_Cde;
+		DECLARE EDX_Recv_Agency_App_Id300       CHAR  InputRoot.MRM.EDX_HDR_300Res.EDX_Recv_Agency_App_Id;
+		DECLARE EDX_Recv_Agency_Obj_Ref_Id300   CHAR  InputRoot.MRM.EDX_HDR_300Res.EDX_Recv_Agency_Obj_Ref_Id;
+		DECLARE EDX_Sendng_Agency_Cde300        CHAR  InputRoot.MRM.EDX_HDR_300Res.EDX_Sendng_Agency_Cde;
+		DECLARE EDX_Sendng_Agency_App_Id300     CHAR  InputRoot.MRM.EDX_HDR_300Res.EDX_Sendng_Agency_App_Id;
+		DECLARE EDX_Sendng_Agency_Obj_Ref_Id300 CHAR  InputRoot.MRM.EDX_HDR_300Res.EDX_Sendng_Agency_Obj_Ref_Id;
+		DECLARE EDX_Sendng_User_Id300           CHAR  InputRoot.MRM.EDX_HDR_300Res.EDX_Sendng_User_Id;
+		DECLARE EDX_Sendng_User_Office_Cde300   CHAR  InputRoot.MRM.EDX_HDR_300Res.EDX_Sendng_User_Office_Cde;
+		DECLARE EDX_Sent_Date300                DATE  InputRoot.MRM.EDX_HDR_300Res.EDX_Sent_Date;
+		DECLARE EDX_Sent_Time_Seq_Num300        CHAR  InputRoot.MRM.EDX_HDR_300Res.EDX_Sent_Time_Seq_Num;
+		DECLARE EDX_Sendng_Cut_Offset_Mins300   CHAR  InputRoot.MRM.EDX_HDR_300Res.EDX_Sendng_Cut_Offset_Mins;
+		DECLARE EDX_Sendng_Machine_Id300        CHAR  InputRoot.MRM.EDX_HDR_300Res.EDX_Sendng_Machine_Id;
+		DECLARE EDX_TRN_Ref_Id300               CHAR  InputRoot.MRM.EDX_HDR_300Res.EDX_TRN_Ref_Id;
+		DECLARE EDX_Err_Rsn_Cde300              CHAR  InputRoot.MRM.EDX_HDR_300Res.EDX_Err_Rsn_Cde;
+		DECLARE EDX_Reserved300                 CHAR  InputRoot.MRM.EDX_HDR_300Res.EDX_Reserved;
+		DECLARE EDX_Data_Len300                 INT   InputRoot.MRM.EDX_HDR_300Res.EDX_Data_Len;
+		
+		SET Environment.EDX_Header_Type300              = EDX_Header_Type300;
+		SET Environment.EDX_Header_Ver300               = EDX_Header_Ver300;
+		SET Environment.EDX_TRN_Type_Cde300             = EDX_TRN_Type_Cde300;
+		SET Environment.EDX_TRN_Action_Cde300           = EDX_TRN_Action_Cde300;
+		SET Environment.EDX_TRN_Ver_Num300              = EDX_TRN_Ver_Num300;
+		SET Environment.EDX_Recv_Agency_Cde300          = EDX_Recv_Agency_Cde300;
+		SET Environment.EDX_Recv_Agency_App_Id300       = EDX_Recv_Agency_App_Id300;
+		SET Environment.EDX_Recv_Agency_Obj_Ref_Id300   = EDX_Recv_Agency_Obj_Ref_Id300;
+		SET Environment.EDX_Sendng_Agency_Cde300        = EDX_Sendng_Agency_Cde300;
+		SET Environment.EDX_Sendng_Agency_App_Id300     = EDX_Sendng_Agency_App_Id300;
+		SET Environment.EDX_Sendng_Agency_Obj_Ref_Id300 = EDX_Sendng_Agency_Obj_Ref_Id300;
+		SET Environment.EDX_Sendng_User_Id300           = EDX_Sendng_User_Id300;
+		SET Environment.EDX_Sendng_User_Office_Cde300   = EDX_Sendng_User_Office_Cde300;
+		SET Environment.EDX_Sent_Date300                = EDX_Sent_Date300;
+		SET Environment.EDX_Sent_Time_Seq_Num300        = EDX_Sent_Time_Seq_Num300;
+		SET Environment.EDX_Sendng_Cut_Offset_Mins300  	= EDX_Sendng_Cut_Offset_Mins300;
+		SET Environment.EDX_Sendng_Machine_Id300        = EDX_Sendng_Machine_Id300;
+		SET Environment.EDX_TRN_Ref_Id300               = EDX_TRN_Ref_Id300;
+		SET Environment.EDX_Err_Rsn_Cde300              = EDX_Err_Rsn_Cde300;
+		SET Environment.EDX_Reserved300                 = EDX_Reserved300;
+		SET Environment.EDX_Data_Len300                 = EDX_Data_Len300;
+		
+		-- Save elements in body error message to environment variables		
+		DECLARE CRNStr CHAR InputRoot.MRM.ISIS_Header_300Res.ISIS_CRN;
+		DECLARE HistIdStr CHAR InputRoot.MRM.ISIS_Header_300Res.ISIS_Hist_Id;
+		DECLARE LTTMdeStr CHAR InputRoot.MRM.ISIS_Header_300Res.ISIS_LTT_Mde;	
+		SET Environment.UnRecoveryExc = '999RES300';  -- Unexpected Error in BLI300 response message
+		SET Environment.TRNTypeCdeRES300 = TRNTypeCdeStr;
+		SET Environment.CRNRES300 = CRNStr;
+		SET Environment.histIdRES300 = HistIdStr;
+		SET Environment.lttMdeRES300 = LTTMdeStr;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE iPrint_set_900_ErrCde_200Res
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();	
+		
+		DECLARE TRNTypeCdeStr CHAR 'BLI200';
+		-- Save EDX header elements to environment variables
+		DECLARE EDX_Header_Type200              CHAR  InputRoot.MRM.EDX_HDR_200Res.EDX_Header_Type;
+		DECLARE EDX_Header_Ver200               INT   InputRoot.MRM.EDX_HDR_200Res.EDX_Header_Ver;
+		DECLARE EDX_TRN_Type_Cde200             CHAR  TRNTypeCdeStr;
+		DECLARE EDX_TRN_Action_Cde200           CHAR  InputRoot.MRM.EDX_HDR_200Res.EDX_TRN_Action_Cde;
+		DECLARE EDX_TRN_Ver_Num200              INT   InputRoot.MRM.EDX_HDR_200Res.EDX_TRN_Ver_Num;
+		DECLARE EDX_Recv_Agency_Cde200          CHAR  InputRoot.MRM.EDX_HDR_200Res.EDX_Recv_Agency_Cde;
+		DECLARE EDX_Recv_Agency_App_Id200       CHAR  InputRoot.MRM.EDX_HDR_200Res.EDX_Recv_Agency_App_Id;
+		DECLARE EDX_Recv_Agency_Obj_Ref_Id200   CHAR  InputRoot.MRM.EDX_HDR_200Res.EDX_Recv_Agency_Obj_Ref_Id;
+		DECLARE EDX_Sendng_Agency_Cde200        CHAR  InputRoot.MRM.EDX_HDR_200Res.EDX_Sendng_Agency_Cde;
+		DECLARE EDX_Sendng_Agency_App_Id200     CHAR  InputRoot.MRM.EDX_HDR_200Res.EDX_Sendng_Agency_App_Id;
+		DECLARE EDX_Sendng_Agency_Obj_Ref_Id200 CHAR  InputRoot.MRM.EDX_HDR_200Res.EDX_Sendng_Agency_Obj_Ref_Id;
+		DECLARE EDX_Sendng_User_Id200           CHAR  InputRoot.MRM.EDX_HDR_200Res.EDX_Sendng_User_Id;
+		DECLARE EDX_Sendng_User_Office_Cde200   CHAR  InputRoot.MRM.EDX_HDR_200Res.EDX_Sendng_User_Office_Cde;
+		DECLARE EDX_Sent_Date200                DATE  InputRoot.MRM.EDX_HDR_200Res.EDX_Sent_Date;
+		DECLARE EDX_Sent_Time_Seq_Num200        CHAR  InputRoot.MRM.EDX_HDR_200Res.EDX_Sent_Time_Seq_Num;
+		DECLARE EDX_Sendng_Cut_Offset_Mins200   CHAR  InputRoot.MRM.EDX_HDR_200Res.EDX_Sendng_Cut_Offset_Mins;
+		DECLARE EDX_Sendng_Machine_Id200        CHAR  InputRoot.MRM.EDX_HDR_200Res.EDX_Sendng_Machine_Id;
+		DECLARE EDX_TRN_Ref_Id200               CHAR  InputRoot.MRM.EDX_HDR_200Res.EDX_TRN_Ref_Id;
+		DECLARE EDX_Err_Rsn_Cde200              CHAR  InputRoot.MRM.EDX_HDR_200Res.EDX_Err_Rsn_Cde;
+		DECLARE EDX_Reserved200                 CHAR  InputRoot.MRM.EDX_HDR_200Res.EDX_Reserved;
+		DECLARE EDX_Data_Len200                 INT   InputRoot.MRM.EDX_HDR_200Res.EDX_Data_Len;
+		
+		SET Environment.EDX_Header_Type200              = EDX_Header_Type200;
+		SET Environment.EDX_Header_Ver200               = EDX_Header_Ver200;
+		SET Environment.EDX_TRN_Type_Cde200             = EDX_TRN_Type_Cde200;
+		SET Environment.EDX_TRN_Action_Cde200           = EDX_TRN_Action_Cde200;
+		SET Environment.EDX_TRN_Ver_Num200              = EDX_TRN_Ver_Num200;
+		SET Environment.EDX_Recv_Agency_Cde200          = EDX_Recv_Agency_Cde200;
+		SET Environment.EDX_Recv_Agency_App_Id200       = EDX_Recv_Agency_App_Id200;
+		SET Environment.EDX_Recv_Agency_Obj_Ref_Id200   = EDX_Recv_Agency_Obj_Ref_Id200;
+		SET Environment.EDX_Sendng_Agency_Cde200        = EDX_Sendng_Agency_Cde200;
+		SET Environment.EDX_Sendng_Agency_App_Id200     = EDX_Sendng_Agency_App_Id200;
+		SET Environment.EDX_Sendng_Agency_Obj_Ref_Id200 = EDX_Sendng_Agency_Obj_Ref_Id200;
+		SET Environment.EDX_Sendng_User_Id200           = EDX_Sendng_User_Id200;
+		SET Environment.EDX_Sendng_User_Office_Cde200   = EDX_Sendng_User_Office_Cde200;
+		SET Environment.EDX_Sent_Date200                = EDX_Sent_Date200;
+		SET Environment.EDX_Sent_Time_Seq_Num200        = EDX_Sent_Time_Seq_Num200;
+		SET Environment.EDX_Sendng_Cut_Offset_Mins200   = EDX_Sendng_Cut_Offset_Mins200;
+		SET Environment.EDX_Sendng_Machine_Id200        = EDX_Sendng_Machine_Id200;
+		SET Environment.EDX_TRN_Ref_Id200               = EDX_TRN_Ref_Id200;
+		SET Environment.EDX_Err_Rsn_Cde200              = EDX_Err_Rsn_Cde200;
+		SET Environment.EDX_Reserved200                 = EDX_Reserved200;
+		SET Environment.EDX_Data_Len200                 = EDX_Data_Len200;
+		
+		-- Save elements in body error message to environment variables		
+		DECLARE CRNStr CHAR InputRoot.MRM.ISIS_Header_200Res.ISIS_CRN;
+		DECLARE HistIdStr CHAR InputRoot.MRM.ISIS_Header_200Res.ISIS_Hist_Id;
+		DECLARE LTTMdeStr CHAR InputRoot.MRM.ISIS_Header_200Res.ISIS_LTT_Mde;	
+		
+		SET Environment.UnRecoveryExc = '999RES200';  -- Unexpected Error in BLI200 response message
+		SET Environment.TRNTypeCdeRES200 = TRNTypeCdeStr;
+		SET Environment.CRNRES200 = CRNStr;
+		SET Environment.histIdRES200 = HistIdStr;
+		SET Environment.lttMdeRES200 = LTTMdeStr;
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
