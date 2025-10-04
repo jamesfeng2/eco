@@ -1,19 +1,7 @@
-2025-10-03 11:48:49.594916: BIP5831E: The DFDL serializer signalled that a processing error occurred.  The message from the DFDL serializer is:  CTDU4004E: The DFDL serializer cannot output element 'BRK_RQST' because it is not an expected occurrence of the element declaration at the current position in the DFDL schema model.  The element being serialized was:  /Root/DFDL/{http://iprint_mq.com}:IPRNT_initREQ_MSG/{http://iprint_mq.com}:BRK_RQST 
- 
-		SET OutputRoot.DFDL.ns:IPRNT_initREQ_MSG.ns:BRK_RQST.ns:BRK_RQST_Metadata = RQST_Metadata;
+	DECLARE ref3 REFERENCE TO InputRoot.DFDL.IPRINT_REQ_MSG;
+SET Environment.EDX_Header_Type 			= ref3.EDX_Header_Type;
 
+vs
 
-	<xsd:element dfdl:lengthKind="delimited"
-		ibmSchExtn:docRoot="true" name="IPRNT_initREQ_MSG">
-		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element dfdl:length="158"  name="IPRNT_InitEDX_HDR"
-					type="EDX_HDR_Type" />
-				<xsd:element dfdl:length="1102"  name="IPRNT_Init_ISIS_HDR"
-					type="ISIS_Header_Type" />
-				<xsd:element dfdl:lengthKind="delimited"
-					ibmDfdlExtn:sampleValue="body_valu3" name="ISIS_PDF_PRNT_DTL"
-					type="ISIS_PDF_PRNT_Dtl_Type" />
-			</xsd:sequence>
-		</xsd:complexType>
-	</xsd:element>
+	DECLARE EDX_Header_Ver210 INT InputRoot.DFDL.IPRINT_REQ_MSG.EDX_HDR.EDX_Header_Type;
+SET Environment.EDX_Header_Type 			=  EDX_Header_Ver210;
