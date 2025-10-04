@@ -1,7 +1,45 @@
-	DECLARE ref3 REFERENCE TO InputRoot.DFDL.IPRINT_REQ_MSG;
-SET Environment.EDX_Header_Type 			= ref3.EDX_Header_Type;
+import java.io.FileInputStream;
+import java.io.IOException;
 
-vs
+public class BitstreamDump {
+    public static void main(String[] args) {
+        // Change this to your bitstream file path
+        String filePath = "C:/temp/flowA_output.dat";
 
-	DECLARE EDX_Header_Ver210 INT InputRoot.DFDL.IPRINT_REQ_MSG.EDX_HDR.EDX_Header_Type;
-SET Environment.EDX_Header_Type 			=  EDX_Header_Ver210;
+        try (FileInputStream fis = new FileInputStream(filePath)) {
+            int b;
+            int count = 0;
+            StringBuilder ascii = new StringBuilder();
+
+            while ((b = fis.read()) != -1) {
+                // Print hex
+                System.out.printf("%02X ", b);
+
+                // Collect ASCII if printable
+                if (b >= 32 && b <= 126) {
+                    ascii.append((char) b);
+                } else {
+                    ascii.append(".");
+                }
+
+                count++;
+                // Group output: 16 bytes per line
+                if (count % 16 == 0) {
+                    System.out.println(" | " + ascii.toString());
+                    ascii.setLength(0);
+                }
+            }
+
+            // Print remaining ascii if file not multiple of 16
+            if (count % 16 != 0) {
+                // Pad spacing for last line
+                int pad = (16 - (count % 16)) * 3;
+                System.out.print(" ".repeat(pad));
+                System.out.println(" | " + ascii.toString());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
