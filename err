@@ -1,8 +1,5 @@
-		DECLARE ou BLOB;
-		DECLARE outText CHARACTER; 
-		DECLARE ut INTEGER 1208;
-		DECLARE enco INTEGER 546;
-		SET ou = ASBITSTREAM(OutputRoot, RootBitStream, 'DFDL','', 546, ut);
-		
-		SET outText = CAST(ou AS CHARACTER CCSID ut);
-		SET Environment.Debug.OutputText = outText;  
+BIP2401E
+(.SetMQRFH2_IPrint_Platform.Main, 105.71) : Syntax error : expected ')' but found ','. 
+
+BIP5840W
+The DFDL validator signalled that a warning occurred while validating a DFDL schema.  The file being processed was  in library IPRINT.  The message from the DFDL validator is:  ErrorType=SCHEMADEFINITIONERROR, errorCode=CTDV1109W, summary=CTDV1109W : DFDL property 'encoding' must be a valid IANA charset, a CCSID, a DFDL-specific encoding or start with 'x-', or be an expression which returns one of those. Encoding 'UFT-8'. DFDL defineFormat: RecordFixLengthFieldsFormat., schema=file:/C:/Users/rjf287-mid/IBM/ACET12/workspace-EDWIN/TEST_SERVER/run/IPRINT/IBMdefined/RecordFixLengthFieldFormat.xsd 
