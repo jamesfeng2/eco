@@ -1,1 +1,8 @@
-BIP5831E: The DFDL serializer signalled that a processing error occurred.  The message from the DFDL serializer is:  CTDU4001E: Root element 'EDX_HDR' in namespace '' does not exist.  The element being serialized was:  /Root/DFDL/EDX_HDR 
+		DECLARE ou BLOB;
+		DECLARE outText CHARACTER; 
+		DECLARE ut INTEGER 1208;
+		DECLARE enco INTEGER 546;
+		SET ou = ASBITSTREAM(OutputRoot, RootBitStream, 'DFDL','', 546, ut);
+		
+		SET outText = CAST(ou AS CHARACTER CCSID ut);
+		SET Environment.Debug.OutputText = outText;  
