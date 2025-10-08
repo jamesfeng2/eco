@@ -1,7 +1,1 @@
-		SET OutputRoot.Properties.Encoding = 273;
-		SET OutputRoot.Properties.CodedCharSetId = 819;
-		
-		SET OutputRoot.Properties.MessageSet = 'G100CIC002001';
-		SET OutputRoot.Properties.MessageDomain = 'MRM';
-		SET OutputRoot.Properties.MessageType = 'IPRINT_REQ_MSG';
-		SET OutputRoot.Properties.MessageFormat = 'CWF1';
+C2D3C9F1F0F0 424C49333030
