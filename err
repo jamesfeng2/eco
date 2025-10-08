@@ -1,20 +1,5 @@
-CTDU4076E: The DFDL serializer cannot output the text representation of element 'EDX_Header_Type'. The serialized string value '' with length '0' is less than the declared length '1'.
-
-	<xsd:annotation>
-		<xsd:appinfo source="http://www.ogf.org/dfdl/">
-			<dfdl:format encoding="UTF-8" escapeSchemeRef=""
-				ref="recFix:RecordFixLengthFieldsFormat" />
-		</xsd:appinfo>
-	</xsd:annotation>
-	<xsd:complexType name="EDX_HDR_Type">
-		<xsd:sequence dfdl:initiatedContent="no"
-			dfdl:separator="" dfdl:trailingSkip="0">
-			<xsd:element dfdl:length="1" dfdl:lengthKind="explicit"
-				ibmDfdlExtn:sampleValue="H" name="EDX_Header_Type" type="xsd:string">
-				<xsd:annotation>
-					<xsd:appinfo>
-						<dfdl:format representation="text" textJustification="left" textTrimKind="both" 
-							textPadCharacter=" " textPadKind="right" />
-					</xsd:appinfo>
-				</xsd:annotation>
-			</xsd:element>
+ textOutputValueCalc="{ 
+          if (fn:exists(.) and string-length(.) gt 0) 
+          then substring(.,1,1) 
+          else ' ' 
+        }"/>
