@@ -1,1 +1,38 @@
-C2D3C9F1F0F0 424C49333030
+	
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		CALL CopyMessageHeaders();
+ 
+		 
+		SET OutputRoot.Properties.Encoding = 546; 
+		SET OutputRoot.Properties.CodedCharSetId = 819;  
+		SET OutputRoot.Properties.MessageType = 'IPRINT_REQ_MSG'
+	
+		-- Create MQMD header
+		SET OutputRoot.MQMD.Format ='MQSTR';
+		SET OutputRoot.MQMD.CodedCharSetId=819;   
+		SET OutputRoot.MQMD.Encoding=546;  
+		
+		
+		-- Copy Message Priority
+		SET OutputRoot.MQMD.Priority = InputRoot.MQMD.Priority;
+		
+		-- SET Output EDX Header
+		DECLARE ref1 REFERENCE TO InputRoot.DFDL.IPRNT_initREQ_MSG.IPRNT_InitEDX_HDR;
+CREATE LASTCHILD OF OutputRoot DOMAIN('DFDL') NAME 'IPRINT_REQ_MSG';
+
+		SET OutputRoot.DFDL.IPRINT_REQ_MSG.EDX_HDR.EDX_Header_Type 				= ref1.EDX_Header_Type;
+ 
+
+		SET OutputRoot.DFDL.IPRINT_REQ_MSG.ISIS_PDF_PRNT_Dtl.ISIS_Printer_PRNT_Dtl 
+		   = InputRoot.DFDL.IPRNT_initREQ_MSG.ISIS_PDF_PRNT_DTL.ISIS_Printer_PRNT_Dtl;
+		   
+		-- Write ASCII text into BLOB
+		DECLARE ou CHAR OutputRoot.DFDL.IPRINT_REQ_MSG;;
+		SET OutputRoot.BLOB.BLOB = CAST(ou AS BLOB CCSID 819);
+		   
+ 
+		RETURN TRUE;
+
+	END;
