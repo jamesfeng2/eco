@@ -1,45 +1,57 @@
+<xsd:annotation>
+  <xsd:appinfo source="http://www.ogf.org/dfdl/">
+    <!-- Top-level format uses single-byte ASCII -->
+    <dfdl:format
+        encoding="ISO-8859-1"
+        escapeSchemeRef=""
+        ref="recFix:RecordFixLengthFieldsFormat"/>
+  </xsd:appinfo>
+</xsd:annotation>
 
-2025-10-02 20:26:33.218990: BIP5831E: The DFDL serializer signalled that a processing error occurred.  The message from the DFDL serializer is:  CTDU4076E: The DFDL serializer cannot output the text representation of element 'EDX_TRN_Type_Cde'. The serialized string value 'BLI100' with length '6' is less than the declared length '10'.  The element being serialized was:  /Root/DFDL/{http://iprint_mq.com}:IPRNT_initREQ_MSG/{http://iprint_mq.com}:IPRNT_InitEDX_HDR/{http://iprint_mq.com}:EDX_TRN_Type_Cde 
+<xsd:complexType name="EDX_HDR_Type">
+  <xsd:sequence dfdl:initiatedContent="no"
+                dfdl:separator=""
+                dfdl:trailingSkip="0">
 
-and line16 XSD: The location '../IBMdefined/RecordFixLengthFieldFormat.xsd' has not been resolved because the import is  unused
+    <!-- 1-byte text header -->
+    <xsd:element name="EDX_Header_Type"
+                 type="xsd:string"
+                 dfdl:lengthKind="explicit"
+                 dfdl:length="1"
+                 ibmDfdlExtn:sampleValue="H">
+      <xsd:annotation>
+        <xsd:appinfo>
+          <dfdl:format
+              representation="text"
+              textPadCharacter=" "
+              textPadKind="right"
+              textJustification="leftJustify"
+              textTrimKind="none"
+              encoding="ISO-8859-1"/>
+        </xsd:appinfo>
+      </xsd:annotation>
+    </xsd:element>
 
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<xsd:schema xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/"
-	xmlns:fn="http://www.w3.org/2005/xpath-functions"
-	xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions"
-	xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
-	xmlns:recFix="http://www.ibm.com/dfdl/RecordFixLengthFieldFormat"
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-		targetNamespace="http://iprint_mq.com"
-	xmlns="http://iprint_mq.com"
-	elementFormDefault="qualified">
-	<xsd:import
-		namespace="http://www.ibm.com/dfdl/RecordFixLengthFieldFormat"
-		schemaLocation="../IBMdefined/RecordFixLengthFieldFormat.xsd" />
-	<xsd:annotation>
-		<xsd:appinfo source="http://www.ogf.org/dfdl/">
-			<dfdl:format encoding="IBM273" escapeSchemeRef=""
-				lengthKind="explicit" occursCountKind="implicit"
-				ref="recFix:RecordFixLengthFieldsFormat" />
-		</xsd:appinfo>
-	</xsd:annotation>
-	<xsd:complexType name="EDX_HDR_Type">
-		<xsd:sequence dfdl:initiatedContent="no"
-			dfdl:separator="" dfdl:trailingSkip="0">
-			<xsd:element dfdl:length="1" ibmDfdlExtn:sampleValue="H"
-				name="EDX_Header_Type" type="xsd:string">
-			</xsd:element>
-			<xsd:element dfdl:length="1" name="EDX_Header_Ver"
-				type="xsd:string">
-			</xsd:element>
-			<xsd:element dfdl:length="10" name="EDX_TRN_Type_Cde"
-				type="xsd:string">
-				<xsd:annotation>
-					<xsd:appinfo>
-						<dfdl:format ref="recFix:RecordFixLengthFieldsFormat"
-							escapeSchemeRef="NoneEscape" lengthKind="explicit"
-							representation="text" textJustification="left"
-							textPadCharacter=" " textTrimKind="both" dfdl:length="10" />
-					</xsd:appinfo>
-				</xsd:annotation>
-			</xsd:element>
+    <!-- 2-byte numeric text field -->
+    <xsd:element name="EDX_TRN_Ver_Num"
+                 type="xsd:short"
+                 ibmDfdlExtn:sampleValue="01">
+      <xsd:annotation>
+        <xsd:appinfo>
+          <dfdl:format
+              representation="text"
+              textNumberRep="standard"
+              textNumberBase="10"
+              textNumberPattern="00"
+              textPadCharacter="0"
+              textNumberJustification="right"
+              lengthKind="explicit"
+              length="2"
+              encoding="ISO-8859-1"
+              binaryNumberCheckPolicy="lax"/>
+        </xsd:appinfo>
+      </xsd:annotation>
+    </xsd:element>
+
+  </xsd:sequence>
+</xsd:complexType>
