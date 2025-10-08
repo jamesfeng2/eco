@@ -1,1 +1,4 @@
- Illegal data type for parameter 'CCSID' of statement, function or operator 'ASBITSTREAM'. Valid types are 'INTEGER'. 
+--		SET OutputRoot.Properties.MessageSet = 'G100CIC002001';
+--		SET OutputRoot.Properties.MessageDomain = 'MRM';
+--		SET OutputRoot.Properties.MessageType = 'IPRINT_REQ_MSG';
+--		SET OutputRoot.Properties.MessageFormat = 'Text1';
