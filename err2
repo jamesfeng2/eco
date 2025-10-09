@@ -1,12 +1,1 @@
-error on while cast, how to fix line 11
-
-DECLARE ou2 BLOB;
-		DECLARE outText CHARACTER; 
-
-		SET ou2 = ASBITSTREAM(OutputRoot.DFDL
-		OPTIONS RootBitStream
-		ENCODING 273
-		CCSID 1208);
-		
-		SET outText = CAST(ou2 AS CHARACTER CCSID 1208);
-		SET Environment.Debug.OutputText = outText;  
+âñÂÓÉñðð@@@@ÕðñÃÓÒN@@@@@
