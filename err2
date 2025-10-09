@@ -1,57 +1,12 @@
-<xsd:annotation>
-  <xsd:appinfo source="http://www.ogf.org/dfdl/">
-    <!-- Top-level format uses single-byte ASCII -->
-    <dfdl:format
-        encoding="ISO-8859-1"
-        escapeSchemeRef=""
-        ref="recFix:RecordFixLengthFieldsFormat"/>
-  </xsd:appinfo>
-</xsd:annotation>
+error on while cast, how to fix line 11
 
-<xsd:complexType name="EDX_HDR_Type">
-  <xsd:sequence dfdl:initiatedContent="no"
-                dfdl:separator=""
-                dfdl:trailingSkip="0">
+DECLARE ou2 BLOB;
+		DECLARE outText CHARACTER; 
 
-    <!-- 1-byte text header -->
-    <xsd:element name="EDX_Header_Type"
-                 type="xsd:string"
-                 dfdl:lengthKind="explicit"
-                 dfdl:length="1"
-                 ibmDfdlExtn:sampleValue="H">
-      <xsd:annotation>
-        <xsd:appinfo>
-          <dfdl:format
-              representation="text"
-              textPadCharacter=" "
-              textPadKind="right"
-              textJustification="leftJustify"
-              textTrimKind="none"
-              encoding="ISO-8859-1"/>
-        </xsd:appinfo>
-      </xsd:annotation>
-    </xsd:element>
-
-    <!-- 2-byte numeric text field -->
-    <xsd:element name="EDX_TRN_Ver_Num"
-                 type="xsd:short"
-                 ibmDfdlExtn:sampleValue="01">
-      <xsd:annotation>
-        <xsd:appinfo>
-          <dfdl:format
-              representation="text"
-              textNumberRep="standard"
-              textNumberBase="10"
-              textNumberPattern="00"
-              textPadCharacter="0"
-              textNumberJustification="right"
-              lengthKind="explicit"
-              length="2"
-              encoding="ISO-8859-1"
-              binaryNumberCheckPolicy="lax"/>
-        </xsd:appinfo>
-      </xsd:annotation>
-    </xsd:element>
-
-  </xsd:sequence>
-</xsd:complexType>
+		SET ou2 = ASBITSTREAM(OutputRoot.DFDL
+		OPTIONS RootBitStream
+		ENCODING 273
+		CCSID 1208);
+		
+		SET outText = CAST(ou2 AS CHARACTER CCSID 1208);
+		SET Environment.Debug.OutputText = outText;  
