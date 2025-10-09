@@ -1,65 +1,16 @@
+CREATE FUNCTION DecodeEBCDIC(inChar CHARACTER) RETURNS CHARACTER
+BEGIN
+    DECLARE ebcdicBlob BLOB;
+    DECLARE txt CHARACTER;
 
-as above I still expecting  424C49333030, but runtime still give me C2D3C9F1F0F0 and its value 
+    -- Serialize the CHARACTER as if it were EBCDIC 273
+    SET ebcdicBlob = ASBITSTREAM(inChar
+        OPTIONS RootBitStream
+        ENCODING 273
+        CCSID 273);
 
-EDX_Header_Type	â	
-EDX_Header_Ver	ñ	
-EDX_TRN_Type_Cde	ÂÓÉñðð@@@@	
+    -- Reinterpret it correctly as text
+    SET txt = CAST(ebcdicBlob AS CHARACTER CCSID 273);
 
-from dfdl schema:
-	<xsd:annotation>
-		<xsd:appinfo source="http://www.ogf.org/dfdl/">
-			<dfdl:format  encoding="ISO-8859-1" byteOrder="bigEndian" escapeSchemeRef=""
-				ref="recFix:RecordFixLengthFieldsFormat" />
-		</xsd:appinfo>
-	</xsd:annotation>
-	<xsd:complexType name="EDX_HDR_Type">
-		<xsd:sequence dfdl:initiatedContent="no"
-			dfdl:separator="" dfdl:trailingSkip="0">
-			
-			
-	 <xsd:element name="EDX_Header_Type"
-                 type="xsd:string"
-                 dfdl:lengthKind="explicit"
-                 dfdl:length="1"
-                 ibmDfdlExtn:sampleValue="H">
-      <xsd:annotation>
-        <xsd:appinfo>
-          <dfdl:format
-              representation="text"
-              textPadCharacter=" "
-              textPadKind="right"
-              textJustification="leftJustify"
-              textTrimKind="none"
-              encoding="ISO-8859-1"/>
-        </xsd:appinfo>
-      </xsd:annotation>
-    </xsd:element>
-			
-			<xsd:element dfdl:length="1" dfdl:lengthKind="explicit"
-				name="EDX_Header_Ver" type="xsd:string">
-				<xsd:annotation>
-					<xsd:appinfo>
-						<dfdl:format textJustification="left"
-							textPadCharacter=" " textPadKind="right" textTrimKind="both" />
-					</xsd:appinfo>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element dfdl:length="10" dfdl:lengthKind="explicit"
-				name="EDX_TRN_Type_Cde" type="xsd:string">
-				<xsd:annotation>
-					<xsd:appinfo>
-						<dfdl:format length="10" lengthKind="explicit"
-							ref="recFix:RecordFixLengthFieldsFormat" representation="text"
-							textJustification="left" textPadCharacter=" " textPadKind="right"
-							textTrimKind="both" />
-					</xsd:appinfo>
-				</xsd:annotation>
-			</xsd:element>
-esql: 
-
-DECLARE ref1 REFERENCE TO InputRoot.DFDL.IPRNT_initREQ_MSG.IPRNT_InitEDX_HDR;
-CREATE LASTCHILD OF OutputRoot DOMAIN('DFDL') NAME 'IPRINT_REQ_MSG';
-
-		SET OutputRoot.DFDL.IPRINT_REQ_MSG.EDX_HDR.EDX_Header_Type 				= ref1.EDX_Header_Type;
-		SET OutputRoot.DFDL.IPRINT_REQ_MSG.EDX_HDR.EDX_Header_Ver 				= PadOrTrim(ref1.EDX_Header_Ver, 1);
-  	SET OutputRoot.DFDL.IPRINT_REQ_MSG.EDX_HDR.EDX_TRN_Type_Cde 			= PadOrTrim(ref1.EDX_TRN_Type_Cde, 10);
+    RETURN txt;
+END;
