@@ -1,16 +1,22 @@
-CREATE FUNCTION DecodeEBCDIC(inChar CHARACTER) RETURNS CHARACTER
+CREATE FUNCTION DecodeAndPad(inField CHARACTER, inLength INTEGER) RETURNS CHARACTER
 BEGIN
-    DECLARE ebcdicBlob BLOB;
-    DECLARE txt CHARACTER;
+    DECLARE tmpBLOB BLOB;
+    DECLARE tmpCHAR CHARACTER;
 
-    -- Serialize the CHARACTER as if it were EBCDIC 273
-    SET ebcdicBlob = ASBITSTREAM(inChar
-        OPTIONS RootBitStream
-        ENCODING 273
-        CCSID 273);
+    -- Round-trip via blob in CCSID 273 if needed
+    IF inField IS NOT NULL THEN
+        SET tmpBLOB = CAST(inField AS BLOB CCSID 273);
+        SET tmpCHAR = CAST(tmpBLOB AS CHARACTER CCSID 1208);
+    ELSE
+        SET tmpCHAR = ' '; -- default
+    END IF;
 
-    -- Reinterpret it correctly as text
-    SET txt = CAST(ebcdicBlob AS CHARACTER CCSID 273);
-
-    RETURN txt;
+    -- Pad/Trim to schema length
+    IF LENGTH(tmpCHAR) < inLength THEN
+        RETURN tmpCHAR || RPAD('', inLength - LENGTH(tmpCHAR), ' ');
+    ELSEIF LENGTH(tmpCHAR) > inLength THEN
+        RETURN SUBSTRING(tmpCHAR FROM 1 FOR inLength);
+    ELSE
+        RETURN tmpCHAR;
+    END IF;
 END;
