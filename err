@@ -1,37 +1,22 @@
--- Returns a string of N spaces (handles any N)
+-- Helper: build N spaces (no RPAD/REPEAT needed)
 CREATE FUNCTION Spaces(n INTEGER) RETURNS CHARACTER
 BEGIN
-  DECLARE blanks CHARACTER '                                                                                                    '; -- 100 spaces
-  DECLARE out CHARACTER '';
-  DECLARE remain INTEGER n;
-  DECLARE chunk INTEGER;
-
-  IF n <= 0 THEN RETURN ''; END IF;
-
-  IF n <= LENGTH(blanks) THEN
-    RETURN SUBSTRING(blanks FROM 1 FOR n);
-  END IF;
-
-  SET remain = n;
-  WHILE remain > 0 DO
-    SET chunk = CASE WHEN remain > LENGTH(blanks) THEN LENGTH(blanks) ELSE remain END;
-    SET out   = out || SUBSTRING(blanks FROM 1 FOR chunk);
-    SET remain = remain - chunk;
+  DECLARE s CHARACTER '';
+  DECLARE i INTEGER 1;
+  WHILE i <= n DO
+    SET s = s || ' ';
+    SET i = i + 1;
   END WHILE;
-
-  RETURN out;
+  RETURN s;
 END;
 
--- Pad with spaces (right-pad) or trim to exact length.
--- Also guards against NULL by padding a single space if empty.
-CREATE FUNCTION PadOrTrimSafe(inText CHARACTER, inLength INTEGER) RETURNS CHARACTER
+-- Fixed DecodeAndPad: (returns CHARACTER of exactly inLength)
+-- NOTE: If you’re assigning back to OutputRoot.DFDL, keep this pure CHARACTER.
+CREATE FUNCTION DecodeAndPad(inField CHARACTER, inLength INTEGER) RETURNS CHARACTER
 BEGIN
-  DECLARE s CHARACTER COALESCE(inText, '');
-  DECLARE L INTEGER LENGTH(s);
+  -- If the schema already decoded correctly, you usually DON’T need extra CCSID casts here.
+  DECLARE s CHARACTER COALESCE(inField, '');
 
-  IF L >= inLength THEN
-    RETURN SUBSTRING(s FROM 1 FOR inLength);
-  ELSE
-    RETURN s || Spaces(inLength - L);
-  END IF;
+  -- Right-pad with spaces then trim to exact length (works for both pad & trim)
+  RETURN SUBSTRING(s || Spaces(inLength) FROM 1 FOR inLength);
 END;
