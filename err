@@ -1,22 +1,37 @@
-CREATE FUNCTION DecodeAndPad(inField CHARACTER, inLength INTEGER) RETURNS CHARACTER
+-- Returns a string of N spaces (handles any N)
+CREATE FUNCTION Spaces(n INTEGER) RETURNS CHARACTER
 BEGIN
-    DECLARE tmpBLOB BLOB;
-    DECLARE tmpCHAR CHARACTER;
+  DECLARE blanks CHARACTER '                                                                                                    '; -- 100 spaces
+  DECLARE out CHARACTER '';
+  DECLARE remain INTEGER n;
+  DECLARE chunk INTEGER;
 
-    -- Round-trip via blob in CCSID 273 if needed
-    IF inField IS NOT NULL THEN
-        SET tmpBLOB = CAST(inField AS BLOB CCSID 273);
-        SET tmpCHAR = CAST(tmpBLOB AS CHARACTER CCSID 1208);
-    ELSE
-        SET tmpCHAR = ' '; -- default
-    END IF;
+  IF n <= 0 THEN RETURN ''; END IF;
 
-    -- Pad/Trim to schema length
-    IF LENGTH(tmpCHAR) < inLength THEN
-        RETURN tmpCHAR || RPAD('', inLength - LENGTH(tmpCHAR), ' ');
-    ELSEIF LENGTH(tmpCHAR) > inLength THEN
-        RETURN SUBSTRING(tmpCHAR FROM 1 FOR inLength);
-    ELSE
-        RETURN tmpCHAR;
-    END IF;
+  IF n <= LENGTH(blanks) THEN
+    RETURN SUBSTRING(blanks FROM 1 FOR n);
+  END IF;
+
+  SET remain = n;
+  WHILE remain > 0 DO
+    SET chunk = CASE WHEN remain > LENGTH(blanks) THEN LENGTH(blanks) ELSE remain END;
+    SET out   = out || SUBSTRING(blanks FROM 1 FOR chunk);
+    SET remain = remain - chunk;
+  END WHILE;
+
+  RETURN out;
+END;
+
+-- Pad with spaces (right-pad) or trim to exact length.
+-- Also guards against NULL by padding a single space if empty.
+CREATE FUNCTION PadOrTrimSafe(inText CHARACTER, inLength INTEGER) RETURNS CHARACTER
+BEGIN
+  DECLARE s CHARACTER COALESCE(inText, '');
+  DECLARE L INTEGER LENGTH(s);
+
+  IF L >= inLength THEN
+    RETURN SUBSTRING(s FROM 1 FOR inLength);
+  ELSE
+    RETURN s || Spaces(inLength - L);
+  END IF;
 END;
