@@ -1,4 +1,4 @@
--- Helper: build N spaces (no RPAD/REPEAT needed)
+-- Helper: generate N spaces
 CREATE FUNCTION Spaces(n INTEGER) RETURNS CHARACTER
 BEGIN
   DECLARE s CHARACTER '';
@@ -10,13 +10,28 @@ BEGIN
   RETURN s;
 END;
 
--- Fixed DecodeAndPad: (returns CHARACTER of exactly inLength)
--- NOTE: If you’re assigning back to OutputRoot.DFDL, keep this pure CHARACTER.
-CREATE FUNCTION DecodeAndPad(inField CHARACTER, inLength INTEGER) RETURNS CHARACTER
+-- Main: Normalize a field from InputRoot.DFDL
+CREATE FUNCTION NormalizeField(inField CHARACTER, inLength INTEGER) RETURNS CHARACTER
 BEGIN
-  -- If the schema already decoded correctly, you usually DON’T need extra CCSID casts here.
-  DECLARE s CHARACTER COALESCE(inField, '');
+  DECLARE tmpBlob BLOB;
+  DECLARE tmpCHAR CHARACTER;
 
-  -- Right-pad with spaces then trim to exact length (works for both pad & trim)
-  RETURN SUBSTRING(s || Spaces(inLength) FROM 1 FOR inLength);
+  -- Default empty input to space(s)
+  IF inField IS NULL OR inField = '' THEN
+    SET tmpCHAR = Spaces(inLength);
+  ELSE
+    -- Try to round-trip through BLOB CCSID 273 (EBCDIC)
+    BEGIN
+      SET tmpBlob = CAST(inField AS BLOB CCSID 273);
+      SET tmpCHAR = CAST(tmpBlob AS CHARACTER CCSID 1208);  -- force to ASCII/UTF-8
+    END;
+
+    -- If that fails, just use original value
+    IF tmpCHAR IS NULL OR tmpCHAR = '' THEN
+      SET tmpCHAR = inField;
+    END IF;
+  END IF;
+
+  -- Pad/trim to schema length
+  RETURN SUBSTRING(tmpCHAR || Spaces(inLength) FROM 1 FOR inLength);
 END;
