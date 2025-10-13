@@ -1,1 +1,5 @@
-âñÂÓÉñðð@@@@ÕðñÃÓÒN@@@@@
+    DECLARE blobEBCDIC BLOB;
+    SET blobEBCDIC = ASBITSTREAM(OutputRoot.DFDL OPTIONS RootBitStream ENCODING 273 CCSID 273);
+    SET Environment.Debug.Hex = CAST(blobEBCDIC AS CHARACTER FORMAT 'HEX');
+    SET Environment.Debug.OutText = CAST(blobEBCDIC AS CHARACTER CCSID 273);
+
