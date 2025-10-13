@@ -1,5 +1,28 @@
-SET Environment.PrettyPrint =
-    CAST(ASBITSTREAM(OutputRoot.DFDL OPTIONS RootBitStream ENCODING 546 CCSID 819)
-         AS CHARACTER CCSID 819);
+-------------------------------------------------------------------
+    -- 4. Serialize DFDL tree to BLOB (ASCII 819)
+    -------------------------------------------------------------------
+    DECLARE blobAscii BLOB;
+    DECLARE textOut CHARACTER;
+
+    SET blobAscii = ASBITSTREAM(
+        OutputRoot.DFDL
+        OPTIONS RootBitStream
+        ENCODING 546          -- big endian ASCII
+        CCSID 819);           -- ASCII
+
+    -------------------------------------------------------------------
+    -- 5. Debug verification
+    -------------------------------------------------------------------
+    SET textOut = CAST(blobAscii AS CHARACTER CCSID 819);             -- readable "BLI100"
+    SET Environment.Debug.outText = textOut;
+    SET Environment.Debug.Hex     = CAST(blobAscii AS CHARACTER FORMAT 'HEX');  -- should be 424C49313030
+
+    -- after you build and serialize DFDL into blobAscii
+    DELETE FIELD OutputRoot.DFDL;
+    -------------------------------------------------------------------
+    -- 6. Write final serialized bytes into OutputRoot.BLOB.BLOB
+    -------------------------------------------------------------------
+    CREATE LASTCHILD OF OutputRoot DOMAIN('BLOB');
+    SET OutputRoot.BLOB.BLOB = blobAscii;
 
 
