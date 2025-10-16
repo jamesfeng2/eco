@@ -1,1 +1,12 @@
-Ï_É{<.áàì &&àîåñ+èáêåé{ à
+-- Copy the raw BLOB from previous node or MQInput
+DECLARE rawBlob BLOB ASBITSTREAM(Environment.BLOB.BLOB);
+
+-- Decode (reparse) this blob as ASCII text into the DFDL tree
+CREATE LASTCHILD OF OutputRoot DOMAIN('DFDL')
+    PARSE(Environment.BLOB.BLOB
+        ENCODING 546
+        CCSID 819
+        SET 'IPRINT_Lib'
+        TYPE 'IPRINT_REQ_MSG'
+        FORMAT 'DFDL');
+
