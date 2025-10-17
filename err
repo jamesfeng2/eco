@@ -1,4 +1,16 @@
-<xsd:element name="EDX_Header_Ver" type="xsd:short">
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:complexType name="EDX_HDR_Type">
+        <xsd:sequence>
+            <xsd:element name="EDX_Header_Type" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="1"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_Header_Ver" type="xsd:short">
                 <xsd:annotation>
                     <xsd:appinfo source="WMQI_APPINFO">
             <cwfInclRep messageSetDefaultRep="CWF1">
@@ -7,3 +19,485 @@
           </xsd:appinfo>
                 </xsd:annotation>
             </xsd:element>
+            <xsd:element name="EDX_TRN_Type_Cde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="10"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_TRN_Action_Cde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="1"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_TRN_Ver_Num" type="xsd:short">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullPadFill" encodingNullValue="" signed="false" typeName="MRCWFExternalDecimalRep" width="2"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_Recv_Agency_Cde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="3"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_Recv_Agency_App_Id" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="6"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_Recv_Agency_Obj_Ref_Id" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="20"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_Sendng_Agency_Cde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="3"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_Sendng_Agency_App_Id" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="6"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_Sendng_Agency_Obj_Ref_Id" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="20"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_Sendng_User_Id" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="8"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_Sendng_User_Office_Cde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="4"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_Sent_Date" type="xsd:date">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep format="yyyyMMdd" typeName="MRCWFDateTimeRep">
+                <MRCWFStringRep_MRCWFSimpleTD encodingNull="NullPadFill" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" width="8"/>
+              </cwfSimpleRep>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_Sent_Time_Seq_Num" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="12"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_Sendng_Cut_Offset_Mins" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="4"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_Sendng_Machine_Id" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="3"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_TRN_Ref_Id" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="24"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_Err_Rsn_Cde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="6"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_Reserved" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="10"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EDX_Data_Len" type="xsd:short">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullPadFill" encodingNullValue="" paddingCharacter="'0'" signed="false" stringJustification="rightJustify" typeName="MRCWFExternalDecimalRep" width="6"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ISIS_Header_Type">
+        <xsd:sequence>
+            <xsd:element name="ISIS_TRN_Type_Cde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="6"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ISIS_CRN" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="10"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ISIS_Host_Id" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="3"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ISIS_Status_Cde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="2"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ISIS_Recip_Name" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="50"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ISIS_Hist_Id" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="10"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ISIS_Format_Cde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="3"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ISIS_User_Id" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="12"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ISIS_Style_File" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="3"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ISIS_Debug_Flg" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="1"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ISIS_Printer_Id" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="8"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ISIS_Printer_IP_Addr" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="15"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ISIS_Queue" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="32"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ISIS_LTT_Mde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="5"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ISIS_Sel_Code" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="3"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="ISIS_Text_Code" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="8"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="ISIS_Ro_Code" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="3"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="ISIS_Recipient_Name" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="120"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="ISIS_Recipient_Fax_No" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="10"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="ISIS_Sender_Name" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="120"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="ISIS_Sender_Fax_No" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="10"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="ISIS_Sender_Office" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="50"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="ISIS_Sender_Phone_No" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="10"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="ISIS_Fax_Body_Text" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="255"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="ISIS_Fax_Subject" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="150"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="ISIS_Conf_Email" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="150"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="ISIS_Conf_Email_Type" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="2"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="ISIS_Conf_Ind" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="1"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="ISIS_Fax_Template" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="50"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BRK_RQST_Type">
+        <xsd:sequence>
+            <xsd:element name="BRK_RQST_Metadata" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep" width="128"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ISIS_PDF_PRNT_Dtl_Type">
+        <xsd:sequence>
+            <xsd:element name="ISIS_Printer_PRNT_Dtl" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1" repeatCount="1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" lengthUnits="EndOfBitStream" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" typeName="MRCWFStringRep"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="IPRINT_REQ_MSG" type="IPRINT_REQ_Type">
+        <xsd:annotation>
+            <xsd:appinfo source="WMQI_APPINFO">
+        <MRMessage messageDefinition="/0/IPRINT_REQ_MSG;XSDElementDeclaration$MRObject"/>
+      </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="IPRINT_REQ_Type">
+        <xsd:sequence>
+            <xsd:element name="EDX_HDR" type="EDX_HDR_Type"/>
+            <xsd:element name="ISIS_Header" type="ISIS_Header_Type"/>
+            <xsd:element name="BRK_RQST" type="BRK_RQST_Type"/>
+            <xsd:element name="ISIS_PDF_PRNT_Dtl" type="ISIS_PDF_PRNT_Dtl_Type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
