@@ -1,21 +1,29 @@
-update following function first parameter to accept integer and character to add padding length of second parameter
+CREATE FUNCTION PadOrTrim(IN val ANY, IN targetLen INTEGER) RETURNS CHARACTER
+BEGIN
+    DECLARE strVal CHARACTER;
+    DECLARE outVal CHARACTER;
+    DECLARE padLen INTEGER;
 
-CREATE FUNCTION PadOrTrim(IN val CHARACTER, IN targetLen INTEGER) RETURNS CHARACTER
-	BEGIN
-	    DECLARE outVal CHARACTER val;
-	    DECLARE padLen INTEGER targetLen - LENGTH(val);
-	
-	    IF padLen > 0 THEN
-	        -- Add padLen spaces
-	        DECLARE i INTEGER 1;
-	        WHILE i <= padLen DO
-	            SET outVal = outVal || ' ';
-	            SET i = i + 1;
-	        END WHILE;
-	    ELSEIF padLen < 0 THEN
-	        -- Truncate if too long
-	        SET outVal = SUBSTRING(val FROM 1 FOR targetLen);
-	    END IF;
-	
-	    RETURN outVal;
-	END;
+    -- Convert integer to string if needed
+    IF TYPEOF(val) = INTEGER THEN
+        SET strVal = CAST(val AS CHARACTER);
+    ELSE
+        SET strVal = val;
+    END IF;
+
+    -- Calculate padding length
+    SET padLen = targetLen - LENGTH(strVal);
+
+    IF padLen > 0 THEN
+        -- Add spaces to the right until reaching targetLen
+        SET outVal = strVal || RPAD('', padLen, ' ');
+    ELSEIF padLen < 0 THEN
+        -- Truncate if too long
+        SET outVal = SUBSTRING(strVal FROM 1 FOR targetLen);
+    ELSE
+        -- Exact length
+        SET outVal = strVal;
+    END IF;
+
+    RETURN outVal;
+END;
