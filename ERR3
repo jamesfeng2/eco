@@ -1,29 +1,75 @@
-CREATE FUNCTION PadOrTrim(IN val ANY, IN targetLen INTEGER) RETURNS CHARACTER
-BEGIN
-    DECLARE strVal CHARACTER;
-    DECLARE outVal CHARACTER;
-    DECLARE padLen INTEGER;
+### 📑 EDX_HDR_Type
+| Name                        | Length | Type   |
+|-----------------------------|--------|--------|
+| EDX_Header_Type             | 1      | string |
+| EDX_Header_Ver              | 1      | int    |
+| EDX_TRN_Type_Cde            | 10     | string |
+| EDX_TRN_Action_Cde          | 1      | string |
+| EDX_TRN_Ver_Num             | 2      | int    |
+| EDX_Recv_Agency_Cde         | 3      | string |
+| EDX_Recv_Agency_App_Id      | 6      | string |
+| EDX_Recv_Agency_Obj_Ref_Id  | 20     | string |
+| EDX_Sendng_Agency_Cde       | 3      | string |
+| EDX_Sendng_Agency_App_Id    | 6      | string |
+| EDX_Sendng_Agency_Obj_Ref_Id| 20     | string |
+| EDX_Sendng_User_Id          | 8      | string |
+| EDX_Sendng_User_Office_Cde  | 4      | string |
+| EDX_Sent_Date               | 8      | date   |
+| EDX_Sent_Time_Seq_Num       | 12     | string |
+| EDX_Sendng_Cut_Offset_Mins  | 4      | string |
+| EDX_Sendng_Machine_Id       | 3      | string |
+| EDX_TRN_Ref_Id              | 24     | string |
+| EDX_Err_Rsn_Cde             | 6      | string |
+| EDX_Reserved                | 10     | string |
+| EDX_Data_Len                | 6      | int    |
 
-    -- Convert integer to string if needed
-    IF TYPEOF(val) = INTEGER THEN
-        SET strVal = CAST(val AS CHARACTER);
-    ELSE
-        SET strVal = val;
-    END IF;
+---
 
-    -- Calculate padding length
-    SET padLen = targetLen - LENGTH(strVal);
+### 📑 ISIS_Header_Type
+| Name                   | Length | Type   |
+|------------------------|--------|--------|
+| ISIS_TRN_Type_Cde      | 6      | string |
+| ISIS_CRN               | 10     | string |
+| ISIS_Host_Id           | 3      | string |
+| ISIS_Status_Cde        | 2      | string |
+| ISIS_Recip_Name        | 50     | string |
+| ISIS_Hist_Id           | 10     | string |
+| ISIS_Format_Cde        | 3      | string |
+| ISIS_User_Id           | 12     | string |
+| ISIS_Style_File        | 3      | string |
+| ISIS_Debug_Flg         | 1      | string |
+| ISIS_Printer_Id        | 8      | string |
+| ISIS_Printer_IP_Addr   | 15     | string |
+| ISIS_Queue             | 32     | string |
+| ISIS_LTT_Mde           | 5      | string |
+| ISIS_Sel_Code          | 3      | string |
+| ISIS_Text_Code         | 8      | string |
+| ISIS_Ro_Code           | 3      | string |
+| ISIS_Recipient_Name    | 120    | string |
+| ISIS_Recipient_Fax_No  | 10     | string |
+| ISIS_Sender_Name       | 120    | string |
+| ISIS_Sender_Fax_No     | 10     | string |
+| ISIS_Sender_Office     | 50     | string |
+| ISIS_Sender_Phone_No   | 10     | string |
+| ISIS_Fax_Body_Text     | 255    | string |
+| ISIS_Fax_Subject       | 150    | string |
+| ISIS_Conf_Email        | 150    | string |
+| ISIS_Conf_Email_Type   | 2      | string |
+| ISIS_Conf_Ind          | 1      | string |
+| ISIS_Fax_Template      | 50     | string |
 
-    IF padLen > 0 THEN
-        -- Add spaces to the right until reaching targetLen
-        SET outVal = strVal || RPAD('', padLen, ' ');
-    ELSEIF padLen < 0 THEN
-        -- Truncate if too long
-        SET outVal = SUBSTRING(strVal FROM 1 FOR targetLen);
-    ELSE
-        -- Exact length
-        SET outVal = strVal;
-    END IF;
+---
 
-    RETURN outVal;
-END;
+### 📑 BRK_RQST_Type
+| Name               | Length | Type   |
+|--------------------|--------|--------|
+| BRK_RQST_Metadata  | 128    | string |
+
+---
+
+### 📑 ISIS_PDF_PRNT_Dtl_Type
+| Name                    | Length        | Type   |
+|-------------------------|---------------|--------|
+| ISIS_Printer_PRNT_Dtl   | delimited (*) | string |
+
+(*) `lengthKind="delimited"`
