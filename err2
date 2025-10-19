@@ -1,2 +1,10 @@
-2025-10-19 21:09:24.396860: BIP2488E:  (.SetMQRFH2_IPrint_Platform.Main, 60.3) Error detected whilst executing the SQL statement 'SET OutputRoot.DFDL.IPRINT_REQ_MSG.EDX_HDR.EDX_Sent_Date = PadOrTrim(CAST(ref1.EDX_Sent_Date AS DATE FORMAT 'yyyyMMdd'), 8);'. 
-2025-10-19 21:09:24.396902: BIP2930E: A function or procedure was called but the value supplied for the 'val' parameter was of type 'DATE' but the function/procedure expects value of type 'CHARACTER' 
+2025-10-19 21:20:32.755768: BIP2488E:  (.SetMQRFH2_IPrint_Platform.Main, 67.3) Error detected whilst executing the SQL statement 'SET OutputRoot.DFDL.IPRINT_REQ_MSG.EDX_HDR.EDX_Data_Len = RIGHT('000000' || COALESCE(ref1.EDX_Data_Len, ''), 6);'. 
+2025-10-19 21:20:32.755802: BIP2439E: (.SetMQRFH2_IPrint_Platform.Main, 67.80) : Error evaluating expression ''000000' || COALESCE(ref1.EDX_Data_Len, '')'. 
+2025-10-19 21:20:32.755836: BIP2430E: Illegal operands ''000000'' and '13100' for concatenation operator. 
+
+		SET OutputRoot.DFDL.IPRINT_REQ_MSG.EDX_HDR.EDX_Data_Len 				= RIGHT('000000' || COALESCE(ref1.EDX_Data_Len, ''), 6);
+					<xsd:element name="EDX_Data_Len" dfdl:length="6"
+				dfdl:lengthKind="explicit" dfdl:representation="text"
+				dfdl:textNumberRep="standard" dfdl:textNumberPadCharacter="%SP;"
+				dfdl:textNumberPattern="######" dfdl:textNumberJustification="left"
+				type="xsd:int" />
