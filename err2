@@ -1,28 +1,9 @@
--------------------------------------------------------------------
-    -- 4. Serialize DFDL tree to BLOB (ASCII 819)
-    -------------------------------------------------------------------
-    DECLARE blobAscii BLOB;
-    DECLARE textOut CHARACTER;
+how to fix:
 
-    SET blobAscii = ASBITSTREAM(
-        OutputRoot.DFDL
-        OPTIONS RootBitStream
-        ENCODING 546          -- big endian ASCII
-        CCSID 819);           -- ASCII
+CTDU4132E: Unable to serialize element '#xscd(/type::EDX_HDR_Type1/model::sequence/schemaElement::EDX_Sent_Date)'. The DFDL serializer cannot convert the xs:string value 'DATE '20' to the declared type date in the DFDL schema.
 
-    -------------------------------------------------------------------
-    -- 5. Debug verification
-    -------------------------------------------------------------------
-    SET textOut = CAST(blobAscii AS CHARACTER CCSID 819);             -- readable "BLI100"
-    SET Environment.Debug.outText = textOut;
-    SET Environment.Debug.Hex     = CAST(blobAscii AS CHARACTER FORMAT 'HEX');  -- should be 424C49313030
+<xsd:element name="EDX_Sent_Date"
+				dfdl:calendarPatternKind="explicit" dfdl:representation="text"
+				dfdl:length="8" dfdl:calendarPattern="yyyyMMdd" type="xsd:date" />
 
-    -- after you build and serialize DFDL into blobAscii
-    DELETE FIELD OutputRoot.DFDL;
-    -------------------------------------------------------------------
-    -- 6. Write final serialized bytes into OutputRoot.BLOB.BLOB
-    -------------------------------------------------------------------
-    CREATE LASTCHILD OF OutputRoot DOMAIN('BLOB');
-    SET OutputRoot.BLOB.BLOB = blobAscii;
-
-
+		SET OutputRoot.DFDL.IPRINT_REQ_MSG.EDX_HDR.EDX_Sent_Date = PadOrTrim(CAST(ref1.EDX_Sent_Date AS CHARACTER), 8);
