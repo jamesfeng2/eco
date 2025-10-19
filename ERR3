@@ -1,48 +1,18 @@
-			<xsd:element name="EDX_TRN_Ver_Num"
-				dfdl:lengthKind="explicit" dfdl:length="2"
-				dfdl:representation="text" type="xsd:int" dfdl:textNumberPattern="00" 
-				dfdl:textNumberJustification="right" dfdl:textNumberPadCharacter="0"
-				dfdl:textNumberRep="standard" />
-
-
-	<xsd:annotation>
-		<xsd:appinfo source="http://www.ogf.org/dfdl/">
-			<dfdl:format representation="text" lengthKind="explicit"
-				ref="recFix:RecordFixLengthFieldsFormat" />
-		</xsd:appinfo>
-	</xsd:annotation>
-
-
-<dfdl:defineFormat
-				name="RecordFixLengthFieldsFormat">
-				<dfdl:format encoding="IBM273"  ignoreCase="no"
-					byteOrder="bigEndian" representation="text" textPadKind="none"
-					textStringJustification="left" truncateSpecifiedLengthString="no"
-					decimalSigned="yes" textNumberCheckPolicy="lax"
-					textNumberJustification="right" textZonedSignStyle="asciiStandard"
-					textBooleanJustification="left" sequenceKind="ordered"
-					choiceLengthKind="implicit" separatorPolicy="required"
-					separatorPosition="infix" 
-					documentFinalTerminatorCanBeMissing="no" lengthKind="explicit"
-					textTrimKind="padChar" textStandardBase="10"
-					textStandardDecimalSeparator="." textStandardExponentCharacter="E"
-					alignment="1" alignmentUnits="bytes" leadingSkip="0"
-					trailingSkip="0" fillByte="0" textStringPadCharacter="%SP;"
-					initiatedContent="no" textNumberPadCharacter="%SP;"
-					textBooleanPadCharacter="%SP;" textNumberRep="standard"
-					textStandardGroupingSeparator="," textStandardZeroRep=""
-					textNumberRoundingMode="roundUp" nilValueDelimiterPolicy="none"
-					emptyValueDelimiterPolicy="none"
-					escapeSchemeRef="tns:RecordEscapeScheme" lengthUnits="bytes"
-					textStandardInfinityRep="Inf" textStandardNaNRep="NaN"
-					textNumberRounding="pattern" calendarPatternKind="implicit"
-					calendarPattern="yyyyMMdd" calendarCheckPolicy="lax"
-					calendarTimeZone="UTC" calendarObserveDST="yes"
-					calendarFirstDayOfWeek="Monday" calendarDaysInFirstWeek="4"
-					calendarCenturyStart="53" calendarLanguage="en-US"
-					textCalendarJustification="left" textBooleanTrueRep="true"
-					textBooleanFalseRep="false" textCalendarPadCharacter="%SP;"
-					separator="" initiator="" terminator="" outputNewLine="%CR;%LF;"
-					binaryFloatRep="ieee" textBidi="no" floating="no" >
-				</dfdl:format>
-			</dfdl:defineFormat>
+<xsd:element name="EDX_TRN_Ver_Num" type="xsd:int"
+    dfdl:representation="text"
+    dfdl:lengthKind="explicit"
+    dfdl:length="2"
+    dfdl:textNumberRep="standard"
+    dfdl:textNumberPattern="00">
+  <xsd:annotation>
+    <xsd:appinfo source="http://www.ogf.org/dfdl/">
+      <dfdl:format 
+        representation="text"
+        lengthKind="explicit"
+        textNumberPattern="00"
+        textNumberRep="standard"
+        textNumberJustification="right"
+        textNumberPadCharacter="0"/>
+    </xsd:appinfo>
+  </xsd:annotation>
+</xsd:element>
