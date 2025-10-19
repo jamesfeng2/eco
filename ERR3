@@ -1,31 +1,48 @@
-how to fix:
-CTDU4078E: The DFDL serializer cannot output the text representation of element 'EDX_TRN_Ver_Num'. The serialized number digits value '1' with length '1' is less than the declared length '2'.
-ESQL:  PadOrTrim(CAST(ref1.EDX_TRN_Ver_Num AS CHARACTER), 2);
-
-	CREATE FUNCTION PadOrTrim(IN val CHARACTER, IN targetLen INTEGER) RETURNS CHARACTER
-	BEGIN
-	    DECLARE outVal CHARACTER val;
-	    DECLARE padLen INTEGER targetLen - LENGTH(val);
-	    
-	
-	    IF padLen > 0 THEN
-	        -- Add padLen spaces
-	        DECLARE i INTEGER 1;
-	        WHILE i <= padLen DO
-	            SET outVal = outVal || ' ';
-	            SET i = i + 1;
-	        END WHILE;
-	    ELSEIF padLen < 0 THEN
-	        -- Truncate if too long
-	        SET outVal = SUBSTRING(val FROM 1 FOR targetLen);
-	    END IF;
-	
-	    RETURN outVal;
-	END;
-Schema:
-						<xsd:element name="EDX_TRN_Ver_Num"
+			<xsd:element name="EDX_TRN_Ver_Num"
 				dfdl:lengthKind="explicit" dfdl:length="2"
-				dfdl:representation="text" type="xsd:int"
-				dfdl:textNumberPattern="##" dfdl:textNumberRep="standard" />
+				dfdl:representation="text" type="xsd:int" dfdl:textNumberPattern="00" 
+				dfdl:textNumberJustification="right" dfdl:textNumberPadCharacter="0"
+				dfdl:textNumberRep="standard" />
 
 
+	<xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format representation="text" lengthKind="explicit"
+				ref="recFix:RecordFixLengthFieldsFormat" />
+		</xsd:appinfo>
+	</xsd:annotation>
+
+
+<dfdl:defineFormat
+				name="RecordFixLengthFieldsFormat">
+				<dfdl:format encoding="IBM273"  ignoreCase="no"
+					byteOrder="bigEndian" representation="text" textPadKind="none"
+					textStringJustification="left" truncateSpecifiedLengthString="no"
+					decimalSigned="yes" textNumberCheckPolicy="lax"
+					textNumberJustification="right" textZonedSignStyle="asciiStandard"
+					textBooleanJustification="left" sequenceKind="ordered"
+					choiceLengthKind="implicit" separatorPolicy="required"
+					separatorPosition="infix" 
+					documentFinalTerminatorCanBeMissing="no" lengthKind="explicit"
+					textTrimKind="padChar" textStandardBase="10"
+					textStandardDecimalSeparator="." textStandardExponentCharacter="E"
+					alignment="1" alignmentUnits="bytes" leadingSkip="0"
+					trailingSkip="0" fillByte="0" textStringPadCharacter="%SP;"
+					initiatedContent="no" textNumberPadCharacter="%SP;"
+					textBooleanPadCharacter="%SP;" textNumberRep="standard"
+					textStandardGroupingSeparator="," textStandardZeroRep=""
+					textNumberRoundingMode="roundUp" nilValueDelimiterPolicy="none"
+					emptyValueDelimiterPolicy="none"
+					escapeSchemeRef="tns:RecordEscapeScheme" lengthUnits="bytes"
+					textStandardInfinityRep="Inf" textStandardNaNRep="NaN"
+					textNumberRounding="pattern" calendarPatternKind="implicit"
+					calendarPattern="yyyyMMdd" calendarCheckPolicy="lax"
+					calendarTimeZone="UTC" calendarObserveDST="yes"
+					calendarFirstDayOfWeek="Monday" calendarDaysInFirstWeek="4"
+					calendarCenturyStart="53" calendarLanguage="en-US"
+					textCalendarJustification="left" textBooleanTrueRep="true"
+					textBooleanFalseRep="false" textCalendarPadCharacter="%SP;"
+					separator="" initiator="" terminator="" outputNewLine="%CR;%LF;"
+					binaryFloatRep="ieee" textBidi="no" floating="no" >
+				</dfdl:format>
+			</dfdl:defineFormat>
