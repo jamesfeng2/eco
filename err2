@@ -1,9 +1,2 @@
-how to fix:
-
-CTDU4132E: Unable to serialize element '#xscd(/type::EDX_HDR_Type1/model::sequence/schemaElement::EDX_Sent_Date)'. The DFDL serializer cannot convert the xs:string value 'DATE '20' to the declared type date in the DFDL schema.
-
-<xsd:element name="EDX_Sent_Date"
-				dfdl:calendarPatternKind="explicit" dfdl:representation="text"
-				dfdl:length="8" dfdl:calendarPattern="yyyyMMdd" type="xsd:date" />
-
-		SET OutputRoot.DFDL.IPRINT_REQ_MSG.EDX_HDR.EDX_Sent_Date = PadOrTrim(CAST(ref1.EDX_Sent_Date AS CHARACTER), 8);
+2025-10-19 21:09:24.396860: BIP2488E:  (.SetMQRFH2_IPrint_Platform.Main, 60.3) Error detected whilst executing the SQL statement 'SET OutputRoot.DFDL.IPRINT_REQ_MSG.EDX_HDR.EDX_Sent_Date = PadOrTrim(CAST(ref1.EDX_Sent_Date AS DATE FORMAT 'yyyyMMdd'), 8);'. 
+2025-10-19 21:09:24.396902: BIP2930E: A function or procedure was called but the value supplied for the 'val' parameter was of type 'DATE' but the function/procedure expects value of type 'CHARACTER' 
