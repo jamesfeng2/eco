@@ -1,11 +1,31 @@
 how to fix:
-The message from the DFDL serializer is:  CTDU4076E: The DFDL serializer cannot output the text representation of element 'EDX_Data_Len'. The serialized string value '13100' with length '5' is less than the declared length '6'.  The element being serialized was:  /Root/DFDL/ISIS_iPRINT_300_MSG/ISIS_iPRNT_EDX_Header/EDX_Data_Len 
-ESQL: PadOrTrim(CAST(ref1.EDX_Data_Len AS CHARACTER), 6);
+CTDU4078E: The DFDL serializer cannot output the text representation of element 'EDX_TRN_Ver_Num'. The serialized number digits value '1' with length '1' is less than the declared length '2'.
+ESQL:  PadOrTrim(CAST(ref1.EDX_TRN_Ver_Num AS CHARACTER), 2);
+
+	CREATE FUNCTION PadOrTrim(IN val CHARACTER, IN targetLen INTEGER) RETURNS CHARACTER
+	BEGIN
+	    DECLARE outVal CHARACTER val;
+	    DECLARE padLen INTEGER targetLen - LENGTH(val);
+	    
+	
+	    IF padLen > 0 THEN
+	        -- Add padLen spaces
+	        DECLARE i INTEGER 1;
+	        WHILE i <= padLen DO
+	            SET outVal = outVal || ' ';
+	            SET i = i + 1;
+	        END WHILE;
+	    ELSEIF padLen < 0 THEN
+	        -- Truncate if too long
+	        SET outVal = SUBSTRING(val FROM 1 FOR targetLen);
+	    END IF;
+	
+	    RETURN outVal;
+	END;
 Schema:
-			<xsd:element name="EDX_Data_Len" dfdl:length="6"
-				dfdl:lengthKind="explicit" dfdl:representation="text"
-				dfdl:textNumberRep="standard" dfdl:textNumberPadCharacter="0"
-				dfdl:textNumberPattern="######" dfdl:textNumberJustification="right"
-				type="xsd:int" />
+						<xsd:element name="EDX_TRN_Ver_Num"
+				dfdl:lengthKind="explicit" dfdl:length="2"
+				dfdl:representation="text" type="xsd:int"
+				dfdl:textNumberPattern="##" dfdl:textNumberRep="standard" />
 
 
