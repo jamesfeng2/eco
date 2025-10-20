@@ -1,10 +1,6 @@
-2025-10-19 21:20:32.755768: BIP2488E:  (.SetMQRFH2_IPrint_Platform.Main, 67.3) Error detected whilst executing the SQL statement 'SET OutputRoot.DFDL.IPRINT_REQ_MSG.EDX_HDR.EDX_Data_Len = RIGHT('000000' || COALESCE(ref1.EDX_Data_Len, ''), 6);'. 
-2025-10-19 21:20:32.755802: BIP2439E: (.SetMQRFH2_IPrint_Platform.Main, 67.80) : Error evaluating expression ''000000' || COALESCE(ref1.EDX_Data_Len, '')'. 
-2025-10-19 21:20:32.755836: BIP2430E: Illegal operands ''000000'' and '13100' for concatenation operator. 
-
-		SET OutputRoot.DFDL.IPRINT_REQ_MSG.EDX_HDR.EDX_Data_Len 				= RIGHT('000000' || COALESCE(ref1.EDX_Data_Len, ''), 6);
-					<xsd:element name="EDX_Data_Len" dfdl:length="6"
-				dfdl:lengthKind="explicit" dfdl:representation="text"
-				dfdl:textNumberRep="standard" dfdl:textNumberPadCharacter="%SP;"
-				dfdl:textNumberPattern="######" dfdl:textNumberJustification="left"
-				type="xsd:int" />
+ 
+CTDS1008E : Complex types with empty content are not allowed in DFDL schemas. Complex type '#insertDtls'.	SOM_ACE_PDF_MsgReq.dfdl.xsd	/SOM_MQ/schema	line 116	DFDL Validation Problem
+error above how to fix and how to convert below to ace12.0.12
+    <xsd:complexType name="insertDtls">
+        <xsd:sequence maxOccurs="unbounded"/>
+    </xsd:complexType>
