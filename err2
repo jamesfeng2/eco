@@ -1,6 +1,2 @@
  
-CTDS1008E : Complex types with empty content are not allowed in DFDL schemas. Complex type '#insertDtls'.	SOM_ACE_PDF_MsgReq.dfdl.xsd	/SOM_MQ/schema	line 116	DFDL Validation Problem
-error above how to fix and how to convert below to ace12.0.12
-    <xsd:complexType name="insertDtls">
-        <xsd:sequence maxOccurs="unbounded"/>
-    </xsd:complexType>
+        	SET OutputRoot.XML.ritNotApplicable.archiveRecord.data.insertDtls.insertDtl = insertDtlRef.insertCode || ' ' || insertDtlRef.insertName;        	
