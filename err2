@@ -1,2 +1,2 @@
- 
-        	SET OutputRoot.XML.ritNotApplicable.archiveRecord.data.insertDtls.insertDtl = insertDtlRef.insertCode || ' ' || insertDtlRef.insertName;        	
+
+CTDX1103E : DOM: Attribute "lengthKind" bound to namespace "http://www.ogf.org/dfdl/dfdl-1.0/" was already specified for element "xsd:element".	SOM_initACE_MsgRes.dfdl.xsd	/SOM_MQ/schema	line 1	XSD Schema Validation Problem
