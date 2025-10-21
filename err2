@@ -1,29 +1,57 @@
-		DECLARE ref1 REFERENCE TO InputRoot.DFDL.SOM_INIT_GENPDF_REQ_MSG.initReq_EDXHDR;
-		
-		SET Environment.DEBUG.REF1 = ref1;
-		SET Environment.DEBUG.Header_type = ref1.EDX_Header_Type;
+CTDP3058E: Separator 'none' not found at offset '411'  for sequence within element  '/SOM_INIT_GENPDF_REQ_MSG[1]/initReq_EDXHDR[1]'.
+			ParsedDataRegion[SimpleContent, startOffset = 0, length = 411, scd = #xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Header_Type)]
 
-ref1 has value: 
-S1BLO100    N01CLK+     422571957J          CLKBLA                                   20251208082809640000-660G  G407427631G422571957
 
-why ref1.EDX_Header_Type is empty
-
-schema: 
-
-	<xsd:complexType name="EDX_HDR_Type" dfdl:length="158">
+<xsd:complexType name="EDX_HDR_Type" dfdl:length="158">
 		<xsd:sequence dfdl:initiatedContent="no"
-			dfdl:separator="" dfdl:trailingSkip="0">
+			dfdl:separator="none" dfdl:trailingSkip="0">
 			<xsd:element name="EDX_Header_Type" type="xsd:string"
 				dfdl:length="1" dfdl:representation="text" />
-
-
-	<xsd:complexType name="SOM_initGenPDF_Req_Type">
-		<xsd:sequence>
-			<xsd:element name="initReq_EDXHDR" dfdl:length="158"
-				type="EDX_HDR_Type" />
-
-	<!-- Top Element -->
-	<xsd:element name="SOM_INIT_GENPDF_REQ_MSG"
-		type="SOM_initGenPDF_Req_Type" dfdl:lengthKind="delimited"
-		ibmSchExtn:docRoot="true">
-	</xsd:element>
+			<xsd:element name="EDX_Header_Ver" dfdl:length="1"
+				type="xsd:int" dfdl:representation="text" dfdl:textNumberPattern="#"
+				dfdl:textNumberRep="standard" />
+			<xsd:element name="EDX_TRN_Type_Cde" dfdl:length="10"
+				type="xsd:string" dfdl:representation="text" />
+			<xsd:element name="EDX_TRN_Action_Cde" dfdl:length="1"
+				dfdl:representation="text" type="xsd:string" />
+			<xsd:element name="EDX_TRN_Ver_Num" type="xsd:int"
+				dfdl:representation="text" dfdl:length="2"
+				dfdl:textNumberRep="standard" dfdl:textNumberPattern="00"
+				dfdl:textNumberJustification="right" dfdl:textNumberPadCharacter="0" />
+			<xsd:element name="EDX_Recv_Agency_Cde" dfdl:length="3"
+				dfdl:representation="text" type="xsd:string" />
+			<xsd:element name="EDX_Recv_Agency_App_Id"
+				dfdl:length="6" dfdl:representation="text" type="xsd:string" />
+			<xsd:element name="EDX_Recv_Agency_Obj_Ref_Id"
+				dfdl:length="20" dfdl:representation="text" type="xsd:string" />
+			<xsd:element name="EDX_Sendng_Agency_Cde" dfdl:length="3"
+				dfdl:representation="text" type="xsd:string" />
+			<xsd:element name="EDX_Sendng_Agency_App_Id"
+				dfdl:length="6" dfdl:representation="text" type="xsd:string" />
+			<xsd:element name="EDX_Sendng_Agency_Obj_Ref_Id"
+				dfdl:length="20" dfdl:representation="text" type="xsd:string" />
+			<xsd:element name="EDX_Sendng_User_Id" dfdl:length="8"
+				dfdl:representation="text" type="xsd:string" />
+			<xsd:element name="EDX_Sendng_User_Office_Cde"
+				dfdl:length="4" dfdl:representation="text" type="xsd:string" />
+			<xsd:element name="EDX_Sent_Date"
+				dfdl:calendarPatternKind="explicit" dfdl:representation="text"
+				dfdl:length="8" dfdl:calendarPattern="yyyyMMdd" type="xsd:date" />
+			<xsd:element name="EDX_Sent_Time_Seq_Num"
+				dfdl:length="12" dfdl:representation="text" type="xsd:string" />
+			<xsd:element name="EDX_Sendng_Cut_Offset_Mins"
+				dfdl:length="4" dfdl:representation="text" type="xsd:string" />
+			<xsd:element name="EDX_Sendng_Machine_Id" dfdl:length="3"
+				dfdl:representation="text" type="xsd:string" />
+			<xsd:element name="EDX_TRN_Ref_Id" dfdl:length="24"
+				dfdl:representation="text" type="xsd:string" />
+			<xsd:element name="EDX_Err_Rsn_Cde" dfdl:length="6"
+				dfdl:representation="text" type="xsd:string" />
+			<xsd:element name="EDX_Reserved" dfdl:length="10"
+				dfdl:representation="text" type="xsd:string" />
+			<xsd:element name="EDX_Data_Len" type="xsd:int"
+				dfdl:representation="text" dfdl:length="6"
+				dfdl:textNumberRep="standard" dfdl:textNumberPattern="000000"
+				dfdl:textNumberJustification="right" dfdl:textNumberPadCharacter="0" />
+		</xsd:sequence>
+	</xsd:complexType>
