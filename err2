@@ -1,5 +1,29 @@
-compute node ERROR:
-Unable to locate a class definition named "SOM_OutboundDoc_Res_Handler_JavaCompute" in the project or a referenced project.	SOM_OutboundDoc_Res_Handler.msgflow	/SOM_MQ	Unknown	Message Flow Property Reference Problem
+		DECLARE ref1 REFERENCE TO InputRoot.DFDL.SOM_INIT_GENPDF_REQ_MSG.initReq_EDXHDR;
+		
+		SET Environment.DEBUG.REF1 = ref1;
+		SET Environment.DEBUG.Header_type = ref1.EDX_Header_Type;
 
-java code in:
-/SOM_MQJava/SOM_OutboundDoc_Res_Handler_JavaCompute.java
+ref1 has value: 
+S1BLO100    N01CLK+     422571957J          CLKBLA                                   20251208082809640000-660G  G407427631G422571957
+
+why ref1.EDX_Header_Type is empty
+
+schema: 
+
+	<xsd:complexType name="EDX_HDR_Type" dfdl:length="158">
+		<xsd:sequence dfdl:initiatedContent="no"
+			dfdl:separator="" dfdl:trailingSkip="0">
+			<xsd:element name="EDX_Header_Type" type="xsd:string"
+				dfdl:length="1" dfdl:representation="text" />
+
+
+	<xsd:complexType name="SOM_initGenPDF_Req_Type">
+		<xsd:sequence>
+			<xsd:element name="initReq_EDXHDR" dfdl:length="158"
+				type="EDX_HDR_Type" />
+
+	<!-- Top Element -->
+	<xsd:element name="SOM_INIT_GENPDF_REQ_MSG"
+		type="SOM_initGenPDF_Req_Type" dfdl:lengthKind="delimited"
+		ibmSchExtn:docRoot="true">
+	</xsd:element>
