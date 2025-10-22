@@ -1,1 +1,9 @@
-2025-10-22 11:48:46.483220: BIP5831E: The DFDL serializer signalled that a processing error occurred.  The message from the DFDL serializer is:  CTDU4010E: Element '#xscd(/type::EDX_HDR_Type/model::sequence/schemaElement::EDX_Sendng_Cut_Offset_Mins)' has minOccurs '1' and no default value, but the DFDL infoset has '0' occurrences. This is not allowed when 'occursCountKind' is 'fixed' or 'implicit' or minOccurs is '1' and maxOccurs is '1'.   The element being serialized was:  /Root/DFDL/SOM_GENPDF_REQ_MSG/EDX_HDR/EDX_Sendng_Machine_Id 
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="ISIS_Insert_Dtl" type="ISIS_Insert_Dtl_Type">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep byteAlignment="Byte" messageSetDefaultRep="CWF1" repeatRef="/0/ISIS_Header_Type;XSDComplexTypeDefinition=1/XSDParticle/XSDModelGroup/XSDParticle=22/ISIS_Insert_Cnt;XSDElementDeclaration">
+              <cwfSimpleRep/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
