@@ -1,24 +1,9 @@
-
-
-CTDM2211E : Invalid DFDL annotations specified. 'DFDL property 'occursCount' is not expected. 'Component 'xsd:element #ISIS_Insert_Dtl'.	SOM_GenPDF_MsgReq.dfdl.xsd	/SOM/Schema	line 202	DFDL Validation Problem
-
-CTDM2211E : Invalid DFDL annotations specified. 'DFDL property 'occursCountKind' is not expected. 'Component 'xsd:element #ISIS_Insert_Dtl'.	SOM_GenPDF_MsgReq.dfdl.xsd	/SOM/Schema	line 202	DFDL Validation Problem
-
-
-<xsd:element name="ISIS_Insert_Cnt" type="xsd:int"
-				dfdl:lengthKind="explicit" dfdl:representation="text"
-				dfdl:length="2" dfdl:textNumberRep="standard"
-				dfdl:textNumberPattern="00" dfdl:textNumberJustification="right"
-				dfdl:textNumberPadCharacter="0" />
-
-			<xsd:element name="ISIS_Insert_Dtl" dfdl:length="60"
-				minOccurs="0" maxOccurs="unbounded" type="ISIS_Insert_Dtl_Type"
-				dfdl:representation="text">
-				<xsd:annotation>
-					<xsd:appinfo source="http://www.ogf.org/dfdl/">
-						<dfdl:element dfdl:occursCountKind="expression"
-							dfdl:occursCount="{ ../ISIS_Insert_Cnt }"
-							dfdl:separator="none" />
-					</xsd:appinfo>
-				</xsd:annotation>
-			</xsd:element>
+	<!-- ISIS_Insert_Dtl_Type -->
+	<xsd:complexType name="ISIS_Insert_Dtl_Type">
+		<xsd:sequence dfdl:separator="">
+			<xsd:element dfdl:length="10" name="insertCode"
+				dfdl:lengthKind="explicit" type="xsd:string" >
+			<xsd:element dfdl:length="50" name="insertName"
+				dfdl:lengthKind="explicit" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
