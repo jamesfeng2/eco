@@ -1,21 +1,20 @@
-dumpTree(inputMRMRoot,1); did show: 
-2025-10-23 21:13:36.770     76   DFDL
-2025-10-23 21:13:40.993     76     SOM_GENPDF_300RES_MSG
-2025-10-23 21:13:41.018     76       EDX_HDR_300Res
-2025-10-23 21:13:41.040     76         EDX_Header_Type = S
-2025-10-23 21:13:41.060     76         EDX_Header_Ver = 1
-2025-10-23 21:13:41.080     76         EDX_TRN_Type_Cde = BLO300
-2025-10-23 21:13:41.101     76         EDX_TRN_Action_Cde = N
-2025-10-23 21:13:41.126     76         EDX_TRN_Ver_Num = 1
+2025-10-24 07:40:24.856     76   DFDL
+2025-10-24 07:40:29.863     76     SOM_GENPDF_300RES_MSG
+2025-10-24 07:40:30.923     76       PDF_Content_300Res
+2025-10-24 07:40:30.943     76         PDF_Len = 25116
+2025-10-24 07:40:30.963     76         PDF_Content = JVBERi0xLjUNCiXi48/TDQolJUNyZWF0b3I6IENvbXB1U2V0IFZlc.......
+2025-10-24 09:19:19.228454: BIP4362E: Java node error: [SOM_OutboundDoc_Res_Handler_JavaCompute$SOMInsertMessages:SOM_GENERAL_ERROR]Error encountered while processing SOM Insert node : SOM Insert Node RuntimeException Message: java.lang.String incompatible with [B. 
 
-how to fix null value: 
+what's wrong if ((byte[])PDF_... I got above error
 
 	MbElement inputMRMRoot = inMessage.getRootElement().getFirstElementByPath("DFDL");
 			dumpTree(inputMRMRoot,1);
 			
-			
-			MbElement ISIS_Header_300Res = inputMRMRoot.getFirstElementByPath("ISIS_Header_300Res");
-			MbElement PDF_Content_300Res = inputMRMRoot.getFirstElementByPath("PDF_Content_300Res");
-	
-			String HISTORY_ID = ISIS_Header_300Res.getFirstElementByPath("ISIS_Hist_Id").getValueAsString();
-
+			MbElement msg = inputMRMRoot.getFirstElementByPath("SOM_GENPDF_300RES_MSG");
+			MbElement PDF_Content_300Res = msg.getFirstElementByPath("PDF_Content_300Res");
+...
+	if ((byte[])PDF_Content_300Res.getFirstElementByPath("PDF_Content").getValue() != null)
+			{
+				Content_Binary = (byte[])PDF_Content_300Res.getFirstElementByPath("PDF_Content").getValue(); 
+				CONTENT_BIN = new SerialBlob(Content_Binary);
+			}
