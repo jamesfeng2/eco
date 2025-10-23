@@ -1,26 +1,21 @@
-private static String indent(int spaces) {
-    StringBuilder sb = new StringBuilder(spaces);
-    for (int i = 0; i < spaces; i++) sb.append(' ');
-    return sb.toString();
-}
+dumpTree(inputMRMRoot,1); did show: 
+2025-10-23 21:13:36.770     76   DFDL
+2025-10-23 21:13:40.993     76     SOM_GENPDF_300RES_MSG
+2025-10-23 21:13:41.018     76       EDX_HDR_300Res
+2025-10-23 21:13:41.040     76         EDX_Header_Type = S
+2025-10-23 21:13:41.060     76         EDX_Header_Ver = 1
+2025-10-23 21:13:41.080     76         EDX_TRN_Type_Cde = BLO300
+2025-10-23 21:13:41.101     76         EDX_TRN_Action_Cde = N
+2025-10-23 21:13:41.126     76         EDX_TRN_Ver_Num = 1
 
-private void dumpTree(MbElement elem, int depth) throws MbException {
-    if (elem == null) return;
+how to fix null value: 
 
-    String ind = indent(depth * 2); // 2 spaces per level
-    Object val = elem.getValue();
+	MbElement inputMRMRoot = inMessage.getRootElement().getFirstElementByPath("DFDL");
+			dumpTree(inputMRMRoot,1);
+			
+			
+			MbElement ISIS_Header_300Res = inputMRMRoot.getFirstElementByPath("ISIS_Header_300Res");
+			MbElement PDF_Content_300Res = inputMRMRoot.getFirstElementByPath("PDF_Content_300Res");
+	
+			String HISTORY_ID = ISIS_Header_300Res.getFirstElementByPath("ISIS_Hist_Id").getValueAsString();
 
-    // name + value (if scalar)
-    if (val != null) {
-        System.out.println(ind + elem.getName() + " = " + val);
-    } else {
-        System.out.println(ind + elem.getName());
-    }
-
-    // recurse children
-    MbElement child = elem.getFirstChild();
-    while (child != null) {
-        dumpTree(child, depth + 1);
-        child = child.getNextSibling();
-    }
-}
