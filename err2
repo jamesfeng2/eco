@@ -1,2 +1,18 @@
-HOW TO fix:
-MbElement inputMRMRoot = inMessage.getRootElement().getFirstElementByPath("DFDL.SOM_GENPDF_300RES_MSG");
+private void dumpTree(MbElement elem, int depth) throws MbException {
+    if (elem == null) return;
+
+    String indent = " ".repeat(depth * 2);
+    Object val = elem.getValue();
+
+    if (val != null) {
+        System.out.println(indent + elem.getName() + " = " + val);
+    } else {
+        System.out.println(indent + elem.getName());
+    }
+
+    MbElement child = elem.getFirstChild();
+    while (child != null) {
+        dumpTree(child, depth + 1);
+        child = child.getNextSibling();
+    }
+}
