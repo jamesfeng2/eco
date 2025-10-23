@@ -1,15 +1,23 @@
+private static String indent(int spaces) {
+    StringBuilder sb = new StringBuilder(spaces);
+    for (int i = 0; i < spaces; i++) sb.append(' ');
+    return sb.toString();
+}
+
 private void dumpTree(MbElement elem, int depth) throws MbException {
     if (elem == null) return;
 
-    String indent = " ".repeat(depth * 2);
+    String ind = indent(depth * 2); // 2 spaces per level
     Object val = elem.getValue();
 
+    // name + value (if scalar)
     if (val != null) {
-        System.out.println(indent + elem.getName() + " = " + val);
+        System.out.println(ind + elem.getName() + " = " + val);
     } else {
-        System.out.println(indent + elem.getName());
+        System.out.println(ind + elem.getName());
     }
 
+    // recurse children
     MbElement child = elem.getFirstChild();
     while (child != null) {
         dumpTree(child, depth + 1);
