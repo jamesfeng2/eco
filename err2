@@ -1,2 +1,5 @@
-BIP2432E
-(.FilterPutOnSOM.Main, 23.26) : The correlation name 'InputRoot' is not valid. Those in scope are: somnsp, xmlnspc, Environment, LocalEnvironment, Root, Body, Properties, ExceptionList, DestinationList, putOnSOM, d. 
+HOW TO Inspect value of inMessage
+public class SOM_OutboundDoc_Res_Handler_JavaCompute extends com.ibm.broker.javacompute.MbJavaComputeNode {
+	public void evaluate(MbMessageAssembly inAssembly) throws MbException {
+		MbOutputTerminal out = getOutputTerminal("out");
+		MbMessage inMessage = inAssembly.getMessage();
