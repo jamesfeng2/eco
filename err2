@@ -1,20 +1,2 @@
- 
-CTDM2211E : Invalid DFDL annotations specified. 'Component 'xsd:element #ISIS_Insert_Dtl'.'	SOM_GenPDF_MsgReq.dfdl.xsd	/SOM/Schema	line 197	DFDL Validation Problem
- 
-CTDM2211E : Invalid DFDL annotations specified. 'DFDL property 'occursCountKind' is not expected. 'Component 'xsd:element #ISIS_Insert_Dtl'.	SOM_GenPDF_MsgReq.dfdl.xsd	/SOM/Schema	line 202	DFDL Validation Problem
-
-CTDM2211E : Invalid DFDL annotations specified. 'DFDL property 'occursCount' is not expected. 'Component 'xsd:element #ISIS_Insert_Dtl'.	SOM_GenPDF_MsgReq.dfdl.xsd	/SOM/Schema	line 202	DFDL Validation Problem
- 
-CTDM2211E : Invalid DFDL annotations specified. 'DFDL property 'separator' is not expected. 'Component 'xsd:element #ISIS_Insert_Dtl'.	SOM_GenPDF_MsgReq.dfdl.xsd	/SOM/Schema	line 202	DFDL Validation Problem
-
-
-<xsd:element name="ISIS_Insert_Dtl"   type="ISIS_Insert_Dtl_Type"
-				minOccurs="0" maxOccurs="unbounded"
-				dfdl:representation="text">
-				<xsd:annotation>
-					<xsd:appinfo source="http://www.ogf.org/dfdl/">
-						<dfdl:sequence dfdl:occursCountKind="expression"
-							dfdl:occursCount="{ ../ISIS_Insert_Cnt }" dfdl:separator="none" />
-					</xsd:appinfo>
-				</xsd:annotation>
-			</xsd:element>
+BIP2432E
+(.FilterPutOnSOM.Main, 23.26) : The correlation name 'InputRoot' is not valid. Those in scope are: somnsp, xmlnspc, Environment, LocalEnvironment, Root, Body, Properties, ExceptionList, DestinationList, putOnSOM, d. 
