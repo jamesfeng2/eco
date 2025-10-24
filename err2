@@ -1,7 +1,14 @@
-025-10-24 21:35:28.311894: BIP2322E: Database error: SQL State 'IM002'; Native Error Code '0'; Error Text '[Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified'. 
-Listening for transport dt_socket at address: 9997
-2025-10-24 21:42:57.201404: BIP4362E: Java node error: [SOM_OutboundDoc_Res_Handler_JavaCompute$SOMInsertMessages:SOM_GENERAL_ERROR]Error encountered while processing SOM Insert node : SOM Insert Node MbException Message: [BIPmsgs:5803]BIP5803E: DFDL parsing was stopped due to errors occurring. 
+2025-10-25 07:25:00.628896: BIP2152I: Configuration message received. 
+2025-10-25 07:25:00.697877: BIP9339W: The values defined in the policy(s) 'SOM' in policy project 'Policy' match the values of the existing policy(s). Any deployed resources using the policy(s) will not be affected by the redeploy of the policy project. 
+2025-10-25 07:25:00.703256: BIP9326I: The source 'Policyproject.generated.bar' has been successfully deployed. 
+2025-10-25 07:25:00.703738: BIP2154I: Integration server finished with Configuration message. 
+2025-10-25 07:25:49.539548: BIP2297I: Integration Server service trace with trace level 'debug' has been enabled due to user-initiated action. 
+2025-10-25 07:28:24.012996: BIP6253E: Error in node: SOM Insert. Could not locate JDBC Provider policy 'DSOM', in the specified or default policy project, for the data source name property on this node. 
 
-Errors have occurred during the parsing of a DFDL message. This has caused parsing to stop. 
 
-Review further error messages for an indication to the cause of the errors. : DFDL parsing errors have occurred. 
+2025-10-25 07:28:24.013116    15048                                   (00070)} ImbEventLogFileManager::write (00003AC8-68FBE11E-00000006) 
+2025-10-25 07:28:24.013162    15048   JDBCType4ConnectionFactory::checkVendorSupportsXA (00003AC8-68FBE11E-00000006)  file:C:\ci\product-build\WMB\src\DataFlowEngine\NativeTrace\ImbNativeTrace.cpp line:804 message:6253.BIPmsgs, 'There was a problem retrieving the policy for this datasource name ', 'SOM Insert', 'DSOM'
+2025-10-25 07:28:24.013162    15048   Error       BIP6253E: Error in node: SOM Insert. Could not locate JDBC Provider policy 'DSOM', in the specified or default policy project, for the data source name property on this node. 
+The node cannot establish a connection with a database if the configured JDBC Provider policy is not deployed in specified or default policy project of the integration server. 
+Examine the data source name provided on, or by, the node and ensure the value given matches an existing JDBC Provider policy deployed to the integration server. 
+
