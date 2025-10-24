@@ -1,14 +1,149 @@
-2025-10-25 07:25:00.628896: BIP2152I: Configuration message received. 
-2025-10-25 07:25:00.697877: BIP9339W: The values defined in the policy(s) 'SOM' in policy project 'Policy' match the values of the existing policy(s). Any deployed resources using the policy(s) will not be affected by the redeploy of the policy project. 
-2025-10-25 07:25:00.703256: BIP9326I: The source 'Policyproject.generated.bar' has been successfully deployed. 
-2025-10-25 07:25:00.703738: BIP2154I: Integration server finished with Configuration message. 
-2025-10-25 07:25:49.539548: BIP2297I: Integration Server service trace with trace level 'debug' has been enabled due to user-initiated action. 
-2025-10-25 07:28:24.012996: BIP6253E: Error in node: SOM Insert. Could not locate JDBC Provider policy 'DSOM', in the specified or default policy project, for the data source name property on this node. 
+convert below to ace12.0.12
+
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:include schemaLocation="SOM_GenPDF_200_MsgRes.mxsd"/>
+    <xsd:include schemaLocation="SOM_GenPDF_MsgReq.mxsd"/>
+    <xsd:complexType name="SOM_GenPDF_300Res_Type">
+        <xsd:sequence>
+            <xsd:element name="EDX_HDR_300Res" type="EDX_HDR_Type"/>
+            <xsd:element name="ISIS_Header_300Res" type="ISIS_Header_Type"/>
+            <xsd:element name="BRK_RQST_300Res" type="BRK_RQST_Type"/>
+            <xsd:element name="PDF_Content_300Res" type="PDFContent_Return_Type"/>
+            <xsd:element name="PDFEmitter_Return_300Res" type="PDFEmitter_Return_Type"/>
+            <xsd:element name="MMB_Content_300Res" type="MMBContent_Type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+ <xsd:complexType name="PDFEmitter_Return_Type">
+        <xsd:sequence>
+            <xsd:element name="Return_Cde" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" stringJustification="leftJustify" typeName="MRCWFStringRep" width="6"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="Return_Msg" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" stringJustification="leftJustify" typeName="MRCWFStringRep" width="255"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PDFContent_Return_Type">
+        <xsd:sequence>
+            <xsd:element name="PDF_Len" type="xsd:short">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullPadFill" encodingNullValue="" paddingCharacter="'0'" signed="false" stringJustification="rightJustify" typeName="MRCWFExternalDecimalRep" width="6"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
 
 
-2025-10-25 07:28:24.013116    15048                                   (00070)} ImbEventLogFileManager::write (00003AC8-68FBE11E-00000006) 
-2025-10-25 07:28:24.013162    15048   JDBCType4ConnectionFactory::checkVendorSupportsXA (00003AC8-68FBE11E-00000006)  file:C:\ci\product-build\WMB\src\DataFlowEngine\NativeTrace\ImbNativeTrace.cpp line:804 message:6253.BIPmsgs, 'There was a problem retrieving the policy for this datasource name ', 'SOM Insert', 'DSOM'
-2025-10-25 07:28:24.013162    15048   Error       BIP6253E: Error in node: SOM Insert. Could not locate JDBC Provider policy 'DSOM', in the specified or default policy project, for the data source name property on this node. 
-The node cannot establish a connection with a database if the configured JDBC Provider policy is not deployed in specified or default policy project of the integration server. 
-Examine the data source name provided on, or by, the node and ensure the value given matches an existing JDBC Provider policy deployed to the integration server. 
+            <xsd:element name="PDF_Content" type="xsd:hexBinary">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep lengthReference="/0/PDFContent_Return_Type;XSDComplexTypeDefinition=1/XSDParticle/XSDModelGroup/XSDParticle/PDF_Len;XSDElementDeclaration" messageSetDefaultRep="CWF1">
+              <cwfSimpleRep typeName="MRCWFBinaryRep"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
 
+
+
+            <xsd:element name="PDF_Name" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" encodingNullValue="" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" stringJustification="leftJustify" typeName="MRCWFStringRep" width="20"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SOM_GENPDF_300RES_MSG" type="SOM_GenPDF_300Res_Type">
+        <xsd:annotation>
+            <xsd:appinfo source="WMQI_APPINFO">
+        <MRMessage messageDefinition="/0/SOM_GENPDF_300RES_MSG;XSDElementDeclaration$MRObject"/>
+      </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="MMBContent_Type">
+    <xsd:sequence>
+            <xsd:element name="MMB_Subject" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" stringJustification="leftJustify" typeName="MRCWFStringRep" width="250"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="MMB_Attachment_Name" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" stringJustification="leftJustify" typeName="MRCWFStringRep" width="100"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="MMB_Len" type="xsd:short">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullPadFill" paddingCharacter="'0'" signed="false" stringJustification="rightJustify" typeName="MRCWFExternalDecimalRep" width="6"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="MMB_Msg" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep lengthReference="/0/MMBContent_Type;XSDComplexTypeDefinition=2/XSDParticle/XSDModelGroup/XSDParticle=2/MMB_Len;XSDElementDeclaration" messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" stringJustification="leftJustify" typeName="MRCWFStringRep"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="MMB_PDF_Len" type="xsd:short">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" signed="false" typeName="MRCWFExternalDecimalRep" width="6"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="MMB_PDF_Content" type="xsd:hexBinary">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep lengthReference="/0/MMBContent_Type;XSDComplexTypeDefinition=2/XSDParticle/XSDModelGroup/XSDParticle=4/MMB_PDF_Len;XSDElementDeclaration" messageSetDefaultRep="CWF1">
+              <cwfSimpleRep typeName="MRCWFBinaryRep"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+            <xsd:element name="MMB_PDF_Name" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" stringJustification="leftJustify" typeName="MRCWFStringRep" width="20"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+        </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
