@@ -1,5 +1,15 @@
-BIP4362E: Java node error: [SOM_OutboundDoc_Res_Handler_JavaCompute$SOMInsertMessages:SOM_GENERAL_ERROR]Error encountered while processing SOM Insert node : SOM Insert Node MbException Message: [BIPmsgs:6253]BIP6253E: Error in node: SOM Insert. Could not locate JDBC Provider policy 'DSOM', in the specified or default policy project, for the data source name property on this node. 
+service.log and user.log have: Successfully added file SOM_Policy\JDBCProviders\DSOM.policyxml to BAR file.
+properties.index have: 0/run/SOM/SOM_Policy/JDBCProviders/DSOM.policyxml/com.ibm.etools.mft.navigatorsensitiviyframeworksensitive file
 
-The node cannot establish a connection with a database if the configured JDBC Provider policy is not deployed in specified or default policy project of the integration server. 
-
-Examine the data source name provided on, or by, the node and ensure the value given matches an existing JDBC Provider policy deployed to the integration server. : Unable to locate policy for JDBCProvider : DSOM, in JDBCDatabaseManager constructor. 
+trace.txt have: 2025-10-24 19:26:29.772894     3696                 { ImbZipFile::Cursor::extractToFile, 'C:\Users\rjf287-mid\IBM\ACET12\workspace-SOM\TEST_SERVER\run\.temp\RESTBarFiles\76a134a1-bf29-43a6-b00e-0ce59bac582b\\SOM', 'SOM_Policy/DSOM.policyxml'
+2025-10-24 19:26:29.772910     3696                   { ImbDirectory::isDirectory, 'C:\Users\rjf287-mid\IBM\ACET12\workspace-SOM\TEST_SERVER\run\.temp\RESTBarFiles\76a134a1-bf29-43a6-b00e-0ce59bac582b\\SOM\SOM_Policy\'
+2025-10-24 19:26:29.773004     3696                   } ImbDirectory::isDirectory, 16, 16
+2025-10-24 19:26:29.773014     3696                   { ImbFile::ImbFile, true, true, false
+2025-10-24 19:26:29.773022     3696                   } ImbFile::ImbFile
+2025-10-24 19:26:29.773028     3696                   { ImbFile::fileExists, 'C:\Users\rjf287-mid\IBM\ACET12\workspace-SOM\TEST_SERVER\run\.temp\RESTBarFiles\76a134a1-bf29-43a6-b00e-0ce59bac582b\\SOM\SOM_Policy\DSOM.policyxml'
+2025-10-24 19:26:29.773084     3696                   } ImbFile::fileExists, false
+2025-10-24 19:26:29.773094     3696                   { ImbFile::open, 'C:\Users\rjf287-mid\IBM\ACET12\workspace-SOM\TEST_SERVER\run\.temp\RESTBarFiles\76a134a1-bf29-43a6-b00e-0ce59bac582b\\SOM\SOM_Policy\DSOM.policyxml', 0, false
+2025-10-24 19:26:29.773102     3696                     { ImbFile::openFileInternal, 'C:\Users\rjf287-mid\IBM\ACET12\workspace-SOM\TEST_SERVER\run\.temp\RESTBarFiles\76a134a1-bf29-43a6-b00e-0ce59bac582b\\SOM\SOM_Policy\DSOM.policyxml', -1073741824, 2, 0, false, false, false
+2025-10-24 19:26:29.774110     3696                     } ImbFile::openFileInternal, (*ptr)0000000000001E98, 0, 0, true
+2025-10-24 19:26:29.774136     3696                   } ImbFile::open
+2025-10-24 19:2
