@@ -1,41 +1,6 @@
+2025-10-24 12:06:07.410560: BIP6253E: Error in node: SOM Insert. Could not locate JDBC Provider policy 'DSOM', in the specified or default policy project, for the data source name property on this node. 
 
-2025-10-24 11:23:53.533396: BIP5803E: DFDL parsing was stopped due to errors occurring. 
-2025-10-24 11:23:53.533496: BIP5807E: The DFDL parser signalled that a processing error occurred.  The message from the DFDL parser is:  CTDP3000E: Unexpected end of data at byte offset '<MISSING INSERT 0>' while parsing element '<MISSING INSERT 1>'. The parser encountered the end of the data stream or the end of a parent element. 
+	String connProfile = (String)getUserDefinedAttribute("JDBCProfileName");
+			String dbSchema = (String)getUserDefinedAttribute("DBSchemaName");
 
-it is expected that MbElement MMB_Content_300Res = null 
-
-should i  minOccurs="0" maxOccurs="unbounded" for element MMB_Content_300Res?
-
----
-	<xsd:complexType name="SOM_GenPDF_300Res_Type">
-		<xsd:sequence>
-...
-			<xsd:element dfdl:lengthKind="delimited"
-				name="MMB_Content_300Res" type="MMBContent_Type" />
-		</xsd:sequence>
-	</xsd:complexType>
----
-	<xsd:complexType name="MMBContent_Type">
-		<xsd:sequence>
-			 ...
-			<xsd:element dfdl:lengthKind="delimited"
-				name="MMB_PDF_Content" type="xsd:hexBinary" />
-			<xsd:element dfdl:length="20" name="MMB_PDF_Name"
-				type="xsd:string" />
-		</xsd:sequence>
-	</xsd:complexType>
-
-
----
-MbElement msg = inputMRMRoot.getFirstElementByPath("SOM_GENPDF_300RES_MSG");
-			MbElement MMB_Content_300Res = msg.getFirstElementByPath("MMB_Content_300Res");
-
-		byte[] MMB_Content_Binary = null;
-			Blob MMB_CONTENT_BIN = null;
-			
-			if ((byte[])MMB_Content_300Res.getFirstElementByPath("MMB_PDF_Content").getValue() != null)
-			{
-			    MMB_Content_Binary = (byte[])MMB_Content_300Res.getFirstElementByPath("MMB_PDF_Content").getValue(); 
-			    MMB_CONTENT_BIN = new SerialBlob(MMB_Content_Binary);
-			}
-----
+provide sample codes or steps how to create policy or convert from IIB8
