@@ -1,13 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<policy xmlns="http://ibm.com/iib/policy"
-        policyType="JDBCProviders"
-        policyName="DSOM">
-    <description>JDBC connection to SOM database</description>
+BIP4362E: Java node error: [SOM_OutboundDoc_Res_Handler_JavaCompute$SOMInsertMessages:SOM_GENERAL_ERROR]Error encountered while processing SOM Insert node : SOM Insert Node MbException Message: [BIPmsgs:6253]BIP6253E: Error in node: SOM Insert. Could not locate JDBC Provider policy 'DSOM', in the specified or default policy project, for the data source name property on this node. 
 
-    <properties>
-        <property name="databaseName" value="SOMDB"/>
-        <property name="type4DatasourceClassName" value="com.ibm.db2.jcc.DB2ConnectionPoolDataSource"/>
-        <property name="connectionUrlFormat" value="jdbc:db2://mydbhost:50000/SOMDB"/>
-        <property name="securityIdentity" value="SOM_DB_Credential"/>
-    </properties>
-</policy>
+The node cannot establish a connection with a database if the configured JDBC Provider policy is not deployed in specified or default policy project of the integration server. 
+
+Examine the data source name provided on, or by, the node and ensure the value given matches an existing JDBC Provider policy deployed to the integration server. : Unable to locate policy for JDBCProvider : DSOM, in JDBCDatabaseManager constructor. 
