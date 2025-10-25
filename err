@@ -1,1 +1,5 @@
-Your flow’s configurable properties (schemaName=DSOM, DBSchemaName=DSOM, JDBCProfileName=DSOM, etc.) are being passed into the JavaCompute node, and that node tries to instantiate a JDBC connection via JDBCProviderPolicy named "DSOM".
+Java node error: [SOM_OutboundDoc_Res_Handler_JavaCompute$SOMInsertMessages:SOM_GENERAL_ERROR]Error encountered while processing SOM Insert node : SOM Insert Node MbException Message: [BIPmsgs:6253]BIP6253E: Error in node: SOM Insert. Could not locate JDBC Provider policy 'DSOM', in the specified or default policy project, for the data source name property on this node. 
+
+The node cannot establish a connection with a database if the configured JDBC Provider policy is not deployed in specified or default policy project of the integration server. 
+
+Examine the data source name provided on, or by, the node and ensure the value given matches an existing JDBC Provider policy deployed to the integration server. : Unable to locate policy for JDBCProvider : DSOM, in JDBCDatabaseManager constructor. 
