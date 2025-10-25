@@ -1,6 +1,1 @@
- 
-CTDV1210E : When 'lengthKind' is 'explicit', DFDL property 'length' must be set. Element: #xscd(/type::MMBContent_Type/model::sequence/schemaElement::MMB_Msg).	SOM_GenPDF_300_MsgRes.dfdl.xsd	/SOM/Schema	line 78	DFDL Validation Problem
-
-CTDM2201E : DFDL property is not expected. Property 'dfdl:lengthRef', object 'xsd:element #MMB_Msg'.	SOM_GenPDF_300_MsgRes.dfdl.xsd	/SOM/Schema	line 78	DFDL Validation Problem
- 
-CTDV1404E : When type is 'hexBinary', DFDL property 'lengthUnits' must be 'bytes'.  Element: #xscd(/type::MMBContent_Type/model::sequence/schemaElement::MMB_PDF_Content).	SOM_GenPDF_300_MsgRes.dfdl.xsd	/SOM/Schema	line 85	DFDL Validation Problem
+Your flow’s configurable properties (schemaName=DSOM, DBSchemaName=DSOM, JDBCProfileName=DSOM, etc.) are being passed into the JavaCompute node, and that node tries to instantiate a JDBC connection via JDBCProviderPolicy named "DSOM".
