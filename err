@@ -1,17 +1,7 @@
-This IIB8 XML how to convert to ace12.0.12 
-			SET OutputRoot.Properties.MessageSet = 'PKO6AJS002001';
-			SET OutputRoot.Properties.MessageType = 'LAKE_msg';
-			SET OutputRoot.Properties.MessageFormat = 'XML1';		
-			-- Create MQMD header
-			SET OutputRoot.MQMD.Format ='MQSTR';
-			SET OutputRoot.MQMD.CodedCharSetId=500;
-			SET OutputRoot.MQMD.Encoding=785;
-			SET OutputRoot.MQMD.Expiry = MQEI_UNLIMITED;
-			SET OutputRoot.MQMD.Persistence = MQPER_PERSISTENT;		
-		
-			DECLARE iRefIsisHDR REFERENCE TO InputRoot.MRM.ISIS_Header_300Res;
-		
-			DECLARE IsNomineeExists  BOOLEAN FALSE;
-			DECLARE IsEmployeeExists BOOLEAN FALSE;
 
-			DECLARE ISIS_Nom_CRN   CHAR iRefIsisHDR.ISIS_Nom_CRN;
+I got following err, where in DSOM of policyProject to setup username and password
+Java node error: [SOM_OutboundDoc_Res_Handler_JavaCompute$SOMInsertMessages:SOM_GENERAL_ERROR]Error encountered while processing SOM Insert node : SOM Insert Node MbException Message: [BIPmsgs:6278]BIP6278E: Node 'SOM Insert' is unable to create a connection with the datasource represented by JDBCProviders policy name '{PolicyProject}:DSOM', because of incomplete configuration settings. The JDBCProviders policy has been configured with securityIdentity property value 'dsomSecurityIdentity', which has not been defined by using the mqsisetdbparms or mqsicredentials command. 
+
+A JDBCProviders policy has been configured with a security identity that contains a user ID and password for the database but the security identity that has been defined does not exist. 
+
+Either create the security identity or correct the value of the security identity property that has been configured on the JDBCProviders policy. : Unable to locate userid and password from the security identity for JDBCProvider : {PolicyProject}:DSOM. 
