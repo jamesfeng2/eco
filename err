@@ -1,5 +1,12 @@
-
-This is the official ACE utility to validate a JDBC connection defined in a Policy Project or Configurable Service.
-
-mqsicvp -i <integrationNodeName> -e <integrationServerName> -j <policyProject>:<policyName>
-mqsicvp -i DSOM_NODE -e TEST_SERVER1 -j SOM_Policy:DSOM
+ResourceManagers:
+  JDBCProviders:
+    DSOM:
+      databaseType: DB2
+      databaseName: DSOM
+      type4DriverClassName: com.ibm.db2.jcc.DB2Driver
+      type4DriverClassPath: /opt/ibm/db2/V11.5/java/db2jcc4.jar
+      serverName: ddb204.csda.gov.au
+      portNumber: 50065
+      securityIdentity:
+        user: dsomusr
+        password: s0litud3
