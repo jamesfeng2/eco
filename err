@@ -1,2 +1,5 @@
-I empty s identity dsompolicy, now have 
-Java node error: [SOM_OutboundDoc_Res_Handler_JavaCompute$SOMInsertMessages:SOM_GENERAL_ERROR]Error encountered while processing SOM Insert node : SOM Insert Node MbException Message: [BIPmsgs:6233]BIP6233E: An error occurred in node: Broker 'integration_server'; Execution Group 'TEST_SERVER1'; Message Flow 'SOM_OutboundDoc_Res_Handler'; Node 'SOM Insert'; Node Type 'SOM_OutboundDoc_Res_Handler_JavaCompute There was a problem establishing a connection to the given database URL: jdbc:db2://ddb204.csda.gov.au:50065/DSOM:user=[user];password=[password]; Exception details:   error message: No suitable driver, SQLState value: 08001, stack trace: [com.ibm.broker.jdbctype4.jdbcdbasemgr.JDBCType4Connection.createNonXAConnection(JDBCType4Connection.java:424)
+
+This is the official ACE utility to validate a JDBC connection defined in a Policy Project or Configurable Service.
+
+mqsicvp -i <integrationNodeName> -e <integrationServerName> -j <policyProject>:<policyName>
+mqsicvp -i DSOM_NODE -e TEST_SERVER1 -j SOM_Policy:DSOM
