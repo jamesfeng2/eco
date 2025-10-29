@@ -1,1 +1,20 @@
-mqsisetdbparms -w /var/mqsi/components/daceeoc1/SOM1 -n jdbc::dsomSecurityIdentity -u dbusername -p dbpassword
+if mmb_len value 0 how to do with MMB_MSG
+
+ <xsd:element name="MMB_Len" type="xsd:short">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullPadFill" paddingCharacter="'0'" signed="false" stringJustification="rightJustify" typeName="MRCWFExternalDecimalRep" width="6"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="MMB_Msg" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="WMQI_APPINFO">
+            <cwfInclRep lengthReference="/0/MMBContent_Type;XSDComplexTypeDefinition=2/XSDParticle/XSDModelGroup/XSDParticle=2/MMB_Len;XSDElementDeclaration" messageSetDefaultRep="CWF1">
+              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" stringJustification="leftJustify" typeName="MRCWFStringRep"/>
+            </cwfInclRep>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
