@@ -1,12 +1,1 @@
-ResourceManagers:
-  JDBCProviders:
-    DSOM:
-      databaseType: DB2
-      databaseName: DSOM
-      type4DriverClassName: com.ibm.db2.jcc.DB2Driver
-      type4DriverClassPath: /opt/ibm/db2/V11.5/java/db2jcc4.jar
-      serverName: ddb204.csda.gov.au
-      portNumber: 50065
-      securityIdentity:
-        user: dsomusr
-        password: s0litud3
+mqsisetdbparms -w /var/mqsi/components/daceeoc1/SOM1 -n jdbc::dsomSecurityIdentity -u dbusername -p dbpassword
