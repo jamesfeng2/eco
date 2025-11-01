@@ -1,20 +1,21 @@
-if mmb_len value 0 how to do with MMB_MSG
+-- Copy the count
+SET OutputRoot.DFDL.SOM_GENPDF_REQ_MSG.ISIS_Header.ISIS_Insert_Cnt = ref2.ISIS_Insert_Cnt;
 
- <xsd:element name="MMB_Len" type="xsd:short">
-        <xsd:annotation>
-          <xsd:appinfo source="WMQI_APPINFO">
-            <cwfInclRep messageSetDefaultRep="CWF1">
-              <cwfSimpleRep encodingNull="NullPadFill" paddingCharacter="'0'" signed="false" stringJustification="rightJustify" typeName="MRCWFExternalDecimalRep" width="6"/>
-            </cwfInclRep>
-          </xsd:appinfo>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="MMB_Msg" type="xsd:string">
-        <xsd:annotation>
-          <xsd:appinfo source="WMQI_APPINFO">
-            <cwfInclRep lengthReference="/0/MMBContent_Type;XSDComplexTypeDefinition=2/XSDParticle/XSDModelGroup/XSDParticle=2/MMB_Len;XSDElementDeclaration" messageSetDefaultRep="CWF1">
-              <cwfSimpleRep encodingNull="NullLogicalValue" mrLengthEncoding="fixedLength" paddingCharacter="SPACE" stringJustification="leftJustify" typeName="MRCWFStringRep"/>
-            </cwfInclRep>
-          </xsd:appinfo>
-        </xsd:annotation>
-      </xsd:element>
+-- Loop through each detail
+DECLARE inCNT INTEGER COALESCE(ref2.ISIS_Insert_Cnt, 0);
+DECLARE i INTEGER 1;
+
+WHILE i <= inCNT DO
+    -- Create reference to input detail
+    DECLARE refDtl REFERENCE TO ref2.ISIS_Insert_Dtl[i];
+
+    -- Create target element in output
+    CREATE LASTCHILD OF OutputRoot.DFDL.SOM_GENPDF_REQ_MSG.ISIS_Header NAME 'ISIS_Insert_Dtl';
+    DECLARE outDtl REFERENCE TO OutputRoot.DFDL.SOM_GENPDF_REQ_MSG.ISIS_Header.ISIS_Insert_Dtl[i];
+
+    -- Set each field with padding/trimming
+    SET outDtl.insertCode = PadOrTrim(refDtl.insertCode, 10);
+    SET outDtl.insertName = PadOrTrim(refDtl.insertName, 50);
+
+    SET i = i + 1;
+END WHILE;
