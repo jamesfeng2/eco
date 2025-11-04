@@ -1,18 +1,1 @@
-<xsd:element name="EDX_TRN_Ver_Num" type="xsd:int"
-    dfdl:representation="text"
-    dfdl:lengthKind="explicit"
-    dfdl:length="2"
-    dfdl:textNumberRep="standard"
-    dfdl:textNumberPattern="00">
-  <xsd:annotation>
-    <xsd:appinfo source="http://www.ogf.org/dfdl/">
-      <dfdl:format 
-        representation="text"
-        lengthKind="explicit"
-        textNumberPattern="00"
-        textNumberRep="standard"
-        textNumberJustification="right"
-        textNumberPadCharacter="0"/>
-    </xsd:appinfo>
-  </xsd:annotation>
-</xsd:element>
+pp
