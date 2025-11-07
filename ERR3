@@ -1,10 +1,1 @@
-CREATE COMPUTE MODULE ShowTail
-  CREATE FUNCTION Main() RETURNS BOOLEAN
-  BEGIN
-    DECLARE blobData BLOB InputRoot.BLOB.BLOB;
-    DECLARE tail BLOB SUBSTRING(blobData FROM LENGTH(blobData) - 32 FOR 32);
-    PROPAGATE TO TERMINAL 'out' MESSAGE OutputRoot;
-    LOG "Tail bytes: " || CAST(tail AS CHARACTER CCSID 1208);
-    RETURN TRUE;
-  END;
-END MODULE;
+/QCAD                                                                     000   compuset - no error                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          000000000000G407427966-MMB.pdf  
