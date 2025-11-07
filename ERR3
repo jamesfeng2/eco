@@ -1,59 +1,10 @@
-
-	<xsd:complexType name="IPRNT_Ret300_Dtl_Type"
-		dfdl:lengthKind="implicit">
-		<xsd:annotation>
-			<xsd:appinfo>
-				<dfdl:format trailingSkip="unbounded" ignoreCase="no"
-					separator="none" sequenceKind="ordered" />
-			</xsd:appinfo>
-		</xsd:annotation>
-		<xsd:sequence dfdl:ignoreCase="no">
-			<!-- Error code: fixed 6 chars -->
-			<xsd:element dfdl:lengthKind="explicit" dfdl:length="6"
-				name="Error_Cde" type="xsd:string" dfdl:representation="text" />
-			<!-- Error message: fixed 255 chars -->
-			<xsd:element dfdl:lengthKind="explicit" name="Error_Msg"
-				dfdl:length="255" dfdl:representation="text"
-				dfdl:textStringJustification="left">
-				<xsd:simpleType>
-					<xsd:restriction base="xsd:string">
-						<xsd:minLength value="0" />
-						<xsd:maxLength value="255" />
-					</xsd:restriction>
-				</xsd:simpleType>
-			</xsd:element>
-		</xsd:sequence>
-	</xsd:complexType>
-	<!-- ========================================== -->
-	<!-- Main 300Res type -->
-	<!-- ========================================== -->
-	<xsd:complexType name="IPRINT_300Res_Type">
-		<xsd:sequence>
-
-			<xsd:element dfdl:lengthKind="implicit"
-				name="IPRNT_Ret_Det_300Res" type="IPRNT_Ret300_Dtl_Type"
-				dfdl:representation="text">
-				<xsd:annotation>
-					<xsd:appinfo>
-						<dfdl:format trailingSkip="unbounded" ignoreCase="no"
-							separator="none" sequenceKind="ordered" />
-					</xsd:appinfo>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:sequence>
-	</xsd:complexType>
-	<!-- ========================================== -->
-	<!-- Root element -->
-	<!-- ========================================== -->
-	<xsd:element dfdl:encoding="ISO-8859-1"
-		ibmSchExtn:docRoot="true" dfdl:lengthKind="implicit"
-		name="IPRINT_300RES_MSG" type="IPRINT_300Res_Type">
-		<xsd:annotation>
-			<xsd:appinfo>
-				<dfdl:format trailingSkip="unbounded" ignoreCase="no"
-					separator="none" sequenceKind="ordered" />
-			</xsd:appinfo>
-		</xsd:annotation>
-	</xsd:element>
-
-</xsd:schema>
+CREATE COMPUTE MODULE ShowTail
+  CREATE FUNCTION Main() RETURNS BOOLEAN
+  BEGIN
+    DECLARE blobData BLOB InputRoot.BLOB.BLOB;
+    DECLARE tail BLOB SUBSTRING(blobData FROM LENGTH(blobData) - 32 FOR 32);
+    PROPAGATE TO TERMINAL 'out' MESSAGE OutputRoot;
+    LOG "Tail bytes: " || CAST(tail AS CHARACTER CCSID 1208);
+    RETURN TRUE;
+  END;
+END MODULE;
